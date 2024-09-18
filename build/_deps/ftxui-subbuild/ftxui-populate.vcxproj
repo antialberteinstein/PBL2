@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2ED7C4B0-355D-37F8-A477-587AB73AC652}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ftxui-populate</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-mkdir.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating directories for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-download.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing download step (git clone) for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\ftxui-populate-gitinfo.txt;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-update_disconnected.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing disconnected update step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=NO -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-update_disconnected"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\tmp\ftxui-populate-gitupdate.cmake;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\ftxui-populate-update-info.txt;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-update_disconnected</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-patch_disconnected.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No patch_disconnected step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-patch_disconnected"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\ftxui-populate-patch-info.txt;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-update_disconnected;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-patch_disconnected</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-configure.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No configure step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\tmp\ftxui-populate-cfgcmd.txt;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-patch_disconnected;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-build.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No build step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-install.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No install step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-test.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No test step for 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\82982df1f535c1019f20e56cb95d15ac\ftxui-populate-complete.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Completed 'ftxui-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/Debug/ftxui-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-install;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-mkdir;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-download;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-update_disconnected;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-patch_disconnected;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-configure;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-build;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\src\ftxui-populate-stamp\Debug\ftxui-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\Debug\ftxui-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\8083f9bed89b37fe0c2fbe54e1e71f06\ftxui-populate.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\Debug\ftxui-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\ftxui-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" --check-stamp-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\gitclone.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\gitupdate.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-3.30\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\3.30.3\CMakeSystem.cmake;C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ftxui-populate-prefix\tmp\ftxui-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\ftxui-populate">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{896706AE-8BC7-3315-B2FE-5AC0DE100DD1}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

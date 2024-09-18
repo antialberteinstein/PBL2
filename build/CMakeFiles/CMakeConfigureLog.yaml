@@ -1,0 +1,350 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.11.2+c078802d4 for .NET Framework
+      Build started 18/09/2024 01:00:18.
+      
+      Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.exe
+      AppLocalFromInstalled:
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        'pwsh.exe' is not recognized as an internal or external command,
+        operable program or batch file.
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\3.30.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:07.64
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/3.30.3/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4o7n7j"
+      binary: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4o7n7j"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4o7n7j'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fc0d1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.11.2+c078802d4 for .NET Framework
+        Build started 18/09/2024 01:00:27.
+        
+        Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\cmTC_fc0d1.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_fc0d1.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\".
+          Creating directory "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_fc0d1.dir\\Debug\\\\" /Fd"cmTC_fc0d1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.41.34120 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_fc0d1.dir\\Debug\\\\" /Fd"cmTC_fc0d1.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\cmTC_fc0d1.exe" /INCREMENTAL /ILK:"cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.ilk" /NOLOGO /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4o7n7j/Debug/cmTC_fc0d1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4o7n7j/Debug/cmTC_fc0d1.lib" /MACHINE:X64  /machine:x64 cmTC_fc0d1.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_fc0d1.vcxproj -> C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\cmTC_fc0d1.exe
+        AppLocalFromInstalled:
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\cmTC_fc0d1.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\cmTC_fc0d1.write.1u.tlog" "cmTC_fc0d1.dir\\Debug\\vcpkg.applocal.log"
+          'pwsh.exe' is not recognized as an internal or external command,
+          operable program or batch file.
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\cmTC_fc0d1.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\cmTC_fc0d1.write.1u.tlog" "cmTC_fc0d1.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Nhat\\Downloads\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\Debug\\cmTC_fc0d1.exe" "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\cmTC_fc0d1.write.1u.tlog" "cmTC_fc0d1.dir\\Debug\\vcpkg.applocal.log"
+        FinalizeBuildStatus:
+          Deleting file "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\unsuccessfulbuild".
+          Touching "cmTC_fc0d1.dir\\Debug\\cmTC_fc0d1.tlog\\cmTC_fc0d1.lastbuildstate".
+        Done Building Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4o7n7j\\cmTC_fc0d1.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:03.51
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:3 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.41.34120.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:152 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-kkzxze"
+      binary: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-kkzxze"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-kkzxze'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8d14a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.11.2+c078802d4 for .NET Framework
+        Build started 18/09/2024 01:00:32.
+        
+        Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\cmTC_8d14a.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_8d14a.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\Debug\\".
+          Creating directory "cmTC_8d14a.dir\\Debug\\cmTC_8d14a.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_8d14a.dir\\Debug\\cmTC_8d14a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_8d14a.dir\\Debug\\cmTC_8d14a.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_8d14a.dir\\Debug\\\\" /Fd"cmTC_8d14a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\src.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.41.34120 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_8d14a.dir\\Debug\\\\" /Fd"cmTC_8d14a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\src.cxx"
+          src.cxx
+        C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\cmTC_8d14a.vcxproj]
+        Done Building Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\cmTC_8d14a.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\cmTC_8d14a.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kkzxze\\cmTC_8d14a.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:01.47
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:152 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4wd1el"
+      binary: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4wd1el"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4wd1el'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_8b88d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.11.2+c078802d4 for .NET Framework
+        Build started 18/09/2024 01:00:35.
+        
+        Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\cmTC_8b88d.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_8b88d.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\Debug\\".
+          Creating directory "cmTC_8b88d.dir\\Debug\\cmTC_8b88d.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_8b88d.dir\\Debug\\cmTC_8b88d.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_8b88d.dir\\Debug\\cmTC_8b88d.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_8b88d.dir\\Debug\\\\" /Fd"cmTC_8b88d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\CheckFunctionExists.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.41.34120 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_8b88d.dir\\Debug\\\\" /Fd"cmTC_8b88d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\CheckFunctionExists.cxx"
+          CheckFunctionExists.cxx
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\Debug\\cmTC_8b88d.exe" /INCREMENTAL /ILK:"cmTC_8b88d.dir\\Debug\\cmTC_8b88d.ilk" /NOLOGO /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4wd1el/Debug/cmTC_8b88d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-4wd1el/Debug/cmTC_8b88d.lib" /MACHINE:X64  /machine:x64 cmTC_8b88d.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\cmTC_8b88d.vcxproj]
+        Done Building Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\cmTC_8b88d.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\cmTC_8b88d.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-4wd1el\\cmTC_8b88d.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:01.24
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files/CMake/share/cmake-3.30/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "build/_deps/ftxui-src/CMakeLists.txt:152 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-msg724"
+      binary: "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-msg724"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-msg724'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_219e0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.11.2+c078802d4 for .NET Framework
+        Build started 18/09/2024 01:00:37.
+        
+        Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\cmTC_219e0.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_219e0.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\Debug\\".
+          Creating directory "cmTC_219e0.dir\\Debug\\cmTC_219e0.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_219e0.dir\\Debug\\cmTC_219e0.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_219e0.dir\\Debug\\cmTC_219e0.tlog\\unsuccessfulbuild".
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\"
+          Using normalized configuration "Debug"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_219e0.dir\\Debug\\\\" /Fd"cmTC_219e0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\CheckFunctionExists.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.41.34120 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /I"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\include" /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_219e0.dir\\Debug\\\\" /Fd"cmTC_219e0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\CheckFunctionExists.cxx"
+          CheckFunctionExists.cxx
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\Debug\\cmTC_219e0.exe" /INCREMENTAL /ILK:"cmTC_219e0.dir\\Debug\\cmTC_219e0.ilk" /NOLOGO /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\Nhat\\Downloads\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-msg724/Debug/cmTC_219e0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/CMakeScratch/TryCompile-msg724/Debug/cmTC_219e0.lib" /MACHINE:X64  /machine:x64 cmTC_219e0.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\cmTC_219e0.vcxproj]
+        Done Building Project "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\cmTC_219e0.vcxproj" (default targets) -- FAILED.
+        
+        Build FAILED.
+        
+        "C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\cmTC_219e0.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\Nhat\\OneDrive - The University of Technology\\Desktop\\pbl\\lnp26\\build\\CMakeFiles\\CMakeScratch\\TryCompile-msg724\\cmTC_219e0.vcxproj]
+        
+            0 Warning(s)
+            1 Error(s)
+        
+        Time Elapsed 00:00:01.11
+        
+      exitCode: 1
+...

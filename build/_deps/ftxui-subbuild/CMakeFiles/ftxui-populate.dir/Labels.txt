@@ -1,0 +1,14 @@
+# Target labels
+ ftxui-populate
+# Source files and their labels
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/8083f9bed89b37fe0c2fbe54e1e71f06/ftxui-populate.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/82982df1f535c1019f20e56cb95d15ac/ftxui-populate-complete.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-build.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-configure.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-download.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-install.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-mkdir.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-patch_disconnected.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-test.rule
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/0911cabc403189432d0d634fa0b5f4c3/ftxui-populate-update_disconnected.rule

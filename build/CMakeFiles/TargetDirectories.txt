@@ -1,0 +1,15 @@
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/pbl.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/PACKAGE.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/INSTALL.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/screen.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/dom.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/component.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/PACKAGE.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/INSTALL.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/examples/CMakeFiles/PACKAGE.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/examples/CMakeFiles/INSTALL.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/doc/CMakeFiles/PACKAGE.dir
+C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/doc/CMakeFiles/INSTALL.dir

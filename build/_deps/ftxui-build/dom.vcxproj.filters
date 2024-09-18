@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\automerge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\blink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\bold.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\hyperlink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\border.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\box_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\canvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\clear_under.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\composite_decorator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\dbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\dim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\flex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\flexbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\flexbox_config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\flexbox_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\focus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\gauge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\gridbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\hbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\inverted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\linear_gradient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\node_decorator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\paragraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\reflect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\scroll_indicator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\separator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\size.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\spinner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\strikethrough.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\underlined.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\underlined_double.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\vbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\canvas.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\direction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\elements.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\flexbox_config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\requirement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\include\ftxui\dom\take_any_args.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\box_helper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\src\ftxui\dom\flexbox_helper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F82E3248-E63C-3D19-B92D-CA89AA7D3DDC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9397DB87-5314-3658-8DE8-56E574B0BB5D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" --check-stamp-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

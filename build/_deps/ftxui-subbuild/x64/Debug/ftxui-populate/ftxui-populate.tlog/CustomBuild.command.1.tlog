@@ -1,0 +1,152 @@
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-UPDATE_DISCONNECTED.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=NO -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/tmp/ftxui-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-update_disconnected"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-PATCH_DISCONNECTED.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-patch_disconnected"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\0911CABC403189432D0D634FA0B5F4C3\FTXUI-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\82982DF1F535C1019F20E56CB95D15AC\FTXUI-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/Debug/ftxui-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/Debug/ftxui-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKEFILES\8083F9BED89B37FE0C2FBE54E1E71F06\FTXUI-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild" --check-stamp-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\src\eins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\src\functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\src\tui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9397DB87-5314-3658-8DE8-56E574B0BB5D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
