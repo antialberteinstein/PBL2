@@ -21,4 +21,4 @@ target_link_libraries(pbl
   PRIVATE ftxui::component
 )
 
-FILE(COPY "${CMAKE_SOURCE_DIR}/res/" DESTINATION "${CMAKE_BINARY_DIR}res/")
+FILE(COPY "${CMAKE_SOURCE_DIR}/res/" DESTINATION "${CMAKE_BINARY_DIR}/res/")

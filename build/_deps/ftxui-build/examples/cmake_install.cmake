@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-src/examples
+# Install script for directory: C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-src/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

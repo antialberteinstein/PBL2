@@ -52,7 +52,7 @@ add_library(ftxui::screen STATIC IMPORTED)
 set_target_properties(ftxui::screen PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
   INTERFACE_COMPILE_OPTIONS "/utf-8"
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-src/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-src/include"
 )
 
 # Create imported target ftxui::dom
@@ -61,7 +61,7 @@ add_library(ftxui::dom STATIC IMPORTED)
 set_target_properties(ftxui::dom PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
   INTERFACE_COMPILE_OPTIONS "/utf-8"
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-src/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-src/include"
   INTERFACE_LINK_LIBRARIES "ftxui::screen"
 )
 
@@ -71,7 +71,7 @@ add_library(ftxui::component STATIC IMPORTED)
 set_target_properties(ftxui::component PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
   INTERFACE_COMPILE_OPTIONS "/utf-8"
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-src/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-src/include"
   INTERFACE_LINK_LIBRARIES "ftxui::dom;Threads::Threads"
 )
 
@@ -79,84 +79,84 @@ set_target_properties(ftxui::component PROPERTIES
 set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(ftxui::screen PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Debug/ftxui-screen.lib"
+  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Debug/ftxui-screen.lib"
   )
 
 # Import target "ftxui::dom" for configuration "Debug"
 set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(ftxui::dom PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Debug/ftxui-dom.lib"
+  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Debug/ftxui-dom.lib"
   )
 
 # Import target "ftxui::component" for configuration "Debug"
 set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(ftxui::component PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Debug/ftxui-component.lib"
+  IMPORTED_LOCATION_DEBUG "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Debug/ftxui-component.lib"
   )
 
 # Import target "ftxui::screen" for configuration "Release"
 set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(ftxui::screen PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Release/ftxui-screen.lib"
+  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Release/ftxui-screen.lib"
   )
 
 # Import target "ftxui::dom" for configuration "Release"
 set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(ftxui::dom PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Release/ftxui-dom.lib"
+  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Release/ftxui-dom.lib"
   )
 
 # Import target "ftxui::component" for configuration "Release"
 set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(ftxui::component PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/Release/ftxui-component.lib"
+  IMPORTED_LOCATION_RELEASE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/Release/ftxui-component.lib"
   )
 
 # Import target "ftxui::screen" for configuration "MinSizeRel"
 set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(ftxui::screen PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "CXX"
-  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/MinSizeRel/ftxui-screen.lib"
+  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/MinSizeRel/ftxui-screen.lib"
   )
 
 # Import target "ftxui::dom" for configuration "MinSizeRel"
 set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(ftxui::dom PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "CXX"
-  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/MinSizeRel/ftxui-dom.lib"
+  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/MinSizeRel/ftxui-dom.lib"
   )
 
 # Import target "ftxui::component" for configuration "MinSizeRel"
 set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS MINSIZEREL)
 set_target_properties(ftxui::component PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_MINSIZEREL "CXX"
-  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/MinSizeRel/ftxui-component.lib"
+  IMPORTED_LOCATION_MINSIZEREL "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/MinSizeRel/ftxui-component.lib"
   )
 
 # Import target "ftxui::screen" for configuration "RelWithDebInfo"
 set_property(TARGET ftxui::screen APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(ftxui::screen PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
-  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/RelWithDebInfo/ftxui-screen.lib"
+  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/RelWithDebInfo/ftxui-screen.lib"
   )
 
 # Import target "ftxui::dom" for configuration "RelWithDebInfo"
 set_property(TARGET ftxui::dom APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(ftxui::dom PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
-  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/RelWithDebInfo/ftxui-dom.lib"
+  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/RelWithDebInfo/ftxui-dom.lib"
   )
 
 # Import target "ftxui::component" for configuration "RelWithDebInfo"
 set_property(TARGET ftxui::component APPEND PROPERTY IMPORTED_CONFIGURATIONS RELWITHDEBINFO)
 set_target_properties(ftxui::component PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELWITHDEBINFO "CXX"
-  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/RelWithDebInfo/ftxui-component.lib"
+  IMPORTED_LOCATION_RELWITHDEBINFO "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/RelWithDebInfo/ftxui-component.lib"
   )
 
 # This file does not depend on other imported targets which have

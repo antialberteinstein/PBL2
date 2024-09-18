@@ -1,6 +1,6 @@
-^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\_DEPS\FTXUI-SRC\CMAKELISTS.TXT
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\PBL2\BUILD\_DEPS\FTXUI-SRC\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build" --check-stamp-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/_deps/ftxui-build/CMakeFiles/generate.stamp"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build" --check-stamp-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/_deps/ftxui-build/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

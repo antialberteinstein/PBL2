@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\8083f9bed89b37fe0c2fbe54e1e71f06\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\b8178ea5bb7833c57c946e93b5e82b94\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{50C9AFFB-FFEF-3779-B6BF-498EAA18BDCB}</UniqueIdentifier>
+      <UniqueIdentifier>{E05ED125-9E97-375C-B121-CF5C12F997E0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

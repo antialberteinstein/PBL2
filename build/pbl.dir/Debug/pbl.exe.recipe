@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\Debug\pbl.exe</FullPath>
+      <FullPath>C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\Debug\pbl.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

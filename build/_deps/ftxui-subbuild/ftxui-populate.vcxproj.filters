@@ -1,44 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-mkdir.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-mkdir.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-download.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-download.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-update_disconnected.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-update_disconnected.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-patch_disconnected.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-patch_disconnected.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-configure.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-configure.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-build.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-build.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-install.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-install.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\0911cabc403189432d0d634fa0b5f4c3\ftxui-populate-test.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\6fa706011ecfb7a40ebac22f1cbad779\ftxui-populate-test.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\82982df1f535c1019f20e56cb95d15ac\ftxui-populate-complete.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\9934eb401aa17d8dc0ec5f6af85f0642\ftxui-populate-complete.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\8083f9bed89b37fe0c2fbe54e1e71f06\ftxui-populate.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\b8178ea5bb7833c57c946e93b5e82b94\ftxui-populate.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\_deps\ftxui-subbuild\CMakeFiles\ftxui-populate" />
+    <None Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\_deps\ftxui-subbuild\CMakeFiles\ftxui-populate" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{50C9AFFB-FFEF-3779-B6BF-498EAA18BDCB}</UniqueIdentifier>
+      <UniqueIdentifier>{E05ED125-9E97-375C-B121-CF5C12F997E0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

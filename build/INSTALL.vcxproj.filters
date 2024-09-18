@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\lnp26\build\CMakeFiles\c851c8175295b6fc73abf75c5de15db5\INSTALL_force.rule">
+    <CustomBuild Include="C:\Users\Nhat\OneDrive - The University of Technology\Desktop\pbl\PBL2\build\CMakeFiles\705f0086c61df6cc0f678d5017ae04b8\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{0DF9B34D-CEB0-3322-9D09-81DF8AF92668}</UniqueIdentifier>
+      <UniqueIdentifier>{427126AF-0863-3E26-BCAB-7050DE51BC05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

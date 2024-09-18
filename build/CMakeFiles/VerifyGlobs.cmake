@@ -3,14 +3,14 @@
 cmake_policy(SET CMP0009 NEW)
 
 # SOURCES at CMakeLists.txt:15 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/src/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/src/*.cpp")
 set(OLD_GLOB
-  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/src/eins.cpp"
-  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/src/functions.cpp"
-  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/src/main.cpp"
-  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/src/tui.cpp"
+  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/src/eins.cpp"
+  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/src/functions.cpp"
+  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/src/main.cpp"
+  "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/src/tui.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/CMakeFiles/cmake.verify_globs")
 endif()

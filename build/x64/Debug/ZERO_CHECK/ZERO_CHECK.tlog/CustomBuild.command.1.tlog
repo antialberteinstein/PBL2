@@ -1,6 +1,6 @@
-^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\LNP26\BUILD\CMAKEFILES\C851C8175295B6FC73ABF75C5DE15DB5\GENERATE.STAMP.RULE
+^C:\USERS\NHAT\ONEDRIVE - THE UNIVERSITY OF TECHNOLOGY\DESKTOP\PBL\PBL2\BUILD\CMAKEFILES\705F0086C61DF6CC0F678D5017AE04B8\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/lnp26/build/pbl.sln"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2" "-BC:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Nhat/OneDrive - The University of Technology/Desktop/pbl/PBL2/build/pbl.sln"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
