@@ -1,0 +1,2 @@
+Hiển thị thông số, số lượng sinh viên, số lượng phòng có sẵn (không hỏng hóc),
+số lượng sinh viên đang nợ phí, số lượng phương tiện được gửi trong ký túc xá.

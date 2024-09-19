@@ -17,8 +17,7 @@ namespace tui {
         ALLOW_UTF8;
     }
 
-    void my_main() {
-        auto screen = ScreenInteractive::TerminalOutput();
+    void my_main(ScreenInteractive& screen) {
 
         /* Title */
         Elements title_elements;
@@ -37,15 +36,15 @@ namespace tui {
         /* Menu */
         EMenu menu(10);
 
-        menu.insert({"Thêm sinh viên", do_nothing});
-        menu.insert({"Đăng ký bao phòng", do_nothing});
-        menu.insert({"Danh sách sinh viên", do_nothing});
-        menu.insert({"Danh sách phòng", do_nothing});
-        menu.insert({"Chuyển sinh viên sang phòng khác", do_nothing});
-        menu.insert({"In tài liệu (*.csv)", do_nothing});
-        menu.insert({"In bản đồ", do_nothing});
-        menu.insert({"Thống kê", do_nothing});
-        menu.insert({"Thoát", do_nothing});
+        menu.insert("Thêm sinh viên", do_nothing, "add_student");
+        menu.insert("Đăng ký bao phòng", do_nothing, "room_reservation");
+        menu.insert("Danh sách sinh viên", do_nothing, "student_list");
+        menu.insert("Danh sách phòng", do_nothing, "room_list");
+        menu.insert("Chuyển sinh viên sang phòng khác", do_nothing, "move_student");
+        menu.insert("In tài liệu (*.csv)", do_nothing, "print_document");
+        menu.insert("In bản đồ", do_nothing, "print_map");
+        menu.insert("Thống kê", do_nothing, "statistics");
+        menu.insert("Thoát", do_nothing, "exit");
 
         auto com = Renderer([&] {
             if (handle_console_size_changed()) {
@@ -59,7 +58,7 @@ namespace tui {
                     separator(),
                     hbox({
                         menu.get_doc() | border | flex,
-                        text("Map") | border | flex,
+                        menu.get_desc() | border | flex,
                     }) | flex,
                 });
         });
@@ -117,8 +116,9 @@ namespace tui {
 
     Element EMenu::get_doc() {
         Elements menu_elements;
+        static const string padding = "   ";
         for (int i = 0; i < size; i++) {
-            string str = to_string(i + 1) + ". " + options[i].name;
+            string str = padding + to_string(i + 1) + ". " + options[i].name;
             if (i == selected) {
                 menu_elements.push_back(text(str) | inverted);
             } else {
@@ -128,7 +128,8 @@ namespace tui {
         return vbox(menu_elements);
     }
 
-    void EMenu::insert(MenuOption option, int index) {
+    void EMenu::insert(const string& name, func action,
+            const string& desc_file_path, int index) {
         if (index < 0 || index > size) {
             index = size;
         }
@@ -142,8 +143,28 @@ namespace tui {
         for (int i = size; i > index; i--) {
             options[i] = options[i - 1];
         }
-        options[index] = option;
+
+        ifstream desc_file(desc_file_path);
+        string line;
+        Elements desc;
+
+        if (!desc_file.good())
+            desc_file = ifstream(DESCRIPTIONS_PATH + desc_file_path);
+        if (!desc_file.good())
+            desc_file = ifstream(DESCRIPTIONS_PATH + desc_file_path + ".txt");
+        if (desc_file.good()) {
+            while (getline(desc_file, line)) {
+                desc.push_back(text(line));
+            }
+        }
+        desc_file.close();
+
+        options[index] = { name, action, desc };
         size++;
+    }
+
+    Element EMenu::get_desc() {
+        return vbox(options[selected].desc);
     }
 }
 

@@ -100,6 +100,8 @@
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(ms))
 #define FRAME_CYCLE 1000/60
 
+#define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
+
 using namespace std;
 using namespace ftxui;
 
@@ -111,7 +113,7 @@ namespace tui {
     void init();
 
     // Main menu screen.
-    void my_main();
+    void my_main(ScreenInteractive& screen);
 
     // Clean up tui
     void cleanup();
@@ -119,6 +121,7 @@ namespace tui {
     struct MenuOption {
         string name;
         func action;
+        Elements desc;
     };
 
     class EMenu {
@@ -130,11 +133,13 @@ namespace tui {
         public:
             EMenu(int capacity=LIST_MAX);
             ~EMenu();
-            void insert(MenuOption option, int index=-1);
+            void insert(const string& name, func action,
+                const string& desc_file_path, int index=-1);
             void move_up();
             void move_down();
             void select();
             Element get_doc();
+            Element get_desc();
     };
 }
 

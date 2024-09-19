@@ -1,0 +1,78 @@
+Cấu trúc:
+* Tên mục  # Ghi trên 1 dòng, có thể chứa dấu cách.
+* ID (xác định hàm làm việc)  # Ghi trên một dòng, không chứa dấu cách.
+* Mô tả  # Ghi trên nhiều dòng.
+* Dấu :-)  (để kết thúc một mục).
+Kết thúc phấn cấu trúc bằng ^-^
+
+^-^
+Thêm sinh viên
+add_student
+ Thêm sinh viên vào danh sách, sinh viên được phép lựa
+ chọn phòng ở ghép 6 người PHÙ HỢP, trừ phi sinh viên
+ không quan tâm đến việc ghép phòng với ai thì hệ thống
+ sẽ chọn ngẫu nhiên.
+ * Các phòng được phép lựa chọn có thể là phòng trống,
+ phòng chưa đủ số lượng sinh viên.
+:-)
+Đăng ký bao phòng
+  room_reservation
+  Cài đặt một phòng là phòng bao - có số người ít hơn 6,
+  tiền phòng được chia theo số người tối đa trong phòng.
+Danh sách sinh viên
+  student_list
+  Hiển thị danh sách sinh viên trong kí túc xá, bao gồm
+  các thông tin về bản thân sinh viên, số phòng, ngày vào
+  phòng, tình trạng (nợ tiền phòng, tiền gửi xe,...), một
+  số thông tin khác.
+  Đồng thời hỗ trợ:
+  +) Tìm kiếm sinh viên (để xóa, sửa sinh viên).
+  +) Thanh toán các khoản phí đến hạn (không bao gồm tiền điện).
+  +) Đăng ký gửi xe cho sinh viên.
+:-)
+Danh sách phòng
+  room_list
+  Hiển thị danh sách các phòng trong kí túc xá, bao gồm các
+  thông tin về số phòng, tình trạng phòng, số người trong phòng,
+  một số thông tin khác.
+  Đồng thời hỗ trợ:
+  +) Tìm kiếm phòng (để thanh toán tiền điện, tiền phòng,... cho sinh
+    viên hoặc thông báo tới hệ thống phòng hỏng, giột,... ).
+  +) Cơ chế hiển thị các phòng hỏng hóc để sửa chữa kịp thời.
+:-)
+Chuyển sinh viên sang phòng khác
+  move_student
+  Tiến hành xóa sinh viên ở phòng này và thêm sinh viên đó sang phòng mới,
+  theo lựa chọn của sinh viên và tình trạng phòng mới.
+:-)
+In tài liệu (*.csv)
+  print_document
+  In các tài liệu (có sẵn):
+  +) Danh sách sinh viên.
+  +) Danh sách phòng.
+In bản đồ
+  print_map
+  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+  █         ▛▀▀▀▀▀▜ ▛▀▀▀▀▀▜ █
+  █         ▌KHU A▐ ▌KHU B▐ █
+  █ ▛▀▀▀▀▀▜ ▙▄▄▄▄▄▟ ▙▄▄▄▄▄▟ █
+  █ ▌KHU  ▐         ▛▀▀▀▀▀▜ █
+  █ ▌HÀNH ▐[Sân thể ▌KHU C▐ █
+  █ ▌CHÍNH▐  thao]  ▙▄▄▄▄▄▟ █
+  █ ▌& CĂN▐         ▛▀▀▀▀▀▜ █
+  █ ▌TIN  ▐ ▛▀▀▀▀▀▜ ▌KHU D▐ █
+  █ ▙▄▄▄▄▄▟ ▌KHU F▐ ▙▄▄▄▄▄▟ █
+  █         ▙▄▄▄▄▄▟ ▛▀▀▀▀▀▜ █
+  █   [Nhà xe]      ▌KHU E▐ █
+  █                 ▙▄▄▄▄▄▟ █
+  ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▭▭▇▇▇▇▇▇▇▇▇▇
+:-)
+Thống kê
+  statistics
+  Hiển thị thông số, số lượng sinh viên, số lượng phòng có sẵn (không hỏng hóc),
+  số lượng sinh viên đang nợ phí, số lượng phương tiện được gửi trong ký túc xá.
+:-)
+Thoát
+  exit
+  Tạm biệt bạn iu.
+:-)

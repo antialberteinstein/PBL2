@@ -1,0 +1,2 @@
+Tiến hành xóa sinh viên ở phòng này và thêm sinh viên đó sang phòng mới,
+theo lựa chọn của sinh viên và tình trạng phòng mới.

@@ -1,0 +1,6 @@
+Thêm sinh viên vào danh sách, sinh viên được phép lựa
+chọn phòng ở ghép 6 người PHÙ HỢP, trừ phi sinh viên
+không quan tâm đến việc ghép phòng với ai thì hệ thống
+sẽ chọn ngẫu nhiên.
+* Các phòng được phép lựa chọn có thể là phòng trống,
+phòng chưa đủ số lượng sinh viên.
