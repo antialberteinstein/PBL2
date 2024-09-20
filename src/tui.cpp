@@ -22,15 +22,11 @@ namespace tui {
         /* Title */
         Elements title_elements;
         string line;
-        Vector<string> foo(10);
         while (getline(title_file, line)) {
-            foo.push(line);
+            string tmp = line + "\n";
+            title_elements.push_back(text(tmp) | center);
         }
-
-        for (int i = 0; i < foo.get_size(); i++) {
-            title_elements.push_back(text(foo[i]) | center);
-        }
-        auto title_box = vbox(title_elements);
+        auto title_box = vbox(title_elements) | color(TITLE_COLOR);
 
         
         /* Menu */
@@ -96,6 +92,7 @@ namespace tui {
         size = 0;
         this->capacity = capacity;
         selected = 0;
+        
     }
 
     EMenu::~EMenu() {
@@ -117,12 +114,14 @@ namespace tui {
     Element EMenu::get_doc() {
         Elements menu_elements;
         static const string padding = "   ";
+        int index = 0;
         for (int i = 0; i < size; i++) {
             string str = padding + to_string(i + 1) + ". " + options[i].name;
             if (i == selected) {
                 menu_elements.push_back(text(str) | inverted);
             } else {
-                menu_elements.push_back(text(str));
+                menu_elements.push_back(text(str) | color(get_color_ribbon()));
+                index = (index + 1) % 3;
             }
         }
         return vbox(menu_elements);
@@ -135,13 +134,6 @@ namespace tui {
         }
         if (size == capacity) {
             return;
-        }
-
-        if (index == -1) {
-            index = size;
-        }
-        for (int i = size; i > index; i--) {
-            options[i] = options[i - 1];
         }
 
         ifstream desc_file(desc_file_path);
@@ -158,6 +150,13 @@ namespace tui {
             }
         }
         desc_file.close();
+        
+        if (index == -1) {
+            index = size;
+        }
+        for (int i = size; i > index; i--) {
+            options[i] = options[i - 1];
+        }
 
         options[index] = { name, action, desc };
         size++;
@@ -165,6 +164,19 @@ namespace tui {
 
     Element EMenu::get_desc() {
         return vbox(options[selected].desc);
+    }
+
+    Color get_color_ribbon() {
+        static int index = 0;
+        index = (index + 1) % 3;
+        if (index == 0) {
+            return MENU_COLOR_RIBBON_1;
+        } else if (index == 1) {
+            return MENU_COLOR_RIBBON_2;
+        } else {
+            return MENU_COLOR_RIBBON_3;
+        }
+        return MENU_COLOR_RIBBON_1;
     }
 }
 

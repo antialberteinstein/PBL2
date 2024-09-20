@@ -46,6 +46,9 @@
 #define CLEAR_CMD "clear"
 #define _MACOS_
 
+#include <sys/ioctl.h>
+#include <unistd.h>
+
 // Allow using UTF-8 in the console
 #define ALLOW_UTF8 system("export LANG=en_US.UTF-8")
 #define GET_CONSOLE_SIZE(width, height) do { \
@@ -65,6 +68,9 @@
 // Linux or BSD
 #define CLEAR_CMD "clear"
 #define _LINUX_
+
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 // Allow using UTF-8 in the console
 #define ALLOW_UTF8 system("export LANG=en_US.UTF-8")
@@ -90,8 +96,6 @@
 #include <ftxui/component/captured_mouse.hpp>
 #include <iostream>
 #include <fstream>
-#include "eins/Vector.hpp"
-#include "eins/List.hpp"
 #include "functions.h"
 #include <thread>
 #include <chrono>
@@ -101,6 +105,13 @@
 #define FRAME_CYCLE 1000/60
 
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
+#define TITLE_COLOR Color::Yellow
+#define MENU_COLOR_RIBBON_1 Color::Purple
+#define MENU_COLOR_RIBBON_2 Color::Red
+#define MENU_COLOR_RIBBON_3 Color::Cyan
+
+// Define the default list size.
+#define LIST_MAX 10
 
 using namespace std;
 using namespace ftxui;
@@ -124,12 +135,14 @@ namespace tui {
         Elements desc;
     };
 
+    
     class EMenu {
         private:
             MenuOption* options;
             int size;
             int capacity;
             int selected;
+
         public:
             EMenu(int capacity=LIST_MAX);
             ~EMenu();
@@ -141,6 +154,8 @@ namespace tui {
             Element get_doc();
             Element get_desc();
     };
+
+    Color get_color_ribbon();
 }
 
 #endif // PBL_TUI_H
