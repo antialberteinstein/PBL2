@@ -23,7 +23,7 @@ namespace tui {
         Elements title_elements;
         string line;
         while (getline(title_file, line)) {
-            string tmp = line + "\n";
+            string tmp = line;
             title_elements.push_back(text(tmp) | center);
         }
         auto title_box = vbox(title_elements) | color(TITLE_COLOR);
