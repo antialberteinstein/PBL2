@@ -12,3 +12,6 @@
 *.exe
 *.o
 *.obj
+
+# Ignore temp folder
+temp/
