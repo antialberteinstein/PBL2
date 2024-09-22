@@ -12,6 +12,7 @@
 *.exe
 *.o
 *.obj
+!tools.exe
 
 # Ignore temp folder
 temp/
