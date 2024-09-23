@@ -11,7 +11,7 @@ namespace console_size {
 namespace tui {
 
    
-    ifstream title_file("res/ascii_art/title.txt");
+    Title title("res/ascii_art/title.txt", "Quan ly KTX");
     
     void init() {
         ALLOW_UTF8;
@@ -20,13 +20,7 @@ namespace tui {
     void my_main(ScreenInteractive& screen) {
 
         /* Title */
-        Elements title_elements;
-        string line;
-        while (getline(title_file, line)) {
-            string tmp = line;
-            title_elements.push_back(text(tmp) | center);
-        }
-        auto title_box = vbox(title_elements) | color(TITLE_COLOR);
+        auto title_box = title.get_doc() | color(TITLE_COLOR);
 
         
         /* Menu */
@@ -80,7 +74,7 @@ namespace tui {
     }
 
     void cleanup() {
-        title_file.close();
+        // Do nothing
     }
 
     // =================================================================
@@ -177,6 +171,31 @@ namespace tui {
             return MENU_COLOR_RIBBON_3;
         }
         return MENU_COLOR_RIBBON_1;
+    }
+
+    // =========================================================
+    //                    TITLE
+    // =========================================================
+    Title::Title(const string& path, const string& base_text) {
+        this->base_text = base_text;
+        ifstream file(path);
+        Elements title_elements;
+
+        if (file.good()) {
+            string line;
+            while(getline(file, line)) {
+                title_elements.push_back(text(line) | center);
+            }
+            doc = vbox(title_elements);
+        } else {
+            doc = text(base_text) | center;
+        }
+        
+        file.close();
+    }
+
+    Element Title::get_doc() {
+        return doc;
     }
 }
 

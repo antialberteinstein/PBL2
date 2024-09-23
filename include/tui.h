@@ -135,6 +135,15 @@ namespace tui {
         Elements desc;
     };
 
+    class Title {
+        private:
+            Element doc;
+            string base_text;
+        public:
+            Title(const string& path, const string& base_text="");
+            Element get_doc();
+    };
+
     
     class EMenu {
         private:
