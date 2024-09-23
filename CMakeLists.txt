@@ -10,10 +10,14 @@ FetchContent_MakeAvailable(ftxui)
 
 project(pbl CXX)
 
+# Use SQLite3
+file(GLOB_RECURSE SQLITE3_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/Librares/sqlite3/*.c)
+
+
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
-add_executable(pbl ${SOURCES})
+add_executable(pbl ${SOURCES} ${SQLITE3_SOURCES})
 
 target_link_libraries(pbl
   PRIVATE ftxui::screen
