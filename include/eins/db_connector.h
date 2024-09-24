@@ -8,6 +8,7 @@
 
 typedef sqlite3* DATABASE;
 typedef sqlite3_stmt* STATEMENT;
+typedef STATEMENT RESULT_SET;
 
 using namespace std;
 
@@ -20,8 +21,11 @@ void close_stmt(STATEMENT stmt);
 /* Return true when executing complete. */
 bool execute(const string& sql, DATABASE db);
 
-/* Return true when executing complete. */
-bool execute_querry(const string& sql, DATABASE db, STATEMENT& stmt);
+/* Return true when executing complete, create statement. */
+bool execute_query(const string& sql, DATABASE db, STATEMENT& stmt);
+
+/* Load each row in sqlite3 table. */
+bool load_row(RESULT_SET rs);
 
 /* Get integer value */
 int get_int(STATEMENT stmt, int index);

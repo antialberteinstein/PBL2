@@ -1,6 +1,5 @@
-#ifndef PBL_TUI_H
-#define PBL_TUI_H
-
+#ifndef PBL_TUI_SUPPORT_H
+#define PBL_TUI_SUPPORT_H
 
 // ======================================================
 //             Check for Windows.
@@ -106,9 +105,6 @@
 
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
 #define TITLE_COLOR Color::Yellow
-#define MENU_COLOR_RIBBON_1 Color::Purple
-#define MENU_COLOR_RIBBON_2 Color::Red
-#define MENU_COLOR_RIBBON_3 Color::Cyan
 
 // Define the default list size.
 #define LIST_MAX 10
@@ -116,15 +112,12 @@
 using namespace std;
 using namespace ftxui;
 
-namespace tui {
-    #define TITLE_HEIGHT 7
+using func = void(*)();
 
+namespace tui {
 
     // Initialize tui
     void init();
-
-    // Main menu screen.
-    void my_main(ScreenInteractive& screen);
 
     // Clean up tui
     void cleanup();
@@ -164,7 +157,15 @@ namespace tui {
             Element get_desc();
     };
 
-    Color get_color_ribbon();
+    void set_current_render_element(Element (*render)());
+
+    void set_event_listener(bool (*listener)(Event));
+
+    void start(ScreenInteractive& screen);
+
+    void stop();
 }
 
-#endif // PBL_TUI_H
+bool handle_console_size_changed();
+
+#endif

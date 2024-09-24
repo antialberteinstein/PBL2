@@ -16,3 +16,6 @@
 
 # Ignore temp folder
 temp/
+
+# Ignore Releases folder
+Releases/

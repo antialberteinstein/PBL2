@@ -1,4 +1,4 @@
-#include "tui.h"
+#include "eins/tui_support.h"
 #include "functions.h"
 
 bool handle_console_size_changed();
@@ -10,67 +10,46 @@ namespace console_size {
 
 namespace tui {
 
-   
-    Title title("res/ascii_art/title.txt", "Quan ly KTX");
-    
-    void init() {
-        ALLOW_UTF8;
+    bool (*m_listener)(Event);
+    Element (*m_render)();
+    bool is_exit;
+
+    void set_current_render_element(Element (*render)()) {
+        m_render = render;
     }
 
-    void my_main(ScreenInteractive& screen) {
+    void set_event_listener(bool (*listener)(Event)) {
+        m_listener = listener;
+    }
 
-        /* Title */
-        auto title_box = title.get_doc() | color(TITLE_COLOR);
-
-        
-        /* Menu */
-        EMenu menu(10);
-
-        menu.insert("Thêm sinh viên", do_nothing, "add_student");
-        menu.insert("Đăng ký bao phòng", do_nothing, "room_reservation");
-        menu.insert("Danh sách sinh viên", do_nothing, "student_list");
-        menu.insert("Danh sách phòng", do_nothing, "room_list");
-        menu.insert("Chuyển sinh viên sang phòng khác", do_nothing, "move_student");
-        menu.insert("In tài liệu (*.csv)", do_nothing, "print_document");
-        menu.insert("In bản đồ", do_nothing, "print_map");
-        menu.insert("Thống kê", do_nothing, "statistics");
-        menu.insert("Thoát", do_nothing, "exit");
-
-        auto com = Renderer([&] {
+    void start(ScreenInteractive& screen) {
+        auto renderer = Renderer([&] {
             if (handle_console_size_changed()) {
                 // Neu user thay doi kich thuoc console, xoa man hinh và render lai
                 //      de tranh loi hien thi.
                 clear_screen();
             }
-            return
-                vbox({
-                    title_box,
-                    separator(),
-                    hbox({
-                        menu.get_doc() | border | flex,
-                        menu.get_desc() | border | flex,
-                    }) | flex,
-                });
+            return m_render();
         });
-
-        com |= CatchEvent([&](Event event) {
-            if (event == Event::Character('q')) {
+        // Them su kien thoat khoi chuong trinh.
+        renderer |= CatchEvent([&] (Event event) {
+            if (event == Event::Character('q') || is_exit) {
                 screen.ExitLoopClosure()();
                 return true;
-            } else if (event == Event::ArrowDown) {
-                menu.move_down();
-                return true;
-            } else if (event == Event::ArrowUp) {
-                menu.move_up();
-                return true;
-            } else if (event == Event::Return) {
-                menu.select();
-                return true;
             }
-            return false;
+            return m_listener(event);
         });
+        screen.Loop(renderer);
+    }
 
-        screen.Loop(com);
+    void stop() {
+        is_exit = true;
+    }
+    
+    void init() {
+        ALLOW_UTF8;
+        m_render = [] { return text("Welcome to hell!"); };
+        is_exit = false;
     }
 
     void cleanup() {
@@ -108,14 +87,12 @@ namespace tui {
     Element EMenu::get_doc() {
         Elements menu_elements;
         static const string padding = "   ";
-        int index = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size - 1; i++) {
             string str = padding + to_string(i + 1) + ". " + options[i].name;
             if (i == selected) {
                 menu_elements.push_back(text(str) | inverted);
             } else {
-                menu_elements.push_back(text(str) | color(get_color_ribbon()));
-                index = (index + 1) % 3;
+                menu_elements.push_back(text(str));
             }
         }
         return vbox(menu_elements);
@@ -158,19 +135,6 @@ namespace tui {
 
     Element EMenu::get_desc() {
         return vbox(options[selected].desc);
-    }
-
-    Color get_color_ribbon() {
-        static int index = 0;
-        index = (index + 1) % 3;
-        if (index == 0) {
-            return MENU_COLOR_RIBBON_1;
-        } else if (index == 1) {
-            return MENU_COLOR_RIBBON_2;
-        } else {
-            return MENU_COLOR_RIBBON_3;
-        }
-        return MENU_COLOR_RIBBON_1;
     }
 
     // =========================================================

@@ -1,17 +1,17 @@
 #include "main.h"
-#include "tui.h"
-#include "db_connector.h"
+#include "eins/tui_support.h"
 #include "objects/Rooms.hpp"
+#include "functions.h"
 
 int main(void) {
     tui::init();
     auto screen = ScreenInteractive::TerminalOutput();
 
-    tui::my_main(screen);
-    tui::cleanup();
+    main_menu::action();
 
-    //rooms::RoomList room_list = rooms::RoomList::from_db();
-    //room_list.show();
+    tui::start(screen);
+
+    tui::cleanup();
 
     return 0;
 }

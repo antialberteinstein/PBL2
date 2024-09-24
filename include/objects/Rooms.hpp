@@ -3,24 +3,36 @@
 
 #include <iostream>
 #include <string>
-#include "db_connector.h"
+#include "eins/db_connector.h"
 
 using namespace std;
 
 namespace rooms {
     #define TABLE "rooms"
-    #define ID "id"
+
     #define NAME "MaPhong"   // Ma phong.
+    #define INDEX_NAME 0
+
     #define BLOCK "Khu"      // Khu.
+    #define INDEX_BLOCK 1
+
     #define FLOOR "Tang"      // Tang.
+    #define INDEX_FLOOR 2
+
     #define ROOM "Phong"      // Phong.
+    #define INDEX_ROOM 3
+
     #define CAPACITY "SoNguoiToiDa" // So nguoi toi da.
+    #define INDEX_CAPACITY 4
+
     #define SIZE "SoNguoiHienTai" // So nguoi hien tai.
+    #define INDEX_SIZE 5
+
     #define STATUS "TinhTrang" // Tinh trang.
+    #define INDEX_STATUS 6
 
     class Room {
         private:
-            int id;
             string name;
             string block;
             int floor;
@@ -29,9 +41,8 @@ namespace rooms {
             int size;
             string status;
         public:
-            Room(int id=-1, string name="", string block="",
+            Room(string name="", string block="",
                 int floor=-1, int room=-1, int capacity=6, int size=0, string status="");
-            int get_id();
             string get_name();
             string get_block();
             int get_floor();
@@ -39,25 +50,6 @@ namespace rooms {
             int get_capacity();
             int get_size();
             string get_status();
-    };
-
-    class RoomList {
-        private:
-            Room* rooms;
-            int size;
-            int capacity;
-        public:
-            RoomList(int capacity=10);
-            ~RoomList();
-            void insert(Room room, int index=-1);
-            void remove(int index);
-            Room& get(int index);
-            int get_size();
-
-            static RoomList from_db();
-            void to_db();
-
-            void show();
     };
 }
 

@@ -1,4 +1,4 @@
-#include "db_connector.h"
+#include "eins/db_connector.h"
 
 bool open_db(DATABASE* db) {
     return sqlite3_open(DB_PATH, db) == SQLITE_OK;
@@ -23,13 +23,18 @@ bool execute(const string& sql, DATABASE db) {
     return true;
 }
 
-bool execute_querry(const string& sql, DATABASE db, STATEMENT& stmt) {
+bool execute_query(const string& sql, DATABASE db, STATEMENT& stmt) {
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
         cerr << "SQL error: " << sqlite3_errmsg(db) << endl;
+        close_db(db);
         return false;
     }
-    return sqlite3_step(stmt) == SQLITE_ROW;
+    return true;
+}
+
+bool load_row(RESULT_SET rs) {
+    return sqlite3_step(rs) == SQLITE_ROW;
 }
 
 int get_int(STATEMENT stmt, int index) {
