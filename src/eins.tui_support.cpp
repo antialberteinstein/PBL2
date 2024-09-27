@@ -167,6 +167,15 @@ namespace tui {
     Element Title::get_doc() {
         return doc;
     }
+    
+
+    // =========================================================
+    //                   FORM
+    // =========================================================
+    
+    Form::Form() {
+        //
+    }
 }
 
 bool handle_console_size_changed() {

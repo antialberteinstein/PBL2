@@ -61,36 +61,60 @@ namespace main_menu {
 }
 
 namespace add_student {
+    string name = "";
+    string university = "";
+    bool name_focused = true;
+    bool university_focused = false;
+
     Element create_element() {
         auto title_box = title.get_doc() | color(TITLE_COLOR);
-        string name;
-        static auto name_input = Input(&name, "Name: ");
-
-        name_input |= CatchEvent([&] (Event event) {
-            if (event == Event::Return) {
-                // Add student to database
-                name = "";
-                return true;
-            }
-            if (event.is_character()) {
-                name += event.character();
-                return true;
-            }
-            if (event == Event::Backspace) {
-                name.pop_back();
-                return true;
-            }
-            return false;
-        });
-        add_component_tree(name_input);
+        auto name_input = text("");
+        
         return vbox({
             title_box,
             text("Add student") | flex | border,
-            name_input->Render() | flex | border,
+            hbox({
+                text("Name: ") | border,
+                hbox({
+                    text(name), text("█") | blink
+                }) | flex | border
+                    | (name_focused ? color(Color::Red) : color(Color::Default)),
+            }),
+            hbox({
+                text("University: ") | border,
+                text(university + "█") | flex | border
+            }),
         });
     }
 
     bool check_event(Event event) {
+        if (event == Event::Return) {
+            if (name_focused) {
+                name_focused = false;
+                university_focused = true;
+            } else if (university_focused) {
+                name_focused = true;
+                university_focused = false;
+            }
+            return true;
+        }
+        if (event.is_character()) {
+            const string foo = event.character();
+            if (name_focused) {
+                name += foo;
+            } else if (university_focused) {
+                university += foo;
+            }
+            return true;
+        }
+        if (event == Event::Backspace) {
+            if (name_focused) {
+                (name != "") ? name.pop_back() : do_nothing();
+            } else if (university_focused) {
+                (university != "") ? university.pop_back() : do_nothing();
+            }
+            return true;
+        }
         return false;
     }
 
