@@ -61,12 +61,60 @@ namespace main_menu {
 }
 
 namespace add_student {
+    string name = "";
+    string university = "";
+    bool name_focused = true;
+    bool university_focused = false;
+
     Element create_element() {
         auto title_box = title.get_doc() | color(TITLE_COLOR);
-        return text("Add student");
+        auto name_input = text("");
+        
+        return vbox({
+            title_box,
+            text("Add student") | flex | border,
+            hbox({
+                text("Name: ") | border,
+                hbox({
+                    text(name), text("█") | blink
+                }) | flex | border
+                    | (name_focused ? color(Color::Red) : color(Color::Default)),
+            }),
+            hbox({
+                text("University: ") | border,
+                text(university + "█") | flex | border
+            }),
+        });
     }
 
     bool check_event(Event event) {
+        if (event == Event::Return) {
+            if (name_focused) {
+                name_focused = false;
+                university_focused = true;
+            } else if (university_focused) {
+                name_focused = true;
+                university_focused = false;
+            }
+            return true;
+        }
+        if (event.is_character()) {
+            const string foo = event.character();
+            if (name_focused) {
+                name += foo;
+            } else if (university_focused) {
+                university += foo;
+            }
+            return true;
+        }
+        if (event == Event::Backspace) {
+            if (name_focused) {
+                (name != "") ? name.pop_back() : do_nothing();
+            } else if (university_focused) {
+                (university != "") ? university.pop_back() : do_nothing();
+            }
+            return true;
+        }
         return false;
     }
 
@@ -93,7 +141,11 @@ namespace room_reservation {
 
 namespace student_list {
     Element create_element() {
-        return text("Student list");
+        auto title_box = title.get_doc() | color(TITLE_COLOR);
+        return vbox({
+            title_box,
+            text("Student list") | flex | border,
+        });
     }
 
     bool check_event(Event event) {

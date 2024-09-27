@@ -93,6 +93,8 @@
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component_options.hpp>
 #include <ftxui/component/captured_mouse.hpp>
+#include <ftxui/component/component_base.hpp>
+#include <ftxui/util/ref.hpp>
 #include <iostream>
 #include <fstream>
 #include "functions.h"
@@ -108,6 +110,7 @@
 
 // Define the default list size.
 #define LIST_MAX 10
+#define CURSOR_CHARACTER "█"
 
 using namespace std;
 using namespace ftxui;
@@ -164,6 +167,41 @@ namespace tui {
     void start(ScreenInteractive& screen);
 
     void stop();
+    
+    void add_component_tree(Component component);
+    
+    class Form;
+
+    class TextField {
+        private:
+            string label;
+            string text;
+            void add_text(const string& text);
+            void backspace();
+        public:
+            TextField(const string& label);
+            Element get_doc();
+            string get_text();
+            void set_text(const string& text);
+            friend class Form;
+    };
+
+    class Form {
+        private:
+            TextField* fields;
+            int tf_size;
+            int tf_capacity;
+            int focused_index;
+        public:
+            Form(int capacity=2);
+            ~Form();
+            void add_text_field(const string& label);
+            void move_up();
+            void move_down();
+            Element get_doc();
+            void event_listener(Event event);
+            string* retrieve_data();
+    }
 }
 
 bool handle_console_size_changed();
