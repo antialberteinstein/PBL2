@@ -62,7 +62,32 @@ namespace main_menu {
 
 namespace add_student {
     Element create_element() {
-        return text("Add student");
+        auto title_box = title.get_doc() | color(TITLE_COLOR);
+        string name;
+        static auto name_input = Input(&name, "Name: ");
+
+        name_input |= CatchEvent([&] (Event event) {
+            if (event == Event::Return) {
+                // Add student to database
+                name = "";
+                return true;
+            }
+            if (event.is_character()) {
+                name += event.character();
+                return true;
+            }
+            if (event == Event::Backspace) {
+                name.pop_back();
+                return true;
+            }
+            return false;
+        });
+        add_component_tree(name_input);
+        return vbox({
+            title_box,
+            text("Add student") | flex | border,
+            name_input->Render() | flex | border,
+        });
     }
 
     bool check_event(Event event) {
@@ -92,7 +117,11 @@ namespace room_reservation {
 
 namespace student_list {
     Element create_element() {
-        return text("Student list");
+        auto title_box = title.get_doc() | color(TITLE_COLOR);
+        return vbox({
+            title_box,
+            text("Student list") | flex | border,
+        });
     }
 
     bool check_event(Event event) {

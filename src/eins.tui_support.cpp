@@ -13,6 +13,7 @@ namespace tui {
     bool (*m_listener)(Event);
     Element (*m_render)();
     bool is_exit;
+    Component tree;
 
     void set_current_render_element(Element (*render)()) {
         m_render = render;
@@ -22,8 +23,12 @@ namespace tui {
         m_listener = listener;
     }
 
+   void add_component_tree(Component con) {
+        tree = con;
+    } 
+
     void start(ScreenInteractive& screen) {
-        auto renderer = Renderer([&] {
+        auto renderer = Renderer(tree, [&] {
             if (handle_console_size_changed()) {
                 // Neu user thay doi kich thuoc console, xoa man hinh và render lai
                 //      de tranh loi hien thi.
@@ -50,6 +55,7 @@ namespace tui {
         ALLOW_UTF8;
         m_render = [] { return text("Welcome to hell!"); };
         is_exit = false;
+        tree = Container::Vertical({});
     }
 
     void cleanup() {

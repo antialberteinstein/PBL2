@@ -93,6 +93,8 @@
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component_options.hpp>
 #include <ftxui/component/captured_mouse.hpp>
+#include <ftxui/component/component_base.hpp>
+#include <ftxui/util/ref.hpp>
 #include <iostream>
 #include <fstream>
 #include "functions.h"
@@ -164,6 +166,8 @@ namespace tui {
     void start(ScreenInteractive& screen);
 
     void stop();
+    
+    void add_component_tree(Component component);
 }
 
 bool handle_console_size_changed();
