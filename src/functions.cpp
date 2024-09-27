@@ -62,6 +62,7 @@ namespace main_menu {
 
 namespace add_student {
     Element create_element() {
+        auto title_box = title.get_doc() | color(TITLE_COLOR);
         return text("Add student");
     }
 
