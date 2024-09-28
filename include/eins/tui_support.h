@@ -97,9 +97,9 @@
 #include <ftxui/util/ref.hpp>
 #include <iostream>
 #include <fstream>
-#include "functions.h"
 #include <thread>
 #include <chrono>
+#include "objects/StringList.hpp"
 
 // Define sleep function
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(ms))
@@ -107,6 +107,8 @@
 
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
 #define TITLE_COLOR Color::Yellow
+#define DESC_COLOR Color::GrayDark
+#define FORM_HL_COLOR Color::Red
 
 // Define the default list size.
 #define LIST_MAX 10
@@ -160,9 +162,8 @@ namespace tui {
             Element get_desc();
     };
 
-    void set_current_render_element(Element (*render)());
-
-    void set_event_listener(bool (*listener)(Event));
+    void set_current_render_element(Element (*create_element)());
+    void set_event_listener(bool (*check_event)(Event event));
 
     void start(ScreenInteractive& screen);
 
@@ -175,14 +176,15 @@ namespace tui {
     class TextField {
         private:
             string label;
-            string text;
+            string content;
             void add_text(const string& text);
             void backspace();
         public:
-            TextField(const string& label);
+            TextField(const string& label="");
+            TextField(const TextField& tf);
             Element get_doc();
             string get_text();
-            void set_text(const string& text);
+            void set_text(const string& str);
             friend class Form;
     };
 
@@ -199,9 +201,9 @@ namespace tui {
             void move_up();
             void move_down();
             Element get_doc();
-            void event_listener(Event event);
-            string* retrieve_data();
-    }
+            bool check_event(Event event);
+            StringList retrieve_data() const;
+    };
 }
 
 bool handle_console_size_changed();

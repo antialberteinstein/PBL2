@@ -3,3 +3,4 @@ Template class:
 Thread C++:
 try catch C++:
 Cmake:
+functional:

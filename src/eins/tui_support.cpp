@@ -1,5 +1,4 @@
 #include "eins/tui_support.h"
-#include "functions.h"
 
 bool handle_console_size_changed();
 
@@ -15,12 +14,12 @@ namespace tui {
     bool is_exit;
     Component tree;
 
-    void set_current_render_element(Element (*render)()) {
-        m_render = render;
+    void set_current_render_element(Element (*create_element)()) {
+        m_render = create_element;
     }
 
-    void set_event_listener(bool (*listener)(Event)) {
-        m_listener = listener;
+    void set_event_listener(bool (*check_event)(Event)) {
+        m_listener = check_event;
     }
 
    void add_component_tree(Component con) {
@@ -140,7 +139,7 @@ namespace tui {
     }
 
     Element EMenu::get_desc() {
-        return vbox(options[selected].desc);
+        return vbox(options[selected].desc) | color(DESC_COLOR);
     }
 
     // =========================================================
@@ -169,13 +168,115 @@ namespace tui {
     }
     
 
-    // =========================================================
-    //                   FORM
-    // =========================================================
-    
-    Form::Form() {
-        //
+    // =============================================================
+    //                 TEXT_VIEW
+    // =============================================================
+
+    TextField::TextField(const string& label) {
+        this->label = label;
+        this->content = "";
     }
+
+    TextField::TextField(const TextField& tf) {
+        this->label = tf.label;
+        this->content = tf.content;
+    }
+
+    Element TextField::get_doc() {
+        return hbox({
+            text(label),
+            separator(),
+            text(content)
+        }) | flex | border;
+    }
+
+    string TextField::get_text() {
+        return content;
+    }
+
+    void TextField::set_text(const string& str) {
+        content = str;
+    }
+
+    void TextField::add_text(const string& str) {
+        content += str;
+    }
+
+    void TextField::backspace() {
+        if (content != "") {
+            content.pop_back();
+        }
+    }
+
+    // ==========================================================
+    //                 FORM
+    // ==========================================================
+
+    Form::Form(int capacity) {
+        this->fields = new TextField[capacity];
+        this->tf_capacity = capacity;
+        this->tf_size = 0;
+        this->focused_index = 0;
+    }
+
+    Form::~Form() {
+        delete []fields;
+    }
+
+    void Form::add_text_field(const string& label) {
+        if (tf_size >= tf_capacity)
+            return;
+        this->fields[tf_size++] = TextField(label);
+    }
+
+    void Form::move_up() {
+        focused_index = (focused_index - 1 + tf_size) % tf_size;
+    }
+
+    void Form::move_down() {
+        focused_index = (focused_index + 1) % tf_size;
+    }
+
+    Element Form::get_doc() {
+        Elements form_elements;
+        for (int i = 0; i < tf_size; i++) {
+            if (i == focused_index) {
+                form_elements.push_back(fields[i].get_doc() | color(FORM_HL_COLOR));
+            } else {
+                form_elements.push_back(fields[i].get_doc());
+            }
+        }
+        return vbox(form_elements);
+    }
+
+    bool Form::check_event(Event event) {
+        if (event == Event::Character('\t') || event == Event::Return) {
+            move_down();
+            return true;
+        } else if (event == Event::ArrowUp) {
+            move_up();
+            return true;
+        } else if (event == Event::ArrowDown) {
+            move_down();
+            return true;
+        } else if (event.is_character()) {
+            fields[focused_index].add_text(event.character());
+            return true;
+        } else if (event == Event::Backspace) {
+            fields[focused_index].backspace();
+            return true;
+        }
+        return false;
+    }
+
+    StringList Form::retrieve_data() const {
+        StringList sl(tf_size);
+        for (int i = 0; i < tf_size; i++) {
+            sl[i] = fields[i].get_text();
+        }
+        return sl;
+    }
+
 }
 
 bool handle_console_size_changed() {
