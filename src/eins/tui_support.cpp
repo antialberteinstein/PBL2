@@ -92,7 +92,7 @@ namespace tui {
     Element EMenu::get_doc() {
         Elements menu_elements;
         static const string padding = "   ";
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             string str = padding + to_string(i + 1) + ". " + options[i].name;
             if (i == selected) {
                 menu_elements.push_back(text(str) | inverted);
@@ -226,7 +226,8 @@ namespace tui {
     void Form::add_text_field(const string& label) {
         if (tf_size >= tf_capacity)
             return;
-        this->fields[tf_size++] = TextField(label);
+        this->fields[this->tf_size] = TextField(label);
+        this->tf_size++;
     }
 
     void Form::move_up() {
@@ -239,7 +240,7 @@ namespace tui {
 
     Element Form::get_doc() {
         Elements form_elements;
-        for (int i = 0; i < tf_size - 1; i++) {
+        for (int i = 0; i < tf_size; i++) {
             if (i == focused_index) {
                 form_elements.push_back(fields[i].get_doc() | color(FORM_HL_COLOR));
             } else {
