@@ -8,13 +8,20 @@ namespace add_student {
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
         auto name_input = text("");
         
+        form.add_text_field("CCCD");
         form.add_text_field("Họ và tên");
+        form.add_text_field("Ngày sinh");
+        form.add_text_field("Giới tính");
+        form.add_text_field("Quê quán");
         form.add_text_field("Trường");
+        form.add_text_field("Ngành học");
+        form.add_text_field("Số diện thoại");
+        form.add_text_field("Email");
 
         return vbox({
             title_box,
             separator(),
-            form.get_doc() | flex | border,
+            form.get_doc(),
         });
     }
 

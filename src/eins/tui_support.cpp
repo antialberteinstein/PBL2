@@ -239,7 +239,7 @@ namespace tui {
 
     Element Form::get_doc() {
         Elements form_elements;
-        for (int i = 0; i < tf_size; i++) {
+        for (int i = 0; i < tf_size - 1; i++) {
             if (i == focused_index) {
                 form_elements.push_back(fields[i].get_doc() | color(FORM_HL_COLOR));
             } else {

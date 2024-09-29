@@ -10,7 +10,7 @@ int main(void) {
     main_menu::action();
 
     tui::start(screen);
-
+    
     tui::cleanup();
 
     return 0;

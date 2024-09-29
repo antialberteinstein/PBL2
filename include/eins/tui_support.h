@@ -195,7 +195,7 @@ namespace tui {
             int tf_capacity;
             int focused_index;
         public:
-            Form(int capacity=2);
+            Form(int capacity=LIST_MAX);
             ~Form();
             void add_text_field(const string& label);
             void move_up();
