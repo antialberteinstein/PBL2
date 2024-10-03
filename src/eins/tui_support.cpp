@@ -18,11 +18,11 @@ namespace tui {
         m_render = create_element;
     }
 
-    void set_event_listener(bool (*check_event)(Event)) {
+    void set_event_listener(bool (*check_event)(Event event)) {
         m_listener = check_event;
     }
 
-   void add_component_tree(Component con) {
+   void add_component_tree(Component& con) {
         tree = con;
     } 
 
@@ -108,7 +108,7 @@ namespace tui {
         if (index < 0 || index > size) {
             index = size;
         }
-        if (size == capacity) {
+        if (size == capacity - 1) {
             return;
         }
 
@@ -127,9 +127,6 @@ namespace tui {
         }
         desc_file.close();
         
-        if (index == -1) {
-            index = size;
-        }
         for (int i = size; i > index; i--) {
             options[i] = options[i - 1];
         }
@@ -217,6 +214,10 @@ namespace tui {
         this->tf_capacity = capacity;
         this->tf_size = 0;
         this->focused_index = 0;
+        /* this->btn_confirm = text(CONFIRM_TEXT);
+        this->btn_cancel = text(CANCEL_TEXT);
+        this->btn_confirm_index = -1;
+        this->btn_cancel_index = -2; */
     }
 
     Form::~Form() {
@@ -224,7 +225,7 @@ namespace tui {
     }
 
     void Form::add_text_field(const string& label) {
-        if (tf_size >= tf_capacity)
+        if (tf_size >= tf_capacity - 1)
             return;
         this->fields[this->tf_size] = TextField(label);
         this->tf_size++;
@@ -247,8 +248,30 @@ namespace tui {
                 form_elements.push_back(fields[i].get_doc());
             }
         }
+        /* Element btns = hbox({
+            btn_confirm | border | flex,
+            btn_cancel | border | flex,
+        }) | center;
+        form_elements.push_back(btns); */
+
         return vbox(form_elements);
     }
+
+    /* void Form::swap_btn_if_available() {
+        if (focused_index == btn_confirm_index) {
+            focused_index = btn_cancel_index;
+        } else if (focused_index == btn_cancel_index) {
+            focused_index = btn_confirm_index;
+        }
+    }
+
+    bool Form::focus_on_confirm() {
+        return focused_index == btn_confirm_index;
+    }
+
+    bool Form::focus_on_cancel() {
+        return focused_index == btn_cancel_index;
+    } */
 
     bool Form::check_event(Event event) {
         if (event == Event::Character('\t') || event == Event::Return) {

@@ -1,121 +1,38 @@
 #ifndef PBL_TUI_SUPPORT_H
 #define PBL_TUI_SUPPORT_H
 
-// ======================================================
-//             Check for Windows.
-// ======================================================
+// Add os checking
+#include "eins/os_check/check_unix.h"
+#include "eins/os_check/check_windows.h"
 
-#ifdef _WIN32
-// Windows
-#define CLEAR_CMD "cls"
+// Add color definitions
+#include "eins/tui_design/colors.h"
 
-// Allow using UTF-8 in the console
-#include <windows.h>
-#define ALLOW_UTF8 {\
-    SetConsoleOutputCP(CP_UTF8);\
-    SetConsoleCP(CP_UTF8);\
-}
+// Add string definitions
+#include "eins/tui_design/strings.h"
 
-#define _WINDOWS_
+// Add string list
+#include "objects/StringList.hpp"
 
-#define GET_CONSOLE_SIZE(width, height) do { \
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); \
-    if (hConsole != INVALID_HANDLE_VALUE) { \
-        CONSOLE_SCREEN_BUFFER_INFO csbi; \
-        if (GetConsoleScreenBufferInfo(hConsole, &csbi)) { \
-            (width) = csbi.dwSize.X; \
-            (height) = csbi.dwSize.Y; \
-        } \
-    } \
-} while (0)
+// Add ftxui includes
+#include "eins/tui_design/ftxui_includes.h"
 
-
-
-
-
-
-
-
-// ======================================================
-//             Check for macOS.
-// ======================================================
-
-#elif __APPLE__
-// Mac OS
-#define CLEAR_CMD "clear"
-#define _MACOS_
-
-#include <sys/ioctl.h>
-#include <unistd.h>
-
-// Allow using UTF-8 in the console
-#define ALLOW_UTF8 system("export LANG=en_US.UTF-8")
-#define GET_CONSOLE_SIZE(width, height) do { \
-    struct winsize ws; \
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1) { \
-        (width) = ws.ws_col; \
-        (height) = ws.ws_row; \
-    } \
-} while (0)
-
-
-// ======================================================
-//             Check for Linux or BSD.
-// ======================================================
-
-#else
-// Linux or BSD
-#define CLEAR_CMD "clear"
-#define _LINUX_
-
-#include <sys/ioctl.h>
-#include <unistd.h>
-
-// Allow using UTF-8 in the console
-#define ALLOW_UTF8 system("export LANG=en_US.UTF-8")
-#define GET_CONSOLE_SIZE(width, height) do { \
-    struct winsize ws; \
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1) { \
-        (width) = ws.ws_col; \
-        (height) = ws.ws_row; \
-    } \
-} while (0)
-
-#endif
-
-// Clear the console screen
-#define clear_screen() system(CLEAR_CMD)
-
-// Include the necessary libraries
-#include <ftxui/dom/elements.hpp>
-#include <ftxui/screen/screen.hpp>
-#include <ftxui/component/component.hpp>
-#include <ftxui/component/screen_interactive.hpp>
-#include <ftxui/component/component_options.hpp>
-#include <ftxui/component/captured_mouse.hpp>
-#include <ftxui/component/component_base.hpp>
-#include <ftxui/util/ref.hpp>
 #include <iostream>
 #include <fstream>
 #include <thread>
 #include <chrono>
-#include "objects/StringList.hpp"
 
 // Define sleep function
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(ms))
 #define FRAME_CYCLE 1000/60
 
-#define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
-#define TITLE_COLOR Color::Yellow
-#define DESC_COLOR Color::GrayDark
-#define FORM_HL_COLOR Color::Red
+// Clear the console screen
+#define clear_screen() system(CLEAR_CMD)
 
 // Define the default list size.
 #define LIST_MAX 10
-#define CURSOR_CHARACTER "█"
 
 using namespace std;
-using namespace ftxui;
 
 using func = void(*)();
 
@@ -169,7 +86,7 @@ namespace tui {
 
     void stop();
     
-    void add_component_tree(Component component);
+    void add_component_tree(Component& component);
     
     class Form;
 
@@ -194,6 +111,15 @@ namespace tui {
             int tf_size;
             int tf_capacity;
             int focused_index;
+
+            /* Element btn_confirm;
+            Element btn_cancel;
+            int btn_confirm_index;
+            int btn_cancel_index;
+
+            bool focus_on_confirm();
+            bool focus_on_cancel();
+            void swap_btn_if_available(); */
         public:
             Form(int capacity=LIST_MAX);
             ~Form();

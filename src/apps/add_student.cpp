@@ -2,7 +2,7 @@
 
 namespace add_student {
 
-    Form form;
+    Form form(20);
 
     Element create_element() {
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
