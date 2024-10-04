@@ -87,48 +87,34 @@ namespace tui {
     void stop();
     
     void add_component_tree(Component& component);
-    
-    class Form;
 
     class TextField {
-        private:
-            string label;
-            string content;
-            void add_text(const string& text);
-            void backspace();
+        string label;
+        string value;
+        Component com;
+        static const string padding;
         public:
-            TextField(const string& label="");
-            TextField(const TextField& tf);
+            TextField(const string& label="", const string& placeholder="");
             Element get_doc();
-            string get_text();
-            void set_text(const string& str);
-            friend class Form;
+            Component& get_com();
+            string get_value();
     };
 
     class Form {
-        private:
-            TextField* fields;
-            int tf_size;
-            int tf_capacity;
-            int focused_index;
-
-            /* Element btn_confirm;
-            Element btn_cancel;
-            int btn_confirm_index;
-            int btn_cancel_index;
-
-            bool focus_on_confirm();
-            bool focus_on_cancel();
-            void swap_btn_if_available(); */
+        Component container;
+        TextField* inputs;
+        int size;
+        int capacity;
+        Component confirm_btn, cancel_btn;
+        static const string btn_padding;
         public:
-            Form(int capacity=LIST_MAX);
+            Form(void (*confirm_action)(StringList output_values),
+                void (*cancel_action)(), int capacity=LIST_MAX);
             ~Form();
-            void add_text_field(const string& label);
-            void move_up();
-            void move_down();
+            void add(TextField input);
             Element get_doc();
-            bool check_event(Event event);
-            StringList retrieve_data() const;
+            Component& get_com();
+            bool event_listener(Event event);
     };
 }
 

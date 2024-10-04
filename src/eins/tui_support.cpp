@@ -28,6 +28,7 @@ namespace tui {
 
     void start(ScreenInteractive& screen) {
         auto renderer = Renderer(tree, [&] {
+            delay(FRAME_CYCLE);
             if (handle_console_size_changed()) {
                 // Neu user thay doi kich thuoc console, xoa man hinh và render lai
                 //      de tranh loi hien thi.
@@ -43,7 +44,14 @@ namespace tui {
             }
             return m_listener(event);
         });
+
+        std::thread t1([&] {
+            screen.ExitLoopClosure()();
+        });
+
+        t1.join();
         screen.Loop(renderer);
+
     }
 
     void stop() {
@@ -163,142 +171,104 @@ namespace tui {
     Element Title::get_doc() {
         return doc;
     }
+
+    // =========================================================
+    //                    TEXT_FIELD
+    // =========================================================
     
+    const string TextField::padding = INPUT_PADDING;
 
-    // =============================================================
-    //                 TEXT_VIEW
-    // =============================================================
-
-    TextField::TextField(const string& label) {
+    TextField::TextField(const string& label, const string& placeholder) {
         this->label = label;
-        this->content = "";
-    }
-
-    TextField::TextField(const TextField& tf) {
-        this->label = tf.label;
-        this->content = tf.content;
+        value = "";
+        com = Input(&value, placeholder);
     }
 
     Element TextField::get_doc() {
         return hbox({
             text(label),
             separator(),
-            text(content)
-        }) | flex | border;
+            text(padding),
+            com->Render() | inverted,
+        }) | border | flex;
     }
 
-    string TextField::get_text() {
-        return content;
+    Component& TextField::get_com() {
+        return com;
     }
 
-    void TextField::set_text(const string& str) {
-        content = str;
+    string TextField::get_value() {
+        return value;
     }
 
-    void TextField::add_text(const string& str) {
-        content += str;
-    }
+    // =========================================================
+    //                    FORM
+    // =========================================================
 
-    void TextField::backspace() {
-        if (content != "") {
-            content.pop_back();
-        }
-    }
+    const string Form::btn_padding = BTN_PADDING;
 
-    // ==========================================================
-    //                 FORM
-    // ==========================================================
+    Form::Form(void (*confirm_action)(StringList output_values),
+            void (*cancel_action)(), int capacity) {
+        this->inputs = new TextField[capacity];
+        this->capacity = capacity;
+        this->size = 0;
+        
+        this->confirm_btn = Button(CONFIRM_BTN_TEXT, [&] {
+            StringList output_values(size);
+            for (int i = 0; i < size; i++) {
+                output_values.add(inputs[i].get_value());
+            }
+            confirm_action(output_values);
+        }, ButtonOption::Animated(CONFIRM_BTN_BG));
 
-    Form::Form(int capacity) {
-        this->fields = new TextField[capacity];
-        this->tf_capacity = capacity;
-        this->tf_size = 0;
-        this->focused_index = 0;
-        /* this->btn_confirm = text(CONFIRM_TEXT);
-        this->btn_cancel = text(CANCEL_TEXT);
-        this->btn_confirm_index = -1;
-        this->btn_cancel_index = -2; */
+        this->cancel_btn = Button(CANCEL_BTN_TEXT, [&] {
+            cancel_action();
+        }, ButtonOption::Animated(CANCEL_BTN_BG));
+
+        this->container = Container::Vertical({});
+        this->container->Add(confirm_btn);
+        this->container->Add(cancel_btn);
     }
 
     Form::~Form() {
-        delete []fields;
+        delete[] inputs;
     }
 
-    void Form::add_text_field(const string& label) {
-        if (tf_size >= tf_capacity - 1)
+    void Form::add(TextField field) {
+        if (size >= capacity) {
             return;
-        this->fields[this->tf_size] = TextField(label);
-        this->tf_size++;
-    }
-
-    void Form::move_up() {
-        focused_index = (focused_index - 1 + tf_size) % tf_size;
-    }
-
-    void Form::move_down() {
-        focused_index = (focused_index + 1) % tf_size;
+        }
+        inputs[size++] = field;
+        this->container->Add(field.get_com());
     }
 
     Element Form::get_doc() {
         Elements form_elements;
-        for (int i = 0; i < tf_size; i++) {
-            if (i == focused_index) {
-                form_elements.push_back(fields[i].get_doc() | color(FORM_HL_COLOR));
+        for (int i = 0; i < size; i += 2) {
+            if (i + 1 < size) {
+                form_elements.push_back(hbox({
+                    inputs[i].get_doc() | flex,
+                    text(btn_padding),
+                    inputs[i + 1].get_doc() | flex,
+                }));
             } else {
-                form_elements.push_back(fields[i].get_doc());
+                form_elements.push_back(inputs[i].get_doc());
             }
         }
-        /* Element btns = hbox({
-            btn_confirm | border | flex,
-            btn_cancel | border | flex,
-        }) | center;
-        form_elements.push_back(btns); */
-
+        form_elements.push_back(hbox({
+            confirm_btn->Render() | flex,
+            text(btn_padding),
+            cancel_btn->Render() | flex,
+        }) | center | flex);
         return vbox(form_elements);
     }
 
-    /* void Form::swap_btn_if_available() {
-        if (focused_index == btn_confirm_index) {
-            focused_index = btn_cancel_index;
-        } else if (focused_index == btn_cancel_index) {
-            focused_index = btn_confirm_index;
-        }
+    Component& Form::get_com() {
+        return container;
     }
 
-    bool Form::focus_on_confirm() {
-        return focused_index == btn_confirm_index;
-    }
-
-    bool Form::focus_on_cancel() {
-        return focused_index == btn_cancel_index;
-    } */
-
-    bool Form::check_event(Event event) {
-        if (event == Event::Character('\t') || event == Event::Return) {
-            move_down();
-            return true;
-        } else if (event == Event::ArrowUp) {
-            move_up();
-            return true;
-        } else if (event == Event::ArrowDown) {
-            move_down();
-            return true;
-        } else if (event.is_character()) {
-            fields[focused_index].add_text(event.character());
-            return true;
-        } else if (event == Event::Backspace) {
-            fields[focused_index].backspace();
-            return true;
-        }
-        return false;
-    }
-
-    StringList Form::retrieve_data() const {
-        StringList sl(tf_size);
-        for (int i = 0; i < tf_size; i++) {
-            sl[i] = fields[i].get_text();
-        }
-        return sl;
+    bool Form::event_listener(Event event) {
+        return container->OnEvent(event);
     }
 
 }

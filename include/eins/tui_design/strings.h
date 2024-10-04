@@ -6,5 +6,9 @@
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
 #define CONFIRM_TEXT "Xác nhận"
 #define CANCEL_TEXT "Hủy"
+#define BTN_PADDING "   "
+#define INPUT_PADDING " "
+#define CONFIRM_BTN_TEXT "Xác nhận"
+#define CANCEL_BTN_TEXT "Hủy"
 
 #endif

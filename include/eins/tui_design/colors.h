@@ -10,5 +10,7 @@
 #define BUTTON_FG Color::White
 #define BUTTON_HL_BG Color::BlueLight
 #define BUTTON_HL_FG Color::Black
+#define CONFIRM_BTN_BG Color::Green
+#define CANCEL_BTN_BG Color::Red
 
 #endif
