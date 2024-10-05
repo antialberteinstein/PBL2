@@ -78,7 +78,7 @@ namespace tui {
             Element get_doc();
             Element get_desc();
     };
-
+    
     void set_current_render_element(Element (*create_element)());
     void set_event_listener(bool (*check_event)(Event event));
 

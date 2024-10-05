@@ -18,18 +18,6 @@ namespace main_menu {
         /* Title */
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
 
-        
-        /* Menu */
-
-        menu.insert("Thêm sinh viên", add_student::action, "add_student");
-        menu.insert("Đăng ký bao phòng", room_reservation::action, "room_reservation");
-        menu.insert("Danh sách sinh viên", student_list::action, "student_list");
-        menu.insert("Danh sách phòng", room_list::action, "room_list");
-        menu.insert("Chuyển sinh viên sang phòng khác", move_student::action, "move_student");
-        menu.insert("In tài liệu (*.csv)", print_document::action, "print_document");
-        menu.insert("In bản đồ", print_map::action, "print_map");
-        menu.insert("Thống kê", statistics::action, "statistics");
-        menu.insert("Thoát", stop, "exit");
 
         return vbox({
                 title_box,
@@ -56,6 +44,18 @@ namespace main_menu {
     }
 
     void action() {
+        /* Menu */
+
+        menu.insert("Thêm sinh viên", add_student::action, "add_student");
+        menu.insert("Đăng ký bao phòng", room_reservation::action, "room_reservation");
+        menu.insert("Danh sách sinh viên", student_list::action, "student_list");
+        menu.insert("Danh sách phòng", room_list::action, "room_list");
+        menu.insert("Chuyển sinh viên sang phòng khác", move_student::action, "move_student");
+        menu.insert("In tài liệu (*.csv)", print_document::action, "print_document");
+        menu.insert("In bản đồ", print_map::action, "print_map");
+        menu.insert("Thống kê", statistics::action, "statistics");
+        menu.insert("Thoát", stop, "exit");
+
         set_current_render_element(create_element);
         set_event_listener(check_event);
     }

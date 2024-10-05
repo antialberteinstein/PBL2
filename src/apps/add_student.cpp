@@ -1,91 +1,106 @@
 #include "apps/add_student.hpp"
+#include "apps/main_menu.hpp"
+
+struct EditText {
+    string label;
+    string value;
+    Component com;
+};
+
+Element get_doc_for_a_field(EditText& field) {
+    return hbox({
+        text(field.label),
+        separator(),
+        text(INPUT_PADDING),
+        field.com->Render() | inverted,
+    }) | border;
+}
 
 namespace add_student {
 
-    void confirm_action(StringList output_values) {
-        // Do nothing
+    Element foo = text("No event");
+
+    void confirm_action() {
+        foo = text("Confirmed");
     }
 
     void cancel_action() {
-        // Do nothing
+        main_menu::action();
     }
 
-    // Form form(20);
-    /* string name_placeholder = "Họ và tên";
-    string var_name = "";
-    Component input_name;
-
-    string dob_placeholder = "Ngày sinh";
-    string var_dob = "";
-    Component input_dob;
-
+    Component container;
+    EditText name, dob, gender, hometown, university, major, phone, email;
     Component confirm_btn, cancel_btn;
-
-    Component container; */
-    Form* form_ptr;
 
     Element create_element() {
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
 
-        /*
         return vbox({
             title_box,
             separator(),
-            form.get_doc(),
-        }); */
-
-        /* s */
-
-        Element content = (form_ptr != nullptr) ?
-            form_ptr->get_doc() : text("Lỗi không xác định");
-
-        return vbox({
-            title_box,
-            separator(),
-            content,
+            vbox({
+                hbox({
+                    get_doc_for_a_field(name) | flex,
+                    get_doc_for_a_field(dob) | flex,
+                }) | flex,
+                hbox({
+                    get_doc_for_a_field(gender) | flex,
+                    get_doc_for_a_field(hometown) | flex,
+                }) | flex,
+                hbox({
+                    get_doc_for_a_field(university) | flex,
+                    get_doc_for_a_field(major) | flex,
+                }) | flex,
+                hbox({
+                    get_doc_for_a_field(phone) | flex,
+                    get_doc_for_a_field(email) | flex,
+                }) | flex,
+            }),
+            foo | center,
+            hbox({
+                confirm_btn->Render() | flex,
+                text(BTN_PADDING),
+                cancel_btn->Render() | flex,
+            }) | center | flex,
         });
     }
 
     bool check_event(Event event) {
-        // return form.check_event(event);/*  */
-        // return container->OnEvent(event);
-        if (form_ptr == nullptr) {
-            return false;
-        }
-        return form_ptr->event_listener(event);
+        return container->OnEvent(event);
     }
 
     void action() {
-        /* input_name = Input(&var_name, name_placeholder);
-        input_dob = Input(&var_dob, dob_placeholder);
+        name = {"Họ và tên", "", Input(&name.value, "Họ và tên")};
+        dob = {"Ngày sinh", "", Input(&dob.value, "Ngày sinh")};
+        gender = {"Giới tính", "", Input(&gender.value, "Giới tính")};
+        hometown = {"Quê quán", "", Input(&hometown.value, "Quê quán")};
+        university = {"Trường", "", Input(&university.value, "Trường")};
+        major = {"Ngành học", "", Input(&major.value, "Ngành học")};
+        phone = {"Số điện thoại", "", Input(&phone.value, "Số điện thoại")};
+        email = {"Email", "", Input(&email.value, "Email")};
+
         confirm_btn = Button("Xác nhận", [&] {
-            var_name = "Lê Nhã Phương";
-        }, ButtonOption::Animated(Color::Green));
+            confirm_action();
+        }, ButtonOption::Animated(CONFIRM_BTN_BG));
+
         cancel_btn = Button("Hủy", [&] {
-            var_name = "Trần Nhật Nguyên";
-        }, ButtonOption::Animated(Color::Red));
+            cancel_action();
+        }, ButtonOption::Animated(CANCEL_BTN_BG));
 
         container = Container::Vertical({
-            input_name,
-            input_dob,
+            name.com,
+            dob.com,
+            gender.com,
+            hometown.com,
+            university.com,
+            major.com,
+            phone.com,
+            email.com,
             confirm_btn,
             cancel_btn,
-        }); */
+        });
 
-        Form form(confirm_action, cancel_action, 20);
-
-        form.add(TextField("Họ và tên", "Họ và tên"));
-        form.add(TextField("Ngày sinh", "Ngày sinh"));
-        form.add(TextField("Giới tính", "Giới tính"));
-        form.add(TextField("Quê quán", "Quê quán"));
-        form.add(TextField("Trường", "Trường"));/* 
-        form.add(TextField("Ngành học", "Ngành học"));
-        form.add(TextField("Số điện thoại", "Số điện thoại"));
-        form.add(TextField("Email", "Email")); */
-
-        form_ptr = &form;
-
-        add_component_tree(form.get_com());
+        add_component_tree(container);
         set_current_render_element(create_element);
         set_event_listener(check_event);
     }

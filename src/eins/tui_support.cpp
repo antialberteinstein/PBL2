@@ -9,8 +9,8 @@ namespace console_size {
 
 namespace tui {
 
-    bool (*m_listener)(Event);
-    Element (*m_render)();
+    bool (*m_listener)(Event) = nullptr;
+    Element (*m_render)() = nullptr;
     bool is_exit;
     Component tree;
 
@@ -34,7 +34,10 @@ namespace tui {
                 //      de tranh loi hien thi.
                 clear_screen();
             }
-            return m_render();
+            if (m_render != nullptr)
+                return m_render();
+            else
+                return text("Cannot render anything!!");
         });
         // Them su kien thoat khoi chuong trinh.
         renderer |= CatchEvent([&] (Event event) {
@@ -42,14 +45,12 @@ namespace tui {
                 screen.ExitLoopClosure()();
                 return true;
             }
-            return m_listener(event);
+            if (m_listener != nullptr)
+                return m_listener(event);
+            else
+                return false;
         });
 
-        std::thread t1([&] {
-            screen.ExitLoopClosure()();
-        });
-
-        t1.join();
         screen.Loop(renderer);
 
     }
@@ -226,8 +227,8 @@ namespace tui {
         }, ButtonOption::Animated(CANCEL_BTN_BG));
 
         this->container = Container::Vertical({});
-        this->container->Add(confirm_btn);
-        this->container->Add(cancel_btn);
+        /* this->container->Add(confirm_btn);
+        this->container->Add(cancel_btn); */
     }
 
     Form::~Form() {
