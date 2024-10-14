@@ -1,6 +1,5 @@
 #include "main.h"
 #include "eins/tui_support.h"
-#include "objects/Rooms.hpp"
 #include "apps/main_menu.hpp"
 
 int main(void) {

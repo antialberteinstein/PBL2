@@ -11,9 +11,6 @@
 // Add string definitions
 #include "eins/tui_design/strings.h"
 
-// Add string list
-#include "objects/StringList.hpp"
-
 // Add ftxui includes
 #include "eins/tui_design/ftxui_includes.h"
 
@@ -21,6 +18,8 @@
 #include <fstream>
 #include <thread>
 #include <chrono>
+#include <memory>
+#include "objects/List.hpp"
 
 // Define sleep function
 #define delay(ms) std::this_thread::sleep_for(std::chrono::milliseconds(ms))
@@ -36,6 +35,8 @@ using namespace std;
 
 using func = void(*)();
 
+typedef List<string> StringList;
+
 namespace tui {
 
     // Initialize tui
@@ -44,11 +45,11 @@ namespace tui {
     // Clean up tui
     void cleanup();
 
-    struct MenuOption {
+    /* struct MenuOption {
         string name;
         func action;
         Elements desc;
-    };
+    }; */
 
     class Title {
         private:
@@ -60,7 +61,7 @@ namespace tui {
     };
 
     
-    class EMenu {
+    /* class EMenu {
         private:
             MenuOption* options;
             int size;
@@ -77,10 +78,7 @@ namespace tui {
             void select();
             Element get_doc();
             Element get_desc();
-    };
-    
-    void set_current_render_element(Element (*create_element)());
-    void set_event_listener(bool (*check_event)(Event event));
+    }; */
 
     void start(ScreenInteractive& screen);
 
