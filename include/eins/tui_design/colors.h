@@ -5,6 +5,10 @@
 
 #define TITLE_COLOR Color::Yellow
 #define DESC_COLOR Color::GrayLight
+#define MENU_HL_BG Color::Black
+#define MENU_HL_FG Color::White
+#define MENU_FG Color::Default
+
 #define FORM_HL_COLOR Color::Red
 #define BUTTON_BG Color::Blue
 #define BUTTON_FG Color::White

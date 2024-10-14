@@ -1,5 +1,7 @@
 #include "apps/add_student.hpp"
 #include "apps/main_menu.hpp"
+#include "objects/Vector.hpp"
+#include "objects/Adapter.hpp"
 
 struct EditText {
     string label;
@@ -7,13 +9,28 @@ struct EditText {
     Component com;
 };
 
-Element get_doc_for_a_field(EditText& field) {
+struct ComboBox {
+    string label;
+    Vector<string> values;
+    int selected;
+    Component com;
+};
+
+Element get_doc(EditText& field) {
     return hbox({
         text(field.label),
         separator(),
         text(INPUT_PADDING),
         field.com->Render() | inverted,
     }) | border;
+}
+
+Element get_doc(ComboBox& field) {
+    return hbox({
+        text(field.label) | border,
+        text(INPUT_PADDING),
+        field.com->Render() | flex,
+    });
 }
 
 namespace add_student {
@@ -29,8 +46,10 @@ namespace add_student {
     }
 
     Component container;
-    EditText name, dob, gender, hometown, university, major, phone, email;
+    EditText name, dob, hometown, university, major, phone, email;
+    ComboBox gender;
     Component confirm_btn, cancel_btn;
+    Component event_listener;
 
     Element create_element() {
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
@@ -40,20 +59,20 @@ namespace add_student {
             separator(),
             vbox({
                 hbox({
-                    get_doc_for_a_field(name) | flex,
-                    get_doc_for_a_field(dob) | flex,
+                    get_doc(name) | flex,
+                    get_doc(dob) | flex,
                 }) | flex,
                 hbox({
-                    get_doc_for_a_field(gender) | flex,
-                    get_doc_for_a_field(hometown) | flex,
+                    get_doc(gender) | flex,
+                    get_doc(hometown) | flex,
                 }) | flex,
                 hbox({
-                    get_doc_for_a_field(university) | flex,
-                    get_doc_for_a_field(major) | flex,
+                    get_doc(university) | flex,
+                    get_doc(major) | flex,
                 }) | flex,
                 hbox({
-                    get_doc_for_a_field(phone) | flex,
-                    get_doc_for_a_field(email) | flex,
+                    get_doc(phone) | flex,
+                    get_doc(email) | flex,
                 }) | flex,
             }),
             foo | center,
@@ -65,19 +84,23 @@ namespace add_student {
         });
     }
 
-    bool check_event(Event event) {
-        return container->OnEvent(event);
-    }
-
     void action() {
+        
+
         name = {"Họ và tên", "", Input(&name.value, "Họ và tên")};
         dob = {"Ngày sinh", "", Input(&dob.value, "Ngày sinh")};
-        gender = {"Giới tính", "", Input(&gender.value, "Giới tính")};
         hometown = {"Quê quán", "", Input(&hometown.value, "Quê quán")};
         university = {"Trường", "", Input(&university.value, "Trường")};
         major = {"Ngành học", "", Input(&major.value, "Ngành học")};
         phone = {"Số điện thoại", "", Input(&phone.value, "Số điện thoại")};
         email = {"Email", "", Input(&email.value, "Email")};
+
+        gender.label = "Giới tính";
+        gender.values.push_back("Nam");
+        gender.values.push_back("Nữ");
+        gender.values.push_back("Khác");
+        gender.selected = 1;
+        gender.com = Dropdown(Adapter::From(&gender.values), &gender.selected);
 
         confirm_btn = Button("Xác nhận", [&] {
             confirm_action();
@@ -87,21 +110,22 @@ namespace add_student {
             cancel_action();
         }, ButtonOption::Animated(CANCEL_BTN_BG));
 
-        container = Container::Vertical({
-            name.com,
-            dob.com,
-            gender.com,
-            hometown.com,
-            university.com,
-            major.com,
-            phone.com,
-            email.com,
-            confirm_btn,
-            cancel_btn,
+        container = Renderer([&] {
+            return create_element();
+        });
+
+        event_listener = Container::Vertical({
+            name.com, dob.com,
+            gender.com, hometown.com,
+            university.com, major.com,
+            phone.com, email.com,
+            confirm_btn, cancel_btn,
+        });
+
+        container |= CatchEvent([&] (Event event) {
+            return event_listener->OnEvent(event);
         });
 
         add_component_tree(container);
-        set_current_render_element(create_element);
-        set_event_listener(check_event);
     }
 }

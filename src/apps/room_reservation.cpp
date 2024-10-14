@@ -1,4 +1,5 @@
 #include "apps/room_reservation.hpp"
+#include <vector>
 
 namespace room_reservation {
     Component container;
@@ -11,27 +12,27 @@ namespace room_reservation {
         return vbox({
             title_box,
             separator(),
-            text("Room reservation")
+            text("Room reservation"),
+            dropdown_menu->Render(),
         });
+        // return container->Render();
     }
 
     bool check_event(Event event) {
-        return false;
+        return container->OnEvent(event);
     }
 
     void action() {
-        /* string entries[] = {
+        std::vector<string> entries = {
             "Tran Nhat Nguyen",
         };
 
-        dropdown_menu = Dropdown(&entries, &selected); */
+        dropdown_menu = Dropdown(entries, &selected);
 
-        /* container = Container::Vertical({
+        container = Container::Vertical({
             dropdown_menu,
-        }); */
+        });
 
-        /* add_component_tree(container); */
-        set_current_render_element(create_element);
-        set_event_listener(check_event);
+        add_component_tree(container);
     }
 }

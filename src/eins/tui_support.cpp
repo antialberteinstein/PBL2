@@ -9,18 +9,8 @@ namespace console_size {
 
 namespace tui {
 
-    bool (*m_listener)(Event) = nullptr;
-    Element (*m_render)() = nullptr;
     bool is_exit;
     Component tree;
-
-    void set_current_render_element(Element (*create_element)()) {
-        m_render = create_element;
-    }
-
-    void set_event_listener(bool (*check_event)(Event event)) {
-        m_listener = check_event;
-    }
 
    void add_component_tree(Component& con) {
         tree = con;
@@ -28,27 +18,25 @@ namespace tui {
 
     void start(ScreenInteractive& screen) {
         auto renderer = Renderer(tree, [&] {
+            if (is_exit) {
+                screen.ExitLoopClosure()();
+                return text("Exiting...");
+            }
             delay(FRAME_CYCLE);
             if (handle_console_size_changed()) {
                 // Neu user thay doi kich thuoc console, xoa man hinh và render lai
                 //      de tranh loi hien thi.
                 clear_screen();
             }
-            if (m_render != nullptr)
-                return m_render();
-            else
-                return text("Cannot render anything!!");
+            return tree->Render();
         });
         // Them su kien thoat khoi chuong trinh.
         renderer |= CatchEvent([&] (Event event) {
-            if (event == Event::Character('q') || is_exit) {
-                screen.ExitLoopClosure()();
+            if (event == Event::CtrlC || event == Event::Escape) {
+                stop();
                 return true;
             }
-            if (m_listener != nullptr)
-                return m_listener(event);
-            else
-                return false;
+            return tree->OnEvent(event);
         });
 
         screen.Loop(renderer);
@@ -61,7 +49,6 @@ namespace tui {
     
     void init() {
         ALLOW_UTF8;
-        m_render = [] { return text("Welcome to hell!"); };
         is_exit = false;
         tree = Container::Vertical({});
     }
@@ -70,7 +57,7 @@ namespace tui {
         // Do nothing
     }
 
-    // =================================================================
+    /* // =================================================================
     //                           EMENU
     // =================================================================
 
@@ -146,7 +133,7 @@ namespace tui {
 
     Element EMenu::get_desc() {
         return vbox(options[selected].desc) | color(DESC_COLOR);
-    }
+    } */
 
     // =========================================================
     //                    TITLE
