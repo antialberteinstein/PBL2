@@ -1,8 +1,14 @@
 #ifndef PBL_DATE_HPP
 #define PBL_DATE_HPP
 
-#include <iostream>
 #include <string>
+
+#ifdef _WIN32
+#define GET_LOCALTIME(localtime, now) localtime_s(localtime, now)
+#else
+#define GET_LOCALTIME(localtime, now) localtime_r(now, localtime)
+#endif
+
 
 // Date class support Gregorian date format.
 class Date {

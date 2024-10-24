@@ -33,7 +33,7 @@ class Student {
                 string hometown="", Date date_joined=Date(0, 0, 0),
                 bool is_reservation=false, int room_capacity=0,
                 int room_id=STUDENT_NULL_VALUE, string gender="");
-        
+
         int get_id() const;
         string get_name() const;
         Date get_dob() const;
@@ -62,12 +62,12 @@ class Student {
 
 
         static Student from_database(sql::CURSOR& cursor);
-        
+
         // Return true if the student is successfully inserted into the database.
-        static bool database_insert(sql::CONNECTION& connection, Student new_student) throw(sql::ExecutingQueryException);
-        
+        static bool database_insert(sql::CONNECTION& connection, Student new_student);
+
         // Return true if the student is successfully updated in the database.
-        static bool database_update(sql::CONNECTION& connection, Student updated_student) throw(sql::ExecutingQueryException);
+        static bool database_update(sql::CONNECTION& connection, Student updated_student);
     private:
         int id;
         string name;
