@@ -24,7 +24,7 @@ class App {
         virtual bool event(Event event) = 0;
 
         static tui::Title& get_title() {
-            return get_title();
+            return tui::Title()
         }
     protected:
         Component render_com;

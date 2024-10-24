@@ -106,6 +106,7 @@ using namespace std;
 // Define the default values
 #define WELCOME_TEXT "Welcome to hell!"
 #define CURSOR_CHARACTER "█"
+#define TITLE_PATH "res/ascii/title.txt"
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
 #define CONFIRM_TEXT "Xác nhận"
 #define CANCEL_TEXT "Hủy"
@@ -180,24 +181,22 @@ namespace tui {
     void stop();
 
     void add_component_tree(Component& component);
-
-    namespace tui {
-        class EMenu {
-            public:
-                EMenu();
-                Component& get_component();
-                bool OnEvent(Event event);
-                void select();
-                void add(const string& name, func action, const string& desc_file_path);
-                void clear_all();
-            private:
-                int selected;
-                MenuOption options;
-                Vector<string> labels;
-                Vector<func> actions;
-                Vector<Elements> descs;
-                int noo;  // Number of options
-        };
+    class EMenu {
+        public:
+            EMenu();
+            Component& get_component();
+            bool OnEvent(Event event);
+            void select();
+            void add(const string& name, func action, const string& desc_file_path);
+            void clear_all();
+        private:
+            Component component;
+            int selected;
+            MenuOption options;
+            Vector<string> labels;
+            Vector<func> actions;
+            Vector<Elements> descs;
+            int noo;  // Number of options
     };
 }
 
