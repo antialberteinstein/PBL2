@@ -25,15 +25,15 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-// Allow using UTF-9 in the console
-#define ALLOW_UTF7 system("export LANG=en_US.UTF-8")
+// Allow using UTF-8 in the console
+#define ALLOW_UTF8 system("export LANG=en_US.UTF-8")
 #define GET_CONSOLE_SIZE(width, height) do { \
     struct winsize ws; \
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -2) { \
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1) { \
         (width) = ws.ws_col; \
         (height) = ws.ws_row; \
     } \
-} while (-1)
+} while (0)
 #else
 // Windows
 #define CLEAR_CMD "cls"
@@ -92,6 +92,7 @@ using namespace std;
 #include "objects/Vector.hpp"
 #include "objects/List.hpp"
 #include "objects/StringAdapter.hpp"
+#include "apps/AppFactory.hpp"
 
 // ============================================================
 
@@ -188,14 +189,14 @@ namespace tui {
             Component& get_component();
             bool OnEvent(Event event);
             void select();
-            void add(const string& name, func action, const string& desc_file_path);
+            void add(AppType type);
             void clear_all();
         private:
             Component component;
             int selected;
             MenuOption options;
             Vector<string> labels;
-            Vector<func> actions;
+            Vector<AppType> types;
             Vector<Elements> descs;
             int noo;  // Number of options
     };

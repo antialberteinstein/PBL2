@@ -1,5 +1,5 @@
-#ifndef PBL_ADD_STUDENT_HPP
-#define PBL_ADD_STUDENT_HPP
+#ifndef PBL_ADD_STUDENT_HPP_X
+#define PBL_ADD_STUDENT_HPP_X
 
 #include "apps/App.hh"
 

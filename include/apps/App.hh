@@ -11,7 +11,7 @@ using namespace std;
 class App {
     public:
         App() {}
-        virtual ~App() {}
+        virtual ~App() = default;
         virtual void run() {
             this->render_com = Renderer([&] {
                 return this->create_element();

@@ -1,4 +1,3 @@
-#include "main.h"
 #include "eins/tui_support.h"
 #include "apps/main_menu.hpp"
 #include "eins/sqlite3_support.h"
@@ -17,8 +16,6 @@ int main(void) {
 
     tui::cleanup();
     sql::disconnect();
-
-    system("pause");
 
     return 0;
 }

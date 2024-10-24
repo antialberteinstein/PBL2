@@ -1,7 +1,4 @@
 #include "objects/Date.hpp"
-#include <chrono>
-#include <ctime>
-#include <sstream>
 
 Date::Date(int day, int month, int year) : day(day), month(month), year(year) {}
 
@@ -28,7 +25,7 @@ Date Date::today() {
     std::time_t now = std::time(nullptr);
 
     std::tm local_time;
-    if (GET_LOCALTIME(&local_time, &now) != 0) {
+    if (!get_local_time(&local_time, &now)) {
         throw GettingLocalTimeException("Failed to get local time");
     }
     return Date(local_time.tm_mday, local_time.tm_mon + 1, local_time.tm_year + 1900);

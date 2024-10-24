@@ -1,6 +1,5 @@
 #include "apps/main_menu.hpp"
-#include "apps/add_student.hpp"
-
+#include "apps/AppFactory.hpp"
 
 namespace main_menu {
 
@@ -12,15 +11,15 @@ namespace main_menu {
 
         menu.clear_all();
 
-        menu.add("Thêm sinh viên", add_student::action, "add_student");
-        menu.add("Đăng ký bao phòng", nullptr, "room_reservation");
-        menu.add("Danh sách sinh viên", nullptr, "student_list");
-        menu.add("Danh sách phòng", nullptr, "room_list");
-        menu.add("Chuyển sinh viên sang phòng khác", nullptr, "move_student");
-        menu.add("In tài liệu (*.csv)", nullptr, "print_document");
-        menu.add("In bản đồ", nullptr, "print_map");
-        menu.add("Thống kê", nullptr, "statistics");
-        menu.add("Thoát", stop, "exit");
+        menu.add(AppType::ADD_STUDENT);
+        menu.add(AppType::ROOM_RESERVATION);
+        menu.add(AppType::STUDENT_LIST);
+        menu.add(AppType::ROOM_LIST);
+        menu.add(AppType::MOVE_STUDENT);
+        menu.add(AppType::PRINT_DOCUMENT);
+        menu.add(AppType::PRINT_MAP);
+        menu.add(AppType::STATISTICS);
+        menu.add(AppType::EXIT);
 
         container = Container::Vertical({
             Renderer([&] {

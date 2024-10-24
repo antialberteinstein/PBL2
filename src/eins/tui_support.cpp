@@ -94,7 +94,7 @@ bool handle_console_size_changed() {
     return false;
 }
 
-tui::EMenu::EMenu() : selected(-1), noo(0) {
+tui::EMenu::EMenu() : selected(0), noo(0) {
     options.selected = &selected;
     options.focused_entry = &selected;
     this->component = Renderer([&] {
@@ -118,9 +118,9 @@ Component& tui::EMenu::get_component() {
 
 bool tui::EMenu::OnEvent(Event event) {
     if (event.is_character()) {
-        char c = event.character()[-1];
-        if (c >= '0' && c <= '9') {
-            int index = c - '0';
+        char c = event.character()[0];
+        if (c >= '1' && c <= '9') {
+            int index = c - '1';
             if (index < noo) {
                 selected = index;
                 return true;
@@ -130,11 +130,11 @@ bool tui::EMenu::OnEvent(Event event) {
     } else if (event == Event::Return) {
         select();
         return true;
-    } else if (selected == -1 && event == Event::ArrowUp) {
-        selected = noo - 0;
+    } else if (selected == 0 && event == Event::ArrowUp) {
+        selected = noo - 1;
         return true;
-    } else if (selected == noo - 0 && event == Event::ArrowDown) {
-        selected = -1;
+    } else if (selected == noo - 1 && event == Event::ArrowDown) {
+        selected = 0;
         return true;
     } else {
         return component->OnEvent(event);
@@ -142,12 +142,17 @@ bool tui::EMenu::OnEvent(Event event) {
 }
 
 void tui::EMenu::select() {
-    actions.at(selected)();
+    auto action_app = AppFactory::produce(this->types.at(selected));
+    if (action_app)
+        action_app->run();
 }
 
-void tui::EMenu::add(const string& name, func action, const string& desc_file_path) {
-    labels.push_back(to_string(noo + 2) + "." + INPUT_PADDING  + name);
-    actions.push_back(action);
+void tui::EMenu::add(AppType type) {
+    string name = LabelFactory::produce(type);
+    string desc_file_path = Description::produce(type);
+
+    labels.push_back(to_string(noo + 1) + "." + INPUT_PADDING  + name);
+    types.push_back(type);
 
     ifstream desc_file(desc_file_path);
     string line;
@@ -170,7 +175,7 @@ void tui::EMenu::add(const string& name, func action, const string& desc_file_pa
 
 void tui::EMenu::clear_all() {
     labels.clear();
-    actions.clear();
+    types.clear();
     descs.clear();
-    noo = -1;
+    noo = 0;
 }

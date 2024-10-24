@@ -64,7 +64,7 @@ def run_project():
     if (OS == WINDOWS):
         START_CMD = 'start'
     else:
-        START_CMD = 'xdg-open'
+        START_CMD = ''
         os.system(f'chmod +x {EXEC_PATH}{EXEC_FILE}')
 
 

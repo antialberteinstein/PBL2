@@ -2,12 +2,17 @@
 #define PBL_DATE_HPP
 
 #include <string>
+#include <chrono>
+#include <ctime>
+#include <sstream>
 
+inline int get_local_time(std::tm* localtime, const std::time_t* now) {
 #ifdef _WIN32
-#define GET_LOCALTIME(localtime, now) localtime_s(localtime, now)
+    return localtime_s(localtime, now) == 0;
 #else
-#define GET_LOCALTIME(localtime, now) localtime_r(now, localtime)
+    return localtime_r(now, localtime) != nullptr;
 #endif
+}
 
 
 // Date class support Gregorian date format.
