@@ -1,7 +1,7 @@
 #include "apps/add_student.hpp"
 #include "apps/main_menu.hpp"
 #include "objects/Vector.hpp"
-#include "objects/Adapter.hpp"
+#include "objects/StringAdapter.hpp"
 #include "objects/Date.hpp"
 #include "objects/Student.hpp"
 #include "eins/sqlite3_support.h"
@@ -143,7 +143,7 @@ namespace add_student {
         gender.values.push_back("Nữ");
         gender.values.push_back("Khác");
         gender.selected = 1;
-        gender.com = Dropdown(Adapter::From(&gender.values), &gender.selected);
+        gender.com = Dropdown(StringAdapter::From(&gender.values), &gender.selected);
 
         confirm_btn = Button("Xác nhận", [&] {
             confirm_action();
