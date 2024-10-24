@@ -65,6 +65,7 @@ def run_project():
         START_CMD = 'start'
     else:
         START_CMD = 'xdg-open'
+        os.system(f'chmod +x {EXEC_PATH}{EXEC_FILE}')
 
 
     MSG = Fore.GREEN + 'Done.'
@@ -109,7 +110,7 @@ if __name__ == '__main__':
                 if (OS == WINDOWS):
                     # In Windows, we need to do it twice
                     #   there is a bug "pwsh.exe" not found in the first time.
-                    build_project()  
+                    build_project()
                 copy_nessesary_files()
             case 3:
                 run_project()
@@ -117,7 +118,5 @@ if __name__ == '__main__':
                 exit_program()
             case _:
                 print('Chức năng không tồn tại.')
-        
-        enter_to_continue()
 
-    
+        enter_to_continue()

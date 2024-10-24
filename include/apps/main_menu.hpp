@@ -1,7 +1,7 @@
 #ifndef PBL_MAIN_MENU_HPP
 #define PBL_MAIN_MENU_HPP
 
-#include "app.hpp"
+#include "apps/App.hh"
 
 namespace main_menu {
     void action();

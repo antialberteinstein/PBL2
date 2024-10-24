@@ -1,7 +1,7 @@
 #ifndef PBL_ADD_STUDENT_HPP
 #define PBL_ADD_STUDENT_HPP
 
-#include "app.hpp"
+#include "apps/App.hh"
 
 namespace add_student {
     void action();

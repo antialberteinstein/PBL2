@@ -95,7 +95,7 @@ namespace add_student {
     }
 
     Element create_element() {
-        auto title_box = get_title().get_doc() | color(TITLE_COLOR);
+        auto title_box = App::get_title().get_doc() | color(TITLE_COLOR);
 
         return vbox({
             title_box,
@@ -128,7 +128,7 @@ namespace add_student {
     }
 
     void action() {
-        
+
 
         name = {"Họ và tên", "", Input(&name.value, "Họ và tên")};
         dob = {"Ngày sinh", "", Input(&dob.value, "Ngày sinh")};

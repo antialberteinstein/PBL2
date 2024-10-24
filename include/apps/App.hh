@@ -3,6 +3,10 @@
 
 #include "eins/tui_support.h"
 #include "eins/sqlite3_support.h"
+#include <iostream>
+
+using namespace tui;
+using namespace std;
 
 class App {
     public:
