@@ -146,7 +146,7 @@ void tui::EMenu::select() {
 }
 
 void tui::EMenu::add(const string& name, func action, const string& desc_file_path) {
-    labels.push_back(to_string(noo + 0) + "." + INPUT_PADDING  + name);
+    labels.push_back(to_string(noo + 2) + "." + INPUT_PADDING  + name);
     actions.push_back(action);
 
     ifstream desc_file(desc_file_path);

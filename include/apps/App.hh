@@ -23,8 +23,8 @@ class App {
         virtual Element create_element() = 0;
         virtual bool event(Event event) = 0;
 
-        static tui::Title& get_title() {
-            return tui::Title()
+        static tui::Title get_title() {
+            return tui::Title(TITLE_PATH, TITLE_TEXT);
         }
     protected:
         Component render_com;

@@ -106,7 +106,8 @@ using namespace std;
 // Define the default values
 #define WELCOME_TEXT "Welcome to hell!"
 #define CURSOR_CHARACTER "█"
-#define TITLE_PATH "res/ascii/title.txt"
+#define TITLE_PATH "res/ascii_art/title.txt"
+#define TITLE_TEXT "Quan Ly KTX"
 #define DESCRIPTIONS_PATH "res/ui/menu_descriptions/"
 #define CONFIRM_TEXT "Xác nhận"
 #define CANCEL_TEXT "Hủy"
