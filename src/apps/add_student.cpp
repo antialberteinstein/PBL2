@@ -2,6 +2,9 @@
 #include "apps/main_menu.hpp"
 #include "objects/Vector.hpp"
 #include "objects/Adapter.hpp"
+#include "objects/Date.hpp"
+#include "objects/Student.hpp"
+#include "eins/sqlite3_support.h"
 
 struct EditText {
     string label;
@@ -35,21 +38,61 @@ Element get_doc(ComboBox& field) {
 
 namespace add_student {
 
-    Element foo = text("No event");
-
-    void confirm_action() {
-        foo = text("Confirmed");
-    }
-
-    void cancel_action() {
-        main_menu::action();
-    }
-
     Component container;
     EditText name, dob, hometown, university, major, phone, email;
     ComboBox gender;
     Component confirm_btn, cancel_btn;
     Component event_listener;
+    string error_message;
+
+    void confirm_action() {
+        if (name.value.empty() || dob.value.empty() || hometown.value.empty() ||
+            university.value.empty() || major.value.empty() || phone.value.empty() ||
+            email.value.empty()) {
+            error_message = "Vui lòng điền đầy đủ thông tin!!";
+            // return;
+        }
+
+        Date today(0, 0, 0);
+
+        try {
+            today = Date::today();
+        } catch (GettingLocalTimeException& e) {
+            error_message = e.get_message();
+            return;
+        }
+
+        Student new_student = Student(
+            STUDENT_NULL_VALUE, name.value,
+            DateConverter::from_grenadian_string(dob.value),
+            phone.value, email.value,
+            university.value, major.value,
+            hometown.value, today,
+            false, 0, STUDENT_NULL_VALUE, gender.values[gender.selected]
+        );
+        try {
+            if (!sql::check_connection()) {
+                sql::reconnect();
+            }
+            auto conn = sql::get_connection();
+            bool check = Student::database_insert(conn, new_student);
+            if (check) {
+                // Return to main menu
+                main_menu::action();
+
+            } else {
+                throw sql::ExecutingQueryException("Failed to insert student into database");
+            }
+        } catch (sql::ExecutingQueryException& e) {
+            error_message = e.get_message() + sqlite3_errmsg(sql::get_connection());
+        } catch (sql::CreatingConnectionException& e) {
+            error_message = e.get_message() + sqlite3_errmsg(sql::get_connection());
+        }
+    }
+
+    void cancel_action() {
+        main_menu::action();
+    }
 
     Element create_element() {
         auto title_box = get_title().get_doc() | color(TITLE_COLOR);
@@ -75,12 +118,12 @@ namespace add_student {
                     get_doc(email) | flex,
                 }) | flex,
             }),
-            foo | center,
             hbox({
                 confirm_btn->Render() | flex,
                 text(BTN_PADDING),
                 cancel_btn->Render() | flex,
             }) | center | flex,
+            text(error_message) | center | color(ERROR_COLOR),
         });
     }
 

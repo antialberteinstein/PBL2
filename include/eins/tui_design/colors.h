@@ -17,4 +17,6 @@
 #define CONFIRM_BTN_BG Color::Green
 #define CANCEL_BTN_BG Color::Red
 
+#define ERROR_COLOR Color::Red
+
 #endif

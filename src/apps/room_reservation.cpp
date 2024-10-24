@@ -18,19 +18,23 @@ namespace room_reservation {
         // return container->Render();
     }
 
-    bool check_event(Event event) {
-        return container->OnEvent(event);
-    }
-
     void action() {
         std::vector<string> entries = {
-            "Tran Nhat Nguyen",
+            "Room 1",
+            "Room 2",
+            "Room 3",
+            "Room 4",
+            "Room 5",
         };
 
         dropdown_menu = Dropdown(entries, &selected);
 
         container = Container::Vertical({
-            dropdown_menu,
+            Renderer([&] {
+                return create_element();
+            }),
+        }) | CatchEvent([&](Event event) {
+            return dropdown_menu->OnEvent(event);
         });
 
         add_component_tree(container);

@@ -4,3 +4,4 @@ Thread C++:
 try catch C++:
 Cmake:
 functional:
+unique_str:
