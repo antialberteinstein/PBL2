@@ -1,4 +1,6 @@
 #include "apps/AddStudent.hpp"
+#include "apps/App.hh"
+#include "apps/MainMenu.hpp"
 
 AddStudent::AddStudent() {
     name = {"Họ và tên", "", Input(&name.value, "Họ và tên")};
@@ -48,6 +50,7 @@ AddStudent::AddStudent() {
             bool check = Student::database_insert(conn, new_student);
             if (check) {
                 // Return to main menu
+                AppAdapter::get_instance().connect(new MainMenu())->run();
             } else {
                 throw sql::ExecutingQueryException("Failed to insert student into database");
             }
@@ -60,6 +63,8 @@ AddStudent::AddStudent() {
 
     cancel_btn = Button("Hủy", [&] {
         // Return to main menu
+        MainMenu* main_menu = new MainMenu();
+        AppAdapter::connect(main_menu)->run();
     }, ButtonOption::Animated(CANCEL_BTN_BG));
 
     event_listener = Container::Vertical({
@@ -76,7 +81,7 @@ bool AddStudent::event(Event event) {
 }
 
 Element AddStudent::create_element() {
-    auto title_box = App::get_title().get_doc() | color(TITLE_COLOR);
+    auto title_box = get_title().get_doc() | color(TITLE_COLOR);
 
     return vbox({
         title_box,

@@ -92,7 +92,6 @@ using namespace std;
 #include "objects/Vector.hpp"
 #include "objects/List.hpp"
 #include "objects/StringAdapter.hpp"
-#include "apps/AppFactory.hpp"
 
 // ============================================================
 
@@ -183,25 +182,14 @@ namespace tui {
     void stop();
 
     void add_component_tree(Component& component);
-    class EMenu {
-        public:
-            EMenu();
-            Component& get_component();
-            bool OnEvent(Event event);
-            void select();
-            void add(AppType type);
-            void clear_all();
-        private:
-            Component component;
-            int selected;
-            MenuOption options;
-            Vector<string> labels;
-            Vector<AppType> types;
-            Vector<Elements> descs;
-            int noo;  // Number of options
-    };
 }
 
 bool handle_console_size_changed();
+
+inline void Log(const string& message, const string& log_file="log.txt") {
+    ofstream file("temp/" + log_file, ios::app);
+    file << message << endl;
+    file.close();
+}
 
 #endif

@@ -81,12 +81,12 @@ class MyExitApp : public App {
 
 class AppFactory {
     public:
-        static std::unique_ptr<App> produce(AppType type) {
+        static App* produce(AppType type) {
             switch (type) {
                 case AppType::ADD_STUDENT:
-                    return std::make_unique<AddStudent>();
-                case AppType::EXIT:
-                    return std::make_unique<MyExitApp>();
+                    return AppAdapter::get_instance().connect(new AddStudent());
+                case AppType::EXIT: 
+                    return AppAdapter::get_instance().connect(new MyExitApp());
             }
             return nullptr;
         }

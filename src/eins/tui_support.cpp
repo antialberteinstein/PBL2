@@ -1,4 +1,5 @@
 #include "eins/tui_support.h"
+#include "eins/EMenu.hpp"
 
 bool handle_console_size_changed();
 
@@ -149,7 +150,7 @@ void tui::EMenu::select() {
 
 void tui::EMenu::add(AppType type) {
     string name = LabelFactory::produce(type);
-    string desc_file_path = Description::produce(type);
+    string desc_file_path = DescriptionFactory::produce(type);
 
     labels.push_back(to_string(noo + 1) + "." + INPUT_PADDING  + name);
     types.push_back(type);

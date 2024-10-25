@@ -11,7 +11,7 @@ using namespace std;
 class App {
     public:
         App() {}
-        virtual ~App() = default;
+        virtual ~App() {};
         virtual void run() {
             this->render_com = Renderer([&] {
                 return this->create_element();
@@ -20,15 +20,39 @@ class App {
             });
             tui::add_component_tree(this->render_com);
         }
-        virtual Element create_element() = 0;
-        virtual bool event(Event event) = 0;
-
-        static tui::Title get_title() {
-            return tui::Title(TITLE_PATH, TITLE_TEXT);
+        virtual Element create_element() {
+            return text("No render");
         }
+        virtual bool event(Event event) {
+            return false;
+        }
+
     protected:
         Component render_com;
-
 };
+
+// This will carry the pointer of the app.
+class AppAdapter {
+    public:
+        explicit AppAdapter(App* app=nullptr) : app(app) {}
+        ~AppAdapter() {
+            delete app;
+            app = nullptr;
+        }
+
+        static App* connect(App* app) {
+            static AppAdapter adapter;
+            if (adapter.app) {
+                delete adapter.app;
+            }
+            adapter.app = app;
+            return adapter.app;
+        }
+
+    private:
+        App* app;
+};
+
+Title& get_title();
 
 #endif

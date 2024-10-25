@@ -5,6 +5,7 @@
 #include "objects/Vector.hpp"
 #include "objects/Student.hpp"
 #include "objects/Date.hpp"
+#include "objects/StringAdapter.hpp"
 
 struct EditText {
     string label;
@@ -23,8 +24,8 @@ class AddStudent : public App {
     public:
         AddStudent();
         virtual ~AddStudent() = default;
-        virtual Element create_element();
-        virtual bool event(Event event);
+        virtual Element create_element() override;
+        virtual bool event(Event event) override;
     private:
         Component confirm_btn,
                   cancel_btn,
