@@ -11,7 +11,7 @@ int main(void) {
     tui::init();
     auto screen = ScreenInteractive::TerminalOutput();
 
-    AppAdapter::connect(new MainMenu())->run();
+    main_menu::show();
 
     tui::start(screen);
 

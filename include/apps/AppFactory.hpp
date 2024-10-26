@@ -84,9 +84,9 @@ class AppFactory {
         static App* produce(AppType type) {
             switch (type) {
                 case AppType::ADD_STUDENT:
-                    return AppAdapter::get_instance().connect(new AddStudent());
-                case AppType::EXIT: 
-                    return AppAdapter::get_instance().connect(new MyExitApp());
+                    return AppAdapter::connect(new AddStudent());
+                case AppType::EXIT:
+                    return AppAdapter::connect(new MyExitApp());
             }
             return nullptr;
         }

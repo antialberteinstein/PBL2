@@ -11,6 +11,11 @@ class MainMenu : public App {
         virtual bool event(Event event) override;
     private:
         EMenu menu;
+        static MainMenu *instance;
 };
+
+namespace main_menu {
+    void show();
+}
 
 #endif

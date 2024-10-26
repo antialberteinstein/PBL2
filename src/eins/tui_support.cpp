@@ -127,15 +127,21 @@ bool tui::EMenu::OnEvent(Event event) {
                 return true;
             }
         }
+        options.focused_entry = &selected;
+        options.selected = &selected;
         return false;
     } else if (event == Event::Return) {
         select();
         return true;
     } else if (selected == 0 && event == Event::ArrowUp) {
         selected = noo - 1;
+        options.focused_entry = &selected;
+        options.selected = &selected;
         return true;
     } else if (selected == noo - 1 && event == Event::ArrowDown) {
         selected = 0;
+        options.focused_entry = &selected;
+        options.selected = &selected;
         return true;
     } else {
         return component->OnEvent(event);

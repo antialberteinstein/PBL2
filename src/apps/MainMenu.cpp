@@ -1,5 +1,7 @@
 #include "apps/MainMenu.hpp"
 
+MainMenu* MainMenu::instance = nullptr;
+
 MainMenu::MainMenu() {
     menu = EMenu();
 
@@ -24,4 +26,12 @@ Element MainMenu::create_element() {
 
 bool MainMenu::event(Event event) {
     return menu.OnEvent(event);
+}
+
+namespace main_menu {
+    MainMenu _main_menu;
+
+    void show() {
+        _main_menu.run();
+    }
 }

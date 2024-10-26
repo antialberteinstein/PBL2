@@ -50,7 +50,7 @@ AddStudent::AddStudent() {
             bool check = Student::database_insert(conn, new_student);
             if (check) {
                 // Return to main menu
-                AppAdapter::get_instance().connect(new MainMenu())->run();
+                main_menu::show();
             } else {
                 throw sql::ExecutingQueryException("Failed to insert student into database");
             }
@@ -63,8 +63,7 @@ AddStudent::AddStudent() {
 
     cancel_btn = Button("Hủy", [&] {
         // Return to main menu
-        MainMenu* main_menu = new MainMenu();
-        AppAdapter::connect(main_menu)->run();
+        main_menu::show();
     }, ButtonOption::Animated(CANCEL_BTN_BG));
 
     event_listener = Container::Vertical({
