@@ -1,8 +1,22 @@
 #include "apps/AddStudent.hpp"
 #include "apps/App.hh"
 #include "apps/MainMenu.hpp"
+#include "viewmodel/my_view_model.hpp"
 
 AddStudent::AddStudent() {
+    will_render = true;
+
+    // Lam 2 lan moi khong loi :)))))
+    try {
+        student_db = ModelProducer::get_instance(ModelType::STUDENT);
+    } catch (const runtime_error& e) {
+        try {
+            student_db = ModelProducer::get_instance(ModelType::STUDENT);
+        } catch (const runtime_error& e) {
+            error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+            will_render = false;
+        }
+    }
     name = {"Họ và tên", "", Input(&name.value, "Họ và tên")};
     dob = {"Ngày sinh", "", Input(&dob.value, "Ngày sinh")};
     hometown = {"Quê quán", "", Input(&hometown.value, "Quê quán")};
@@ -25,40 +39,33 @@ AddStudent::AddStudent() {
             return;
         }
 
-        Date today(0, 0, 0);
-
-        try {
-            today = Date::today();
-        } catch (GettingLocalTimeException& e) {
-            error_message = e.get_message();
+        // Add student to database
+        if (student_db == nullptr) {
+            error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             return;
+        } else {
+            auto student = make_unique<Student>();
+            student->set_name(name.value);
+            student->set_dob(dob.value);
+            student->set_gender(gender.values[gender.selected]);
+            student->set_hometown(hometown.value);
+            student->set_university(university.value);
+            student->set_major(major.value);
+            student->set_phone_number(phone.value);
+            student->set_email(email.value);
+            student->set_room_id(-1);
+            student->set_date_joined(Date::today().to_string());
+
+            try {
+                student_db->add(move(student));
+                main_menu::show();
+            } catch (const runtime_error& e) {
+                error_message = e.what();
+                return;
+            }
         }
 
-        Student new_student = Student(
-            STUDENT_NULL_VALUE, name.value,
-            DateConverter::from_grenadian_string(dob.value),
-            phone.value, email.value,
-            university.value, major.value,
-            hometown.value, today,
-            false, 0, STUDENT_NULL_VALUE, gender.values[gender.selected]
-        );
-        try {
-            if (!sql::check_connection()) {
-                sql::reconnect();
-            }
-            auto conn = sql::get_connection();
-            bool check = Student::database_insert(conn, new_student);
-            if (check) {
-                // Return to main menu
-                main_menu::show();
-            } else {
-                throw sql::ExecutingQueryException("Failed to insert student into database");
-            }
-        } catch (sql::ExecutingQueryException& e) {
-            error_message = e.get_message() + sqlite3_errmsg(sql::get_connection());
-        } catch (sql::CreatingConnectionException& e) {
-            error_message = e.get_message() + sqlite3_errmsg(sql::get_connection());
-        }
+        
     }, ButtonOption::Animated(CONFIRM_BTN_BG));
 
     cancel_btn = Button("Hủy", [&] {
@@ -81,6 +88,15 @@ bool AddStudent::event(Event event) {
 
 Element AddStudent::create_element() {
     auto title_box = get_title().get_doc() | color(TITLE_COLOR);
+
+    if (!will_render) {
+        return vbox({
+            title_box,
+            separator(),
+            text(error_message) | center | color(ERROR_COLOR),
+            cancel_btn->Render() | center | flex,
+        });
+    }
 
     return vbox({
         title_box,

@@ -3,6 +3,8 @@
 
 #include "apps/App.hh"
 #include "apps/AddStudent.hpp"
+#include "apps/StudentList.hpp"
+#include "apps/RoomList.hpp"
 #include <memory>
 #include <iostream>
 
@@ -85,6 +87,10 @@ class AppFactory {
             switch (type) {
                 case AppType::ADD_STUDENT:
                     return AppAdapter::connect(new AddStudent());
+                case AppType::STUDENT_LIST:
+                    return AppAdapter::connect(new StudentList());
+                case AppType::ROOM_LIST:
+                    return AppAdapter::connect(new RoomList());
                 case AppType::EXIT:
                     return AppAdapter::connect(new MyExitApp());
             }

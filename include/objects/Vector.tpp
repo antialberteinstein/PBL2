@@ -14,6 +14,11 @@ void Vector<T>::push_back(const T& value) {
 }
 
 template <typename T>
+T Vector<T>::pop_back() {
+    return data_[--size_];
+}
+
+template <typename T>
 T Vector<T>::at(size_t index) const {
     return data_[index];
 }

@@ -1,13 +1,27 @@
 #include "eins/tui_support.h"
-#include "eins/sqlite3_support.h"
 #include "apps/MainMenu.hpp"
 #include "apps/AppFactory.hpp"
+#include "models/Student.hpp"
 
 #include "objects/Date.hpp"
 
+#include "viewmodel/my_view_model.hpp"
+
+bool pbl();
 
 int main(void) {
-    sql::connect(DB_PATH);
+
+    pbl();
+
+    
+
+    return 0;
+}
+
+
+
+bool pbl() {
+     {
     tui::init();
     auto screen = ScreenInteractive::TerminalOutput();
 
@@ -16,7 +30,7 @@ int main(void) {
     tui::start(screen);
 
     tui::cleanup();
-    sql::disconnect();
 
-    return 0;
+    return true;
+}
 }

@@ -1,6 +1,8 @@
 import platform
 import os
 from colorama import Fore, Style
+import debug
+import threading
 
 WINDOWS = 'Windows'
 MACOS = 'Darwin'
@@ -64,13 +66,28 @@ def run_project():
     if (OS == WINDOWS):
         START_CMD = 'start'
     else:
-        START_CMD = ''
+        START_CMD = './start'
         os.system(f'chmod +x {EXEC_PATH}{EXEC_FILE}')
 
 
     MSG = Fore.GREEN + 'Done.'
-    if os.system(f'{START_CMD} {EXEC_PATH}{EXEC_FILE}'):
-        MSG = Fore.RED + 'Failed to run project.'
+    def thread_1():
+        if (OS == WINDOWS):
+            os.system(f'{START_CMD} .\\debug.bat')
+        else:
+            os.system(f'{START_CMD} ./debug')
+    def thread_2():
+        if (os.system(f'{START_CMD} {EXEC_PATH}{EXEC_FILE}')):
+            MSG = Fore.RED + 'Failed to run project.'
+    
+    t1 = threading.Thread(target=thread_1)
+    t2 = threading.Thread(target=thread_2)
+
+    t1.start()
+    t2.start()
+
+    t2.join()
+
     print(MSG + Style.RESET_ALL)
 
 def enter_to_continue():
@@ -111,7 +128,6 @@ if __name__ == '__main__':
                     # In Windows, we need to do it twice
                     #   there is a bug "pwsh.exe" not found in the first time.
                     build_project()
-                copy_nessesary_files()
             case 3:
                 run_project()
             case 4:

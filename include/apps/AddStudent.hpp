@@ -3,9 +3,10 @@
 
 #include "apps/App.hh"
 #include "objects/Vector.hpp"
-#include "objects/Student.hpp"
 #include "objects/Date.hpp"
 #include "objects/StringAdapter.hpp"
+
+class ModelProducer;
 
 struct EditText {
     string label;
@@ -35,6 +36,9 @@ class AddStudent : public App {
                  phone, email;
         ComboBox gender;
         string error_message;
+        bool will_render;  // If false, render error message only
+        ModelProducer* student_db;
+
 };
 
 inline Element get_doc(EditText& field) {

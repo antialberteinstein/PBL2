@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.5)
 
 include(FetchContent)
 set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
@@ -8,18 +8,17 @@ FetchContent_Declare(ftxui
 )
 FetchContent_MakeAvailable(ftxui)
 
+# Fetch LevelDB
+FetchContent_Declare(
+    leveldb
+    GIT_REPOSITORY https://github.com/google/leveldb.git
+    GIT_TAG        main # You can specify a tag or commit if needed
+)
+
+# Make LevelDB available
+FetchContent_MakeAvailable(leveldb)
+
 project(pbl CXX)
-
-# Install sqlite3
-if (WIN32)
-  set(SQLite3_DIR ${CMAKE_SOURCE_DIR}/Libraries/sqlite3)
-  set(SQLite3_INCLUDE_DIR ${SQLite3_DIR})
-  set(SQLite3_LIBRARY ${SQLite3_DIR}/sqlite3.lib)
-endif()
-
-set(BUILD_SHARED_LIBS OFF)
-
-find_package(SQLite3 REQUIRED)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 add_executable(pbl ${SOURCES})
@@ -27,15 +26,13 @@ add_executable(pbl ${SOURCES})
 # include_directories(${CMAKE_SOURCE_DIR}/include)
 target_include_directories(pbl
   PRIVATE ${CMAKE_SOURCE_DIR}/include
-  PRIVATE ${SQLite3_INCLUDE_DIR}
 )
-
 
 target_link_libraries(pbl
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
   PRIVATE ftxui::component
-  PRIVATE ${SQLite3_LIBRARY}
+  leveldb
 )
 
 # Copy res folder to build directory

@@ -13,6 +13,7 @@ class Vector {
         Vector& operator=(T* data);
 
         void push_back(const T& value);
+        T pop_back();
         T at(size_t index) const;
         T& operator[](size_t index);
         size_t size() const;

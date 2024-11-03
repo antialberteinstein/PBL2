@@ -2,7 +2,6 @@
 #define PBL_APP_HH
 
 #include "eins/tui_support.h"
-#include "eins/sqlite3_support.h"
 #include <iostream>
 
 using namespace tui;
@@ -11,7 +10,8 @@ using namespace std;
 class App {
     public:
         App() {}
-        virtual ~App() {};
+        virtual ~App() {
+        };
         virtual void run() {
             this->render_com = Renderer([&] {
                 return this->create_element();
