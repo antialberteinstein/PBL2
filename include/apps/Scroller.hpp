@@ -2,6 +2,7 @@
 #include "apps/App.hh"
 
 #define DEFAULT_SHOWED 17
+#include "objects/Set.hpp"
 
 struct ScrollerMap {
     string name;
@@ -10,11 +11,13 @@ struct ScrollerMap {
     Component _menu;
     Vector<string> complete_list;
     Vector<string> _backup_list;
+    bool sorted_flag;
 
     ScrollerMap() {
         _list = Vector<string>();
         complete_list = Vector<string>();
         _backup_list = Vector<string>();
+        sorted_flag = false;
     }
 
     void create_menu(int& selected, MenuOption& option) {
@@ -36,6 +39,7 @@ struct ScrollerMap {
     void push_back(const string& s) {
         complete_list.push_back(s);
         _backup_list.push_back(s);
+        sorted_flag = false;
     }
 
     void clear() {
@@ -241,6 +245,7 @@ class Scroller {
             }
 
             update_visible_list();
+            selected = 0;
         }
 
         string get_current_item(int index) {

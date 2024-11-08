@@ -7,6 +7,7 @@
 #include "apps/RoomList.hpp"
 #include <memory>
 #include <iostream>
+#include "apps/PrintMap.hpp"
 
 enum class AppType {
     ADD_STUDENT,
@@ -91,6 +92,8 @@ class AppFactory {
                     return AppAdapter::connect(new StudentList());
                 case AppType::ROOM_LIST:
                     return AppAdapter::connect(new RoomList());
+                case AppType::PRINT_MAP:
+                    return AppAdapter::connect(new PrintMap());
                 case AppType::EXIT:
                     return AppAdapter::connect(new MyExitApp());
             }

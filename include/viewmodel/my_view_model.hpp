@@ -149,7 +149,7 @@ class ModelProducer {
         ModelType type_;
         size_t size_;
 
-        Queue<int> free_ids_; // For reusing ids
+        Queue<int> free_ids_;  // For reusing ids 
 
         static unique_ptr<ModelProducer> student_instance_;
         static unique_ptr<ModelProducer> room_instance_;

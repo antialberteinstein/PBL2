@@ -22,4 +22,5 @@ then
     lxterminal -e "$SCRIPT_PATH; exec bash"
 else
     echo "No supported terminal emulator found."
+    exec "$SCRIPT_PATH"
 fi
