@@ -8,6 +8,7 @@
 #include "fstream"
 
 #define _DB_PATH "res/db/"
+#define SIZE_KEY "size"
 
 void debug(const string& s);
 
@@ -34,9 +35,14 @@ class ModelProducer {
                 key = free_ids_.dequeue();
             }
 
-            model->set_id(key);
+            model->set_id(to_string(key));
 
-            leveldb::Status status = db_->Put(leveldb::WriteOptions(), to_string(key), model->serialize());
+            leveldb::Status status = db_->Put(
+                leveldb::WriteOptions(),
+                model->get_id_string(),
+                model->serialize()
+            );
+
             if (!status.ok()) {
                 throw runtime_error("Error adding to database: " + status.ToString());
             }
@@ -159,14 +165,22 @@ class ModelProducer {
 
         void dump_size() {
             if (db_) {
-                leveldb::Status status = db_->Put(leveldb::WriteOptions(), "size", to_string(size_));
+                leveldb::Status status = db_->Put(
+                    leveldb::WriteOptions(),
+                    string(SIZE_KEY),
+                    to_string(size_)
+                );
             }
         }
 
         void retrieve_size() {
             if (db_) {
                 string data;
-                leveldb::Status status = db_->Get(leveldb::ReadOptions(), "size", &data);
+                leveldb::Status status = db_->Get(
+                    leveldb::ReadOptions(),
+                    string(SIZE_KEY),
+                    &data
+                );
                 if (status.ok()) {
                     size_ = stoi(data);
                 } else {

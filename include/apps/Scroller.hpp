@@ -82,8 +82,8 @@ int min_of(Vector<int>& arr);
 // Return true if all elements are true.
 bool all(Vector<bool>& arr);
 
-// Return true if any elements are true.
-bool any(Vector<bool>& arr);
+// Return true if _any elements are true.
+bool _any(Vector<bool>& arr);
 
 class Scroller {
     public:
@@ -160,7 +160,7 @@ class Scroller {
                 arr.push_back(_maps[i].OnEvent(event));
             }
 
-            return any(arr);
+            return _any(arr);
         }
 
         bool OnEvent(Event event) {

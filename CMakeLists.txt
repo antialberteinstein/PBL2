@@ -20,8 +20,6 @@ FetchContent_MakeAvailable(leveldb)
 
 project(pbl CXX)
 
-add_subdirectory(libs/nativefiledialog)
-
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 add_executable(pbl ${SOURCES})
 
@@ -35,7 +33,6 @@ target_link_libraries(pbl
   PRIVATE ftxui::dom
   PRIVATE ftxui::component
   leveldb
-  PRIVATE nfd
 )
 
 # Copy res folder to build directory

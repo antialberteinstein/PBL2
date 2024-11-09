@@ -13,17 +13,30 @@ class Model {
         virtual string serialize() = 0;
         virtual void deserialize(string data) = 0;
 
-        int get_id() {
+        string get_id() {
             return id;
         }
 
-        void set_id(int id) {
+        void set_id(string id) {
             this->id = id;
         }
 
         string get_id_string() {
-            return to_string(id);
+            return id;
         }
     protected:
-        int id;
+        string id;
+
+    private:
+        void generate_id(const string& previous_id="") {
+            if (previous_id == "") {
+                id = "1";
+            } else {
+                try {
+                    id = to_string(stoi(previous_id) + 1);
+                } catch (invalid_argument& e) {
+                    id = "1";
+                }
+            }
+        }
 };

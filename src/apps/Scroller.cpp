@@ -45,7 +45,7 @@ bool all(Vector<bool>& arr) {
     return true;
 }
 
-bool any(Vector<bool>& arr) {
+bool _any(Vector<bool>& arr) {
     for (size_t i = 0; i < arr.size(); ++i) {
         if (arr[i]) {
             return true;
