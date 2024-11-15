@@ -19,3 +19,7 @@ temp/
 
 # Ignore Releases folder
 Releases/
+
+# Ignore __pycache__ folder
+__pycache__/
+*/__pycache__/
