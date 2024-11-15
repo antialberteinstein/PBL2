@@ -5,6 +5,7 @@
 #include "objects/List.hpp"
 #include "leveldb/db.h"
 #include "objects/Queue.hpp"
+#include "objects/Vector.hpp"
 #include "fstream"
 
 #define _DB_PATH "res/db/"
@@ -25,59 +26,86 @@ class ModelProducer {
             delete db_;
         }
 
+        Vector<string> get_all_keys() {
+            Vector<string> keys;
+            leveldb::Iterator* it = db_->NewIterator(leveldb::ReadOptions());
+            for (it->SeekToFirst(); it->Valid(); it->Next()) {
+                keys.push_back(it->key().ToString());
+            }
+            delete it;
+            return keys;
+        }
+
         void add(unique_ptr<Model> model) {
-            int key;
-            bool foo = false;  // For checking if the key is already in use
-            if (free_ids_.is_empty()) {
-                key = size() + 1;
-                foo = true;
-            } else {
-                key = free_ids_.dequeue();
+
+            string _id = model->generate_id();
+            if (_id == "") {
+                return;
             }
 
-            model->set_id(to_string(key));
+            if (type_ == ModelType::STUDENT && get_student(_id) != nullptr) {
+                throw "Học sinh đã tồn tại";
+            } else if (type_ == ModelType::ROOM && get_room(_id) != nullptr) {
+                return;
+            } else if (type_ == ModelType::VEHICLE && get_vehicle(_id) != nullptr) {
+                return;
+            } else if (type_ == ModelType::ROOM_FEE_PAYMENT && get_room_fee_payment(_id) != nullptr) {
+                return;
+            } else if (type_ == ModelType::ELECTRICITY_PAYMENT && get_electricity_payment(_id) != nullptr) {
+                return;
+            }
 
             leveldb::Status status = db_->Put(
                 leveldb::WriteOptions(),
-                model->get_id_string(),
+                _id,
                 model->serialize()
             );
-
+            cout << "DEBUG : added to db." << endl;
+            
             if (!status.ok()) {
-                throw runtime_error("Error adding to database: " + status.ToString());
-            }
-            if (foo) {
-                size_++;
-                dump_size();
-            }
+                cout << "DEBUG : error adding to db." << endl;
+                throw "Error adding to database: " + status.ToString();
+            } 
+            size_++;
+            dump_size();
         }
 
         void remove(string key) {
             leveldb::Status status = db_->Delete(leveldb::WriteOptions(), key);
             if (!status.ok()) {
-                throw runtime_error("Error removing from database: " + status.ToString());
+                throw "Error removing from database: " + status.ToString();
             }
 
-            // Add the id to the free list
-            free_ids_.enqueue(stoi(key));
+            size_--;
+            dump_size();
         }
 
         unique_ptr<Student> get_student(string key) {
+            if (key == SIZE_KEY) {
+                return nullptr;
+            }
             string data;
             leveldb::Status status = db_->Get(leveldb::ReadOptions(), key, &data);
             if (!status.ok()) {
-                throw runtime_error("Error getting from database: " + status.ToString());
+                return nullptr;
             }
-            auto student = make_unique<Student>();
-            student->deserialize(data);
-            return move(student);
+            if (type_ == ModelType::STUDENT) {
+                auto student = make_unique<Student>();
+                student->deserialize(data);
+                return move(student);
+            } else {
+                return nullptr;
+            }
         }
 
         unique_ptr<Room> get_room(string key) {
+            if (key == SIZE_KEY) {
+                return nullptr;
+            }
             string data;
             leveldb::Status status = db_->Get(leveldb::ReadOptions(), key, &data);
             if (!status.ok()) {
-                throw runtime_error("Error getting from database: " + status.ToString());
+                return nullptr;
             }
             if (type_ == ModelType::ROOM) {
                 auto room = make_unique<Room>();
@@ -89,10 +117,13 @@ class ModelProducer {
         }
 
         unique_ptr<Vehicle> get_vehicle(string key) {
+            if (key == SIZE_KEY) {
+                return nullptr;
+            }
             string data;
             leveldb::Status status = db_->Get(leveldb::ReadOptions(), key, &data);
             if (!status.ok()) {
-                throw runtime_error("Error getting from database: " + status.ToString());
+                return nullptr;
             }
             if (type_ == ModelType::VEHICLE) {
                 auto vehicle = make_unique<Vehicle>();
@@ -104,10 +135,13 @@ class ModelProducer {
         }
 
         unique_ptr<RoomFeePayment> get_room_fee_payment(string key) {
+            if (key == SIZE_KEY) {
+                return nullptr;
+            }
             string data;
             leveldb::Status status = db_->Get(leveldb::ReadOptions(), key, &data);
             if (!status.ok()) {
-                throw runtime_error("Error getting from database: " + status.ToString());
+                return nullptr;
             }
             if (type_ == ModelType::ROOM_FEE_PAYMENT) {
                 auto room_fee_payment = make_unique<RoomFeePayment>();
@@ -119,10 +153,13 @@ class ModelProducer {
         }
 
         unique_ptr<ElectricityPayment> get_electricity_payment(string key) {
+            if (key == SIZE_KEY) {
+                return nullptr;
+            }
             string data;
             leveldb::Status status = db_->Get(leveldb::ReadOptions(), key, &data);
             if (!status.ok()) {
-                throw runtime_error("Error getting from database: " + status.ToString());
+                return nullptr;
             }
             if (type_ == ModelType::ELECTRICITY_PAYMENT) {
                 auto electricity_payment = make_unique<ElectricityPayment>();
@@ -143,7 +180,7 @@ class ModelProducer {
         void modify(string key, unique_ptr<Model> model) {
             leveldb::Status status = db_->Put(leveldb::WriteOptions(), key, model->serialize());
             if (!status.ok()) {
-                throw runtime_error("Error modifying database: " + status.ToString());
+                throw "Error modifying database: " + status.ToString();
             }
         }
 
@@ -155,7 +192,6 @@ class ModelProducer {
         ModelType type_;
         size_t size_;
 
-        Queue<int> free_ids_;  // For reusing ids 
 
         static unique_ptr<ModelProducer> student_instance_;
         static unique_ptr<ModelProducer> room_instance_;

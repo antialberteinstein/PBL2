@@ -8,10 +8,10 @@ RoomList::RoomList() {
 
     try {
         room_db = ModelProducer::get_instance(ModelType::ROOM);
-    } catch (const runtime_error& e) {
+    } catch (const string& e) {
         try {
             room_db = ModelProducer::get_instance(ModelType::ROOM);
-        } catch (const runtime_error& e) {
+        } catch (const string& e) {
             error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             will_render = false;
         }
@@ -37,27 +37,21 @@ RoomList::RoomList() {
     if (room_db == nullptr) {
         error_message = "Lỗi kết nối cơ sở dữ liệu!!";
     } else {
-        for (int i = 1; i <= room_db->size(); i++) {
-            try {
-                auto room = room_db->get_room(to_string(i));
-                if (room == nullptr) {
-                    continue;
-                }
-                Vector<string> record;
-                record.push_back(room->get_id_string());
-                record.push_back(room->get_string_name());
-                record.push_back(to_string(room->get_current_number())
+        Vector<string> keys = room_db->get_all_keys();
+        for (int i = 0; i < keys.size(); i++) {
+            auto room = room_db->get_room(keys[i]);
+            if (room == nullptr) {
+                continue;
+            }
+            Vector<string> record;
+            record.push_back(room->get_id_string());
+            record.push_back(room->get_string_name());
+            record.push_back(to_string(room->get_current_number())
                     + "/"
                     + to_string(room->get_capacity()));
-                record.push_back(room->get_status());
+            record.push_back(room->get_status());
 
-                scroller.add_record(record);
-            } catch (const runtime_error& e) {
-                error_message = "Lỗi kết nối cơ sở dữ liệu!!";
-                will_render = false;
-                break;
-            }
-
+            scroller.add_record(record);
             scroller.update_visible_list();
 
             event_listener = Container::Vertical({

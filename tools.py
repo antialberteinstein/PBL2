@@ -71,22 +71,9 @@ def run_project():
 
 
     MSG = Fore.GREEN + 'Done.'
-    def thread_1():
-        if (OS == WINDOWS):
-            os.system(f'{START_CMD} .\\debug.bat')
-        else:
-            os.system(f'{START_CMD} ./debug')
-    def thread_2():
-        if (os.system(f'{START_CMD} {EXEC_PATH}{EXEC_FILE}')):
-            MSG = Fore.RED + 'Failed to run project.'
+    if (os.system(f'{START_CMD} {EXEC_PATH}{EXEC_FILE}')):
+        MSG = Fore.RED + 'Failed to run project.'
     
-    t1 = threading.Thread(target=thread_1)
-    t2 = threading.Thread(target=thread_2)
-
-    t1.start()
-    t2.start()
-
-    t2.join()
 
     print(MSG + Style.RESET_ALL)
 

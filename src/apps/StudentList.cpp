@@ -8,10 +8,10 @@ StudentList::StudentList() {
 
     try {
         student_db = ModelProducer::get_instance(ModelType::STUDENT);
-    } catch (const runtime_error& e) {
+    } catch (const string& msg) {
         try {
             student_db = ModelProducer::get_instance(ModelType::STUDENT);
-        } catch (const runtime_error& e) {
+        } catch (const string& msg) {
             error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             will_render = false;
         }
@@ -41,9 +41,10 @@ StudentList::StudentList() {
     if (student_db == nullptr) {
         error_message = "Lỗi kết nối cơ sở dữ liệu!!";
     } else {
-        for (int i = 1; i <= student_db->size(); i++) {
+        Vector<string> keys = student_db->get_all_keys();
+        for (int i = 0; i < keys.size(); i++) {
             try {
-                auto student = student_db->get_student(to_string(i));
+                auto student = student_db->get_student(keys[i]);
                 if (student == nullptr) {
                     continue;
                 }
@@ -57,15 +58,14 @@ StudentList::StudentList() {
                 record.push_back(student->get_room());
 
                 scroller.add_record(record);
-            } catch (const runtime_error& e) {
+            } catch (exception& e) {
                 error_message = e.what();
                 break;
+            } catch (...) {
+                error_message = "Lỗi không xác định.";
+                break;    
             }
         }
-    }
-
-    for (int i = 0; i < 100; ++i) {
-        scroller.push_back("name", "Sinh vien " + to_string(i));
     }
 
     scroller.update_visible_list();

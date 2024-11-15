@@ -11,8 +11,7 @@ bool pbl();
 
 int main(void) {
 
-    pbl();
-
+    pbl();    
     
 
     return 0;

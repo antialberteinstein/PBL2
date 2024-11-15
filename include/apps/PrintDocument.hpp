@@ -3,8 +3,6 @@
 
 #include "apps/App.hh"
 #include "objects/Vector.hpp"
-#include "models/Room.hpp"
-#include "models/Student.hpp"
 #include "objects/StringAdapter.hpp"
 
 class ModelProducer;

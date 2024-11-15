@@ -53,14 +53,16 @@ AddStudent::AddStudent() {
             student->set_major(major.value);
             student->set_phone_number(phone.value);
             student->set_email(email.value);
-            student->set_room_id(-1);
+            student->set_room_id(NO_ROOM_ID);
             student->set_date_joined(Date::today().to_string());
+
+            student->turn_on_creating_flag();
 
             try {
                 student_db->add(move(student));
                 main_menu::show();
-            } catch (const runtime_error& e) {
-                error_message = e.what();
+            } catch (const string& msg) {
+                error_message = msg;
                 return;
             }
         }

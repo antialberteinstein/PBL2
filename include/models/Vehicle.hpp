@@ -11,7 +11,7 @@ constexpr char vehicle_student_id[] = "student_id";
 
 struct Vehicle : Model {
     string type;
-    int student_id;
+    string student_id;
 
     virtual string serialize() {
         return json{
@@ -26,6 +26,10 @@ struct Vehicle : Model {
         id = j[vehicle_id];
         type = j[vehicle_type];
         student_id = j[vehicle_student_id];
+    }
+
+    virtual string hash_to_id() {
+        return type + "_" + student_id;
     }
 };
 

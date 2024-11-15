@@ -1,11 +1,15 @@
 #include "Payment.hpp"
+#include "Room.hpp"
 #pragma once
 
 constexpr char electricity_payment_room_id[] = "room_id";
 
-struct ElectricityPayment : Payment {
-    int room_id;
+class ModelProducer;
 
+class ElectricityPayment : public Payment {
+private:
+    string room_id;
+public:
     virtual string serialize() {
         return json{
             {payment_id, id},
@@ -26,4 +30,15 @@ struct ElectricityPayment : Payment {
         date_paid = j[payment_date_paid];
         room_id = j[electricity_payment_room_id];
     }
+
+    string get_room_id() {
+        return room_id;
+    }
+
+    unique_ptr<Room> get_room();
+
+    void set_room_id(string room_id) {
+        this->room_id = room_id;
+    }
+
 };

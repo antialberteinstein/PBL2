@@ -1,14 +1,18 @@
 #include "Payment.hpp"
-
+#include "Student.hpp"
 #pragma once
 
 constexpr char room_fee_payment_number_of_months[] = "number_of_months";
 constexpr char room_fee_payment_student_id[] = "student_id";
 
-struct RoomFeePayment : Payment {
-    int number_of_months;
-    int student_id;
+class ModelProducer;
 
+class RoomFeePayment : public Payment {
+private:
+    int number_of_months;
+    string student_id;
+
+public:
     virtual string serialize() {
         return json{
             {payment_id, id},
@@ -31,4 +35,23 @@ struct RoomFeePayment : Payment {
         number_of_months = j[room_fee_payment_number_of_months];
         student_id = j[room_fee_payment_student_id];
     }
+
+    int get_number_of_months() {
+        return number_of_months;
+    }
+
+    string get_student_id() {
+        return student_id;
+    }
+    
+    unique_ptr<Student> get_student();
+
+    void set_number_of_months(int number_of_months) {
+        this->number_of_months = number_of_months;
+    }
+
+    void set_student_id(string student_id) {
+        this->student_id = student_id;
+    }
+
 };

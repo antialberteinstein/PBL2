@@ -91,8 +91,9 @@ class Room : public Model {
             this->status = status;
         }
 
-
-
+        virtual string hash_to_id() {
+            return block + to_string(floor * 100 + room_number);
+        }
     protected:
         string block;
         int floor;

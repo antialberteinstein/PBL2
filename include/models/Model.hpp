@@ -24,19 +24,18 @@ class Model {
         string get_id_string() {
             return id;
         }
+        
+        // Hash function to generate id
+        virtual string hash_to_id() = 0;
+        
+        virtual string generate_id() {
+            string _id = hash_to_id();
+            this->id = _id;
+            return _id;
+        };
+        
+        
     protected:
         string id;
 
-    private:
-        void generate_id(const string& previous_id="") {
-            if (previous_id == "") {
-                id = "1";
-            } else {
-                try {
-                    id = to_string(stoi(previous_id) + 1);
-                } catch (invalid_argument& e) {
-                    id = "1";
-                }
-            }
-        }
 };

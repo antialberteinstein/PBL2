@@ -1,9 +1,11 @@
 #include <iostream>
 #include "models/Model.hpp"
-
+#include "models/Room.hpp"
 using namespace std;
 
 #pragma once
+
+#define NO_ROOM_ID ""
 
 constexpr char student_name[] = "name";
 constexpr char student_id[] = "id";
@@ -87,7 +89,7 @@ class Student : public Model{
             return date_joined;
         }
 
-        int get_room_id() {
+        string get_room_id() {
             return room_id;
         }
 
@@ -129,8 +131,21 @@ class Student : public Model{
             this->date_joined = date_joined;
         }
 
-        void set_room_id(int room_id) {
+        void set_room_id(const string& room_id) {
             this->room_id = room_id;
+        }
+
+       
+        virtual string hash_to_id();    
+
+        unique_ptr<Room> get_room_ref();
+
+        void turn_on_creating_flag() {
+            creating_flag = true;
+        }
+
+        void turn_off_creating_flag() {
+            creating_flag = false;
         }
 
     protected:
@@ -143,5 +158,8 @@ class Student : public Model{
         string major;
         string hometown;
         string date_joined;
-        int room_id;
+        string room_id;
+
+    private:
+        bool creating_flag;
 };

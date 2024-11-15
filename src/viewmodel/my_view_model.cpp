@@ -30,7 +30,7 @@ ModelProducer* ModelProducer::get_instance(ModelType type) {
                     &student_instance_->db_
                 );
                 if (!status.ok()) {
-                    throw runtime_error("Error opening database: " + status.ToString());
+                    throw "Error opening database: " + status.ToString();
                 }
             }
             student_instance_->type_ = ModelType::STUDENT;
@@ -45,7 +45,7 @@ ModelProducer* ModelProducer::get_instance(ModelType type) {
                     &room_instance_->db_
                 );
                 if (!status.ok()) {
-                    throw runtime_error("Error opening database: " + status.ToString());
+                    throw "Error opening database: " + status.ToString();
                 }
             }
             room_instance_->type_ = ModelType::ROOM;
@@ -60,7 +60,7 @@ ModelProducer* ModelProducer::get_instance(ModelType type) {
                     &vehicle_instance_->db_
                 );
                 if (!status.ok()) {
-                    throw runtime_error("Error opening database: " + status.ToString());
+                    throw "Error opening database: " + status.ToString();
                 }
             }
             vehicle_instance_->type_ = ModelType::VEHICLE;
@@ -75,7 +75,7 @@ ModelProducer* ModelProducer::get_instance(ModelType type) {
                     &room_fee_payment_instance_->db_
                 );
                 if (!status.ok()) {
-                    throw runtime_error("Error opening database: " + status.ToString());
+                    throw "Error opening database: " + status.ToString();
                 }
             }
             room_fee_payment_instance_->type_ = ModelType::ROOM_FEE_PAYMENT;
@@ -90,7 +90,7 @@ ModelProducer* ModelProducer::get_instance(ModelType type) {
                     &electricity_payment_instance_->db_
                 );
                 if (!status.ok()) {
-                    throw runtime_error("Error opening database: " + status.ToString());
+                    throw "Error opening database: " + status.ToString();
                 }
             }
             electricity_payment_instance_->type_ = ModelType::ELECTRICITY_PAYMENT;
