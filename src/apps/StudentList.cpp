@@ -2,7 +2,6 @@
 #include "apps/MainMenu.hpp"
 #include "viewmodel/my_view_model.hpp"
 
-
 StudentList::StudentList() {
     will_render = true;
 
@@ -20,7 +19,22 @@ StudentList::StudentList() {
     search_com = Input(&search_string, "Tìm kiếm");
 
     info_btn = Button("Thông tin chi tiết", [&] {
-        // Do nothing at this moment.
+        string key = scroller.get_current_item()[0];
+        auto student = student_db->get_student(key);
+        if (student == nullptr) {
+            error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+            return;
+        }
+        error_message = student->get_name();
+
+        this->detail = make_unique<StudentDetail>(this, move(student));
+        if (detail == nullptr) {
+            error_message = "Không thể xem thông tin chi tiết!!";
+            return;
+        } else {
+            detail->run();
+        }
+
     }, ButtonOption::Animated(CONFIRM_BTN_BG));
 
     cancel_btn = Button("Trở về", [&] {
@@ -118,7 +132,7 @@ bool StudentList::event(Event event) {
 
     if (event == Event::Return) {
         // Prevent read the return event for the search input.
-
+        
         return true;
     }
 

@@ -261,6 +261,14 @@ class Scroller {
             return "";
         }
 
+        Vector<string> get_current_item() {
+            Vector<string> arr;
+            for (size_t i = 0; i < _maps.size(); ++i) {
+                arr.push_back(_maps[i]._list[selected]);
+            }
+            return arr;
+        }
+
 
     private:
         List<ScrollerMap> _maps;

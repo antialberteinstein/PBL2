@@ -6,6 +6,7 @@
 #include "objects/Date.hpp"
 #include "objects/StringAdapter.hpp"
 #include "apps/Scroller.hpp"
+#include "apps/StudentDetail.hpp"
 
 void debug(const string& s);
 
@@ -27,6 +28,7 @@ class StudentList : public App {
         string backup_search_string;
         Component info_btn, cancel_btn;
         Component event_listener;
+        unique_ptr<StudentDetail> detail;
 };
 
 #endif // PBL_STUDENT_LIST_HPP
