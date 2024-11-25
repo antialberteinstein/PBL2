@@ -3,11 +3,25 @@
 
 #include "viewmodel/my_view_model.hpp"
 #include "apps/RoomList.hpp"
+#include "apps/RoomReservation.hpp"
+
+unique_ptr<RoomReservation> room_reservation = nullptr;
 
 RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
         : room(move(room)) {
     this->parent = parent;
     error_message = "";
+
+    register_btn = Button("Đăng ký bao phòng", [&] {
+        if (this->room != nullptr) {
+            room_reservation = make_unique<RoomReservation>(this->parent, this->room->get_id());
+            if (room_reservation != nullptr) {
+                room_reservation->run();
+            }
+        }
+    }, ButtonOption::Animated(CONFIRM_BTN_BG));
+
+
     payment_btn = Button("Thanh toan", [&] {
         // Do later.
     }, ButtonOption::Animated(CANCEL_BTN_BG));
@@ -90,6 +104,7 @@ Element RoomDetail::create_element() {
         hbox({
             detail_box | border | flex,
             vbox({
+                register_btn->Render() | flex,
                 payment_btn->Render() | flex,
                 notify_maintain_btn->Render() | flex,
                 return_btn->Render() | flex,
@@ -103,5 +118,6 @@ Element RoomDetail::create_element() {
 bool RoomDetail::event(Event event) {
     return payment_btn->OnEvent(event)
         || notify_maintain_btn->OnEvent(event)
-        || return_btn->OnEvent(event);
+        || return_btn->OnEvent(event)
+        || register_btn->OnEvent(event);
 }

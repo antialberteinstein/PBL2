@@ -27,7 +27,6 @@ MoveStudent::MoveStudent(App* parent, string id) {
                 error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             }
             if (this->parent != nullptr) {
-                debug("Because parent is not null");
                 this->parent->run();
             } else {
                 main_menu::show();

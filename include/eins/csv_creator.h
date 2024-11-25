@@ -79,6 +79,49 @@ class CSVCreator {
 
             file.close();
         }
+
+        void clear() {
+            for (size_t i = 0; i < maps_.size(); ++i) {
+                maps_[i].clear();
+            }
+        }
+
+        static CSVCreator from_file(const string& file_path) {
+            CSVCreator csv_creator;
+            ifstream file(file_path);
+            if (!file.is_open()) {
+                throw "Cannot open file " + file_path;
+            }
+
+            string line;
+            getline(file, line);
+            Vector<string> titles = Vector<string>();
+            size_t pos = 0;
+            while ((pos = line.find(',')) != string::npos) {
+                titles.push_back(line.substr(0, pos));
+                line.erase(0, pos + 1);
+            }
+            titles.push_back(line);
+
+            for (size_t i = 0; i < titles.size(); ++i) {
+                csv_creator.add_map(titles[i]);
+            }
+
+            while (getline(file, line)) {
+                Vector<string> arr = Vector<string>();
+                pos = 0;
+                while ((pos = line.find(',')) != string::npos) {
+                    arr.push_back(line.substr(0, pos));
+                    line.erase(0, pos + 1);
+                }
+                arr.push_back(line);
+
+                csv_creator.add_record(arr);
+            }
+
+            file.close();
+            return csv_creator;
+        }
     private:
         List<CSVCreatorMap> maps_;
 };

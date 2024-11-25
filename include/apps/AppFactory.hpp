@@ -10,6 +10,7 @@
 #include "apps/PrintMap.hpp"
 #include "apps/PrintDocument.hpp"
 #include "apps/MoveStudent.hpp"
+#include "apps/RoomReservation.hpp"
 
 enum class AppType {
     ADD_STUDENT,
@@ -100,6 +101,8 @@ class AppFactory {
                     return AppAdapter::connect(new PrintDocument());
                 case AppType::MOVE_STUDENT:
                     return AppAdapter::connect(new MoveStudent());
+                case AppType::ROOM_RESERVATION:
+                    return AppAdapter::connect(new RoomReservation());
                 case AppType::EXIT:
                     return AppAdapter::connect(new MyExitApp());
             }

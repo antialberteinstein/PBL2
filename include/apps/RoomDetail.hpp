@@ -14,6 +14,7 @@ class RoomDetail : public App {
         Component payment_btn;  // Thanh toan.
         Component return_btn;  // Quay lai.
         Component notify_maintain_btn;  // Thong bao sua chua.
+        Component register_btn;  // Dang ky bao phong.
 
         string error_message;
 
