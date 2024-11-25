@@ -20,7 +20,22 @@ RoomList::RoomList() {
     search_com = Input(&search_string, "Tìm kiếm");
 
     info_btn = Button("Thông tin chi tiết", [&] {
-        // Do nothing at this moment.
+        string key = scroller.get_current_item()[0];
+        auto room = room_db->get_room(key);
+        if (room == nullptr) {
+            error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+            return;
+        }
+
+        this->detail = make_unique<RoomDetail>(this, move(room));
+        if (detail == nullptr) {
+            error_message = "Không thể xem thông tin chi tiết!!";
+            return;
+        } else {
+            detail->run();
+        }
+
+
     }, ButtonOption::Animated(CONFIRM_BTN_BG));
 
     cancel_btn = Button("Trở về", [&] {
@@ -34,6 +49,12 @@ RoomList::RoomList() {
     scroller.add_map(ScrollerMap(), "current_number", "Số người hiện tại");
     scroller.add_map(ScrollerMap(), "status", "Tình trạng");
 
+    init_db();
+    
+}
+
+void RoomList::init_db() {
+    scroller.clear();
     if (room_db == nullptr) {
         error_message = "Lỗi kết nối cơ sở dữ liệu!!";
     } else {
@@ -61,7 +82,9 @@ RoomList::RoomList() {
             });
         }
     }
+    scroller.update_visible_list();
 }
+
 
 Element RoomList::create_element() {
     // Neu khong co text thi reset lai danh sach phong.
@@ -104,10 +127,10 @@ bool RoomList::event(Event event) {
     if (event == Event::Return) {
         // Prevent read the return event for the search input.
 
-        return true;
+        return info_btn->OnEvent(event);;
     }
 
-    if (event.is_character()) {
+    if (event.is_character() || event == Event::Backspace) {
         bool is_search = search_com->OnEvent(event);
 
         // Xu li tim kiem phong.

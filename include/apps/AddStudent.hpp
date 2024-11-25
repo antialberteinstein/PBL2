@@ -5,21 +5,11 @@
 #include "objects/Vector.hpp"
 #include "objects/Date.hpp"
 #include "objects/StringAdapter.hpp"
+#include "apps/components.hpp"
 
 class ModelProducer;
 
-struct EditText {
-    string label;
-    string value;
-    Component com;
-};
 
-struct ComboBox {
-    string label;
-    Vector<string> values;
-    int selected;
-    Component com;
-};
 
 class AddStudent : public App {
     public:
@@ -40,22 +30,4 @@ class AddStudent : public App {
         ModelProducer* student_db;
 
 };
-
-inline Element get_doc(EditText& field) {
-    return hbox({
-        text(field.label),
-        separator(),
-        text(INPUT_PADDING),
-        field.com->Render() | inverted,
-    }) | border;
-}
-
-inline Element get_doc(ComboBox& field) {
-    return hbox({
-        text(field.label) | border,
-        text(INPUT_PADDING),
-        field.com->Render() | flex,
-    });
-}
-
 #endif

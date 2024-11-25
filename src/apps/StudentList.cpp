@@ -25,7 +25,6 @@ StudentList::StudentList() {
             error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             return;
         }
-        error_message = student->get_name();
 
         this->detail = make_unique<StudentDetail>(this, move(student));
         if (detail == nullptr) {
@@ -52,6 +51,17 @@ StudentList::StudentList() {
     scroller.add_map(ScrollerMap(), "university", "Trường");
     scroller.add_map(ScrollerMap(), "room", "Phòng");
 
+    init_db();
+
+    event_listener = Container::Vertical({
+        search_com,
+        info_btn,
+        cancel_btn
+    });
+}
+
+void StudentList::init_db() {
+    scroller.clear();
     if (student_db == nullptr) {
         error_message = "Lỗi kết nối cơ sở dữ liệu!!";
     } else {
@@ -72,6 +82,9 @@ StudentList::StudentList() {
                 record.push_back(student->get_room());
 
                 scroller.add_record(record);
+            } catch (const string& msg) {
+                error_message = msg;
+                break;
             } catch (exception& e) {
                 error_message = e.what();
                 break;
@@ -83,12 +96,6 @@ StudentList::StudentList() {
     }
 
     scroller.update_visible_list();
-
-    event_listener = Container::Vertical({
-        search_com,
-        info_btn,
-        cancel_btn
-    });
 }
 
 Element StudentList::create_element() {
@@ -136,7 +143,7 @@ bool StudentList::event(Event event) {
         return true;
     }
 
-    if (event.is_character()) {
+    if (event.is_character() || event == Event::Backspace) {
         bool is_search = search_com->OnEvent(event);
 
         // Xu li tim kiem sinh vien.

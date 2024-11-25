@@ -87,13 +87,13 @@ class Room : public Model {
             this->current_number = current_number;
         }
 
-        void set_status(const string& status) {
-            this->status = status;
-        }
+        void set_status(const string& status);
 
         virtual string hash_to_id() {
             return block + to_string(floor * 100 + room_number);
         }
+
+        virtual void on_modify() override;
     protected:
         string block;
         int floor;
@@ -101,10 +101,11 @@ class Room : public Model {
         int capacity;
         int current_number;
         string status;
+    
 };
 
 namespace RoomStatus {
-    const string AVAILABLE = "Available";
-    const string FULL = "Full";
-    const string MAINTENANCE = "Maintenance";
+    const string AVAILABLE = "Còn trống";
+    const string FULL = "Đã đầy";
+    const string MAINTENANCE = "Bảo trì";
 }

@@ -13,11 +13,14 @@ void debug(const string& s);
 class ModelProducer;
 
 class StudentList : public App {
+    friend class StudentDetail;
+
     public:
         StudentList();
         virtual ~StudentList() = default;
         virtual Element create_element() override;
         virtual bool event(Event event) override;
+
     private:
         Scroller scroller;
         string error_message;
@@ -29,6 +32,8 @@ class StudentList : public App {
         Component info_btn, cancel_btn;
         Component event_listener;
         unique_ptr<StudentDetail> detail;
+
+        void init_db();
 };
 
 #endif // PBL_STUDENT_LIST_HPP

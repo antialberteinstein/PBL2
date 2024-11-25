@@ -2,6 +2,7 @@
 #include "apps/FileSelector.hpp"
 #include "apps/MainMenu.hpp"
 #include <filesystem>
+#include "objects/Date.hpp"
 
 #define MAP_FILE_PATH "./res/map/Map.jpg"
 
@@ -19,7 +20,9 @@ PrintMap::PrintMap() {
 
     print_btn = Button("In", [&]() {
         if (is_file_selected) {
-            std::filesystem::copy(MAP_FILE_PATH, path + "/");
+            Date date = Date::today();
+            std::filesystem::copy(MAP_FILE_PATH, path + "/"
+                + "Map_" + DateConverter::to_string(date) + ".jpg");
             error_message = "Đã in xong.";
         }
     });

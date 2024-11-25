@@ -1,13 +1,15 @@
 #pragma once
 
 #include <iostream>
+#include "models/Trigger.hpp"
+
 using namespace std;
 
 #include "nlohmann/json.hpp"
 
 using json=nlohmann::json;
 
-class Model {
+class Model : public Trigger {
     public:
 
         virtual string serialize() = 0;

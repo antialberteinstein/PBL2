@@ -15,6 +15,9 @@ class StudentDetail : public App {
         Component registation_btn;  // Dang ky xe.
         Component payment_btn;  // Thanh toan.
         Component return_btn;  // Quay lai.
+        Component move_student_btn;  // Doi phong.
+
+        string error_message;
 
         App* parent;
 

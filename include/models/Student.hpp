@@ -1,6 +1,8 @@
 #include <iostream>
 #include "models/Model.hpp"
 #include "models/Room.hpp"
+#include "objects/Vector.hpp"
+
 using namespace std;
 
 #pragma once
@@ -19,7 +21,7 @@ constexpr char student_hometown[] = "hometown";
 constexpr char student_date_joined[] = "date_joined";
 constexpr char student_room_id[] = "room_id";
 
-class Student : public Model{
+class Student : public Model {
     public:
 
         virtual string serialize() {
@@ -131,9 +133,7 @@ class Student : public Model{
             this->date_joined = date_joined;
         }
 
-        void set_room_id(const string& room_id) {
-            this->room_id = room_id;
-        }
+        void set_room_id(const string& room_id);
 
        
         virtual string hash_to_id();    
@@ -148,6 +148,17 @@ class Student : public Model{
             creating_flag = false;
         }
 
+        virtual void on_modify() override;
+
+        virtual void on_remove() override;
+
+        static Vector<Student> get_students_living_in(string room_id);
+
+        static void fit_room(string room_id);
+
+        Student() {
+            old_room_id = NO_ROOM_ID;
+        }
     protected:
         string name;
         string dob;
@@ -162,4 +173,10 @@ class Student : public Model{
 
     private:
         bool creating_flag;
+
+        // For fit_room
+        static int number_of_students;
+        static string room_id_to_fit;
+
+        string old_room_id;
 };

@@ -36,7 +36,7 @@ class ModelProducer {
             return keys;
         }
 
-        void add(unique_ptr<Model> model) {
+        void add(Model* model) {
 
             string _id = model->generate_id();
             if (_id == "") {
@@ -44,7 +44,7 @@ class ModelProducer {
             }
 
             if (type_ == ModelType::STUDENT && get_student(_id) != nullptr) {
-                throw "Học sinh đã tồn tại";
+                throw "Sinh vien đã tồn tại";
             } else if (type_ == ModelType::ROOM && get_room(_id) != nullptr) {
                 return;
             } else if (type_ == ModelType::VEHICLE && get_vehicle(_id) != nullptr) {
@@ -60,24 +60,40 @@ class ModelProducer {
                 _id,
                 model->serialize()
             );
-            cout << "DEBUG : added to db." << endl;
             
             if (!status.ok()) {
-                cout << "DEBUG : error adding to db." << endl;
                 throw "Error adding to database: " + status.ToString();
             } 
             size_++;
             dump_size();
+
+            // Apply triggers
+            try {
+                model->on_add();
+            } catch (const char* msg) {
+                remove(model);
+                throw msg;
+            }
         }
 
-        void remove(string key) {
+        void remove(Model* model) {
+            if (model == nullptr) {
+                return;
+            }
+            string key = model->get_id();
             leveldb::Status status = db_->Delete(leveldb::WriteOptions(), key);
             if (!status.ok()) {
                 throw "Error removing from database: " + status.ToString();
             }
 
-            size_--;
-            dump_size();
+            // Apply triggers
+            try {
+                model->on_remove();
+            } catch (const char* msg) {
+                add(model);
+                throw msg;
+            }
+
         }
 
         unique_ptr<Student> get_student(string key) {
@@ -177,14 +193,29 @@ class ModelProducer {
             return size_;
         }
 
-        void modify(string key, unique_ptr<Model> model) {
+        void modify(string key, Model* model) {
             leveldb::Status status = db_->Put(leveldb::WriteOptions(), key, model->serialize());
             if (!status.ok()) {
                 throw "Error modifying database: " + status.ToString();
             }
+
+            // Apply triggers
+            try {
+                model->on_modify();
+            } catch (const char* msg) {
+                throw msg;
+            }
         }
 
 
+        // Initialize the database, should be called before any other methods
+        //     this is for handling database connection.
+        //          not for creating the database.
+        static void init();
+
+        // Cleanup the database, should be called after all other methods
+        //           this will close all database connections.
+        static void cleanup();
 
     private:
         leveldb::DB* db_;
@@ -193,11 +224,11 @@ class ModelProducer {
         size_t size_;
 
 
-        static unique_ptr<ModelProducer> student_instance_;
-        static unique_ptr<ModelProducer> room_instance_;
-        static unique_ptr<ModelProducer> vehicle_instance_;
-        static unique_ptr<ModelProducer> room_fee_payment_instance_;
-        static unique_ptr<ModelProducer> electricity_payment_instance_;
+        static ModelProducer* student_instance_;
+        static ModelProducer* room_instance_;
+        static ModelProducer* vehicle_instance_;
+        static ModelProducer* room_fee_payment_instance_;
+        static ModelProducer* electricity_payment_instance_;
 
         void dump_size() {
             if (db_) {

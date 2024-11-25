@@ -108,7 +108,7 @@ class Scroller {
 
         void add_record(Vector<string> arr) {
             if (arr.size() != _maps.size()) {
-                throw runtime_error("Record size is not equal to the number of maps.");
+                throw "Record size is not equal to the number of maps.";
             }
             for (size_t i = 0; i < _maps.size(); ++i) {
                 _maps[i].push_back(arr[i]);
@@ -267,6 +267,14 @@ class Scroller {
                 arr.push_back(_maps[i]._list[selected]);
             }
             return arr;
+        }
+
+        void clear() {
+            for (size_t i = 0; i < _maps.size(); ++i) {
+                _maps[i].clear();
+                _maps[i].complete_list.clear();
+                _maps[i]._backup_list.clear();
+            }
         }
 
 

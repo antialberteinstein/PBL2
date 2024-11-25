@@ -2,6 +2,9 @@
 #include "apps/App.hh"
 #include "apps/MainMenu.hpp"
 #include "viewmodel/my_view_model.hpp"
+#include "apps/MoveStudent.hpp"
+
+unique_ptr<MoveStudent> add_student_move_student = nullptr;
 
 AddStudent::AddStudent() {
     will_render = true;
@@ -59,8 +62,12 @@ AddStudent::AddStudent() {
             student->turn_on_creating_flag();
 
             try {
-                student_db->add(move(student));
+                student_db->add(student.get());
                 main_menu::show();
+                add_student_move_student = make_unique<MoveStudent>(nullptr, student->get_id());
+                if (add_student_move_student != nullptr) {
+                    add_student_move_student->run();
+                }
             } catch (const string& msg) {
                 error_message = msg;
                 return;
