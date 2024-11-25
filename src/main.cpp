@@ -7,10 +7,13 @@
 
 #include "viewmodel/my_view_model.hpp"
 #include "models/Room.hpp"
+#include "eins/csv_creator.h"
 
 bool pbl();
 
 void recovery_rooms_database();
+
+void test_csv_creator();
 
 int main(void) {
     ModelProducer::init();
@@ -55,5 +58,29 @@ void recovery_rooms_database() {
                 room_db->add(room_.get());
             }
         }
+    }
+}
+
+void test_csv_creator() {
+    try {
+        CSVCreator csv_creator;
+
+        csv_creator.add_map("id");
+        csv_creator.add_map("name");
+        
+        Vector<string> arr;
+        arr.push_back("1");
+        arr.push_back("Le Nha Phuong");
+
+        csv_creator.add_record(arr);
+
+        arr[0] = "2";
+        arr[1] = "Tran Nhat Nguyen";
+
+        csv_creator.add_record(arr);
+
+        csv_creator.dump_to_file("test.csv");
+    } catch (const string& s) {
+        cout << s << endl;
     }
 }

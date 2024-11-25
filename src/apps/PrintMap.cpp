@@ -21,8 +21,15 @@ PrintMap::PrintMap() {
     print_btn = Button("In", [&]() {
         if (is_file_selected) {
             Date date = Date::today();
-            std::filesystem::copy(MAP_FILE_PATH, path + "/"
-                + "Map_" + DateConverter::to_string(date) + ".jpg");
+            string base_output_path = path + "/"
+                + "Map_" + DateConverter::to_string(date);
+            string output_path = base_output_path + ".jpg";
+            int counter = 1;
+            while (filesystem::exists(output_path)) {
+                output_path = base_output_path + "(" + to_string(counter) + ").jpg";
+                counter++;
+            }
+            std::filesystem::copy(MAP_FILE_PATH, output_path);
             error_message = "Đã in xong.";
         }
     });
