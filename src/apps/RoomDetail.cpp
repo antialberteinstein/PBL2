@@ -4,6 +4,7 @@
 #include "viewmodel/my_view_model.hpp"
 #include "apps/RoomList.hpp"
 #include "apps/RoomReservation.hpp"
+#include "viewmodel/fee_calculator.hpp"
 
 unique_ptr<RoomReservation> room_reservation = nullptr;
 
@@ -19,12 +20,12 @@ RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
                 room_reservation->run();
             }
         }
-    }, ButtonOption::Animated(CONFIRM_BTN_BG));
+    }, ButtonOption::Animated(Color::Blue));
 
 
     payment_btn = Button("Thanh toan", [&] {
         // Do later.
-    }, ButtonOption::Animated(CANCEL_BTN_BG));
+    }, ButtonOption::Animated(Color::Blue1));
     
     if (this->room != nullptr && this->room->get_status() == RoomStatus::MAINTENANCE) {
         notify_maintain_btn = Button("TB Phong da sua chua", [&] {
@@ -43,7 +44,7 @@ RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
                 }
                 this->parent->run();
             }
-        }, ButtonOption::Animated(CONFIRM_BTN_BG));
+        }, ButtonOption::Animated(Color::SkyBlue3));
     } else {
         notify_maintain_btn = Button("Thong bao sua chua", [&] {
             if (this->room != nullptr) {
@@ -68,12 +69,12 @@ RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
                 }
                 this->parent->run();
             }
-        }, ButtonOption::Animated(CONFIRM_BTN_BG));
+        }, ButtonOption::Animated(Color::SkyBlue1));
     }
 
     return_btn = Button("Quay lại", [&] {
         this->parent->run();
-    }, ButtonOption::Animated(CANCEL_BTN_BG));
+    }, ButtonOption::Animated(Color::LightSkyBlue1));
 
 }
 
@@ -89,7 +90,29 @@ Element RoomDetail::create_element() {
             Vector<Student> students = Student::get_students_living_in(room->get_id());
             Student::fit_room(room->get_id());
             for (int i = 0; i < students.size(); i++) {
-                _students.push_back(text("   " + students[i].get_name()));
+                string amount = "Không nợ tiền phòng";
+                try {
+                    auto rf_cal = FeeCalculator::get_instance(FeeType::ROOM_FEE);
+                    if (rf_cal) {
+                        auto payment = rf_cal->get_payment(&students[i]);
+                        if (payment != nullptr && payment->get_status() != PaymentStatus::PAID) {
+                            if (payment->get_status() == PaymentStatus::OVERDUE) {
+                                amount = to_string(payment->get_amount()) + " VND (Quá hạn)";
+                            } else {
+                                amount = to_string(payment->get_amount()) + " VND (Chưa thanh toán)";
+                            }
+                        }
+                    }
+                } catch (const string& msg) {
+                    error_message = msg;
+                } catch (...) {
+                    error_message = "Lỗi không xác định!!";
+                }
+                _students.push_back(text(
+                    "   "
+                    + to_string(i + 1) + "/. "
+                    + students[i].get_name()
+                    + " - " + amount));
             }
             texts.push_back(text("Sức chứa: " + to_string(room->get_capacity())));
             texts.push_back(text("Số sinh viên hiện tại: " + to_string(room->get_current_number())));
@@ -108,7 +131,7 @@ Element RoomDetail::create_element() {
                 payment_btn->Render() | flex,
                 notify_maintain_btn->Render() | flex,
                 return_btn->Render() | flex,
-            }) | border | flex,
+            }) | flex,
 
         }),
         text(error_message) | center | color(ERROR_COLOR),

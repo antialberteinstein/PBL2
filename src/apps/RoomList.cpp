@@ -142,5 +142,5 @@ bool RoomList::event(Event event) {
         return scroller.OnEvent(event);
     } 
 
-    return event_listener->OnEvent(event) || scroller.OnMouseEvent(event);
+    return event_listener->OnEvent(event);
 }

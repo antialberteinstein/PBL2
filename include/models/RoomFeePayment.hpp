@@ -54,4 +54,12 @@ public:
         this->student_id = student_id;
     }
 
+    virtual string hash_to_id() {
+        if (overriden_flag) {
+            return student_id;
+        } else {
+            return student_id + "_" + date_created;
+        }
+    }
+
 };

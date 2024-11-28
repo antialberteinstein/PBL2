@@ -23,6 +23,19 @@ class Date {
         int get_month() const;
         int get_year() const;
 
+        Date& operator++();
+        Date operator++(int);
+
+        Date& operator+=(int days);
+        Date operator+(int days) const;
+
+        bool operator==(const Date& other) const;
+        bool operator!=(const Date& other) const;
+        bool operator<(const Date& other) const;
+        bool operator<=(const Date& other) const;
+        bool operator>(const Date& other) const;
+        bool operator>=(const Date& other) const;
+
         // Gregorian date format: DD/MM/YYYY
         std::string to_string() const;
 

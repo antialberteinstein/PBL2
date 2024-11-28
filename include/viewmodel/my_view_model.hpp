@@ -37,6 +37,14 @@ class ModelProducer {
         }
 
         void add(Model* model) {
+            try {
+                if (!model->onPrepareToAdd()) {
+                    throw "Cannot prepare to add!!";
+                }
+            } catch (const char* msg) {
+                throw msg;
+            }
+
 
             string _id = model->generate_id();
             if (_id == "") {

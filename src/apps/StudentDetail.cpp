@@ -3,6 +3,8 @@
 #include "apps/StudentList.hpp"
 #include "apps/MoveStudent.hpp"
 #include "apps/MainMenu.hpp"
+#include "viewmodel/fee_calculator.hpp"
+#include "models/RoomFeePayment.hpp"
 
 unique_ptr<MoveStudent> student_detail_move_student = nullptr;
 
@@ -41,19 +43,31 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
         catch (const exception& e) {
             error_message = "Lỗi không xác định!!";
         }
-    }, ButtonOption::Animated(CANCEL_BTN_BG));
+    }, ButtonOption::Animated(Color::Red3));
     
     registation_btn = Button("Đăng ký xe", [&] {
         // Do later.
-    }, ButtonOption::Animated(CONFIRM_BTN_BG));
+    }, ButtonOption::Animated(Color::Green1));
     
     payment_btn = Button("Thanh toán tiền phòng", [&] {
-        // Do later.
-    }, ButtonOption::Animated(CANCEL_BTN_BG));
+        try {
+            auto rf_cal = FeeCalculator::get_instance(FeeType::ROOM_FEE);
+            if (rf_cal != nullptr && this->student != nullptr) {
+                rf_cal->pay_by(this->student.get());
+                error_message = "Đã thanh toán!! Tính năng in hoá đơn đang được cập nhật hoặc chưa hỗ trợ, quý khách vui lòng thông cảm...";
+            } else {
+                error_message = "Chưa thanh toán được!!";
+            }
+        } catch (const string& msg) {
+            error_message = msg;
+        } catch (...) {
+            error_message = "Lỗi không xác định!!";
+        }
+    }, ButtonOption::Animated(Color::Green3));
 
     return_btn = Button("Quay lại", [&] {
         this->parent->run();
-    }, ButtonOption::Animated(CONFIRM_BTN_BG));
+    }, ButtonOption::Animated(Color::Orange1));
 
     move_student_btn = Button("Đổi phòng", [&] {
         student_detail_move_student = make_unique<MoveStudent>(nullptr, this->student->get_id());
@@ -63,10 +77,33 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
             student_detail_move_student->run();
         }
         debug("Doi phong success");
-    }, ButtonOption::Animated(CANCEL_BTN_BG));
+    }, ButtonOption::Animated(Color::DeepSkyBlue2));
 }
 
 Element StudentDetail::create_element() {
+    // Element for student's room fee.
+    string room_fee = "Không có";
+    try {
+        auto rf_cal = FeeCalculator::get_instance(FeeType::ROOM_FEE);
+        debug("Created FeeCalculator");
+        if (rf_cal) {
+            auto payment = rf_cal->get_payment(student.get());
+            debug("Created Payment");
+            if (payment != nullptr && payment->get_status() != PaymentStatus::PAID) {
+                if (payment->get_status() == PaymentStatus::OVERDUE) {
+                    room_fee = to_string(payment->get_amount()) + " VND (Quá hạn)";
+                } else {
+                    room_fee = to_string(payment->get_amount()) + " VND (Chưa thanh toán)";
+                }
+                debug("Finished counting room fee");
+            }
+        }
+    } catch (const string& msg) {
+        error_message = msg;
+    } catch (...) {
+        error_message = "Lỗi không xác định!!";
+    }
+
     return vbox({
         get_title().get_doc() | color(TITLE_COLOR),
         separator(),
@@ -84,8 +121,8 @@ Element StudentDetail::create_element() {
                 text("Ngày vào ở: " + student->get_date_joined()),
                 text("Phòng: " + student->get_room()),
                 text("Phương tiện:"), // Do later.
-                text("Tiền phòng còn nợ:"), // Do later.
-                text("Ghi chú: "), // Do later.
+                text("Tiền phòng còn nợ: " + room_fee),
+                text("Ghi chú: Không có ghi chú"), // Do later.
             }) | border | flex,
             vbox({
                 delete_btn->Render() | flex,
@@ -93,7 +130,7 @@ Element StudentDetail::create_element() {
                 payment_btn->Render() | flex,
                 return_btn->Render() | flex,
                 move_student_btn->Render() | flex,
-            }) | border | flex,
+            }) | flex,
 
         }),
         text(error_message) | center | color(ERROR_COLOR),

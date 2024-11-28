@@ -38,3 +38,9 @@ namespace VehicleType {
     const string CAR = "Car";
     const string BICYCLE = "Bicycle";
 }
+
+namespace VehicleFee {
+    const int MOTORBIKE = 50000;  // VND/ 1 month / 1 vehicle
+    const int CAR = 100000;  // VND/ 1 month / 1 vehicle
+    const int BICYCLE = 10000;  // VND/ 1 month / 1 vehicle
+}

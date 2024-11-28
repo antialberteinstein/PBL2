@@ -7,6 +7,15 @@ class Trigger {
 
         // This is a form of polymorphism
 
+        virtual bool onPrepareToAdd() {
+            if (prepare_added_flag) {
+                // Do something.
+
+                prepare_added_flag = false;
+            }
+            return true;
+        }
+
         virtual void on_add() {
             if (added_flag) {
                 // Do something
@@ -35,11 +44,13 @@ class Trigger {
             added_flag = false;
             removed_flag = false;
             modified_flag = false;
+            prepare_added_flag = false;
         }
     
     protected:
         bool added_flag;
         bool removed_flag;
         bool modified_flag;
+        bool prepare_added_flag;
 
 };

@@ -8,6 +8,7 @@
 #include "viewmodel/my_view_model.hpp"
 #include "models/Room.hpp"
 #include "eins/csv_creator.h"
+#include "viewmodel/fee_calculator.hpp"
 
 bool pbl();
 
@@ -17,9 +18,11 @@ void test_csv_creator();
 
 int main(void) {
     ModelProducer::init();
+    FeeCalculator::init();
 
     pbl();
 
+    FeeCalculator::cleanup();
     ModelProducer::cleanup();
 
     return 0;

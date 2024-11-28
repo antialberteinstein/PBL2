@@ -60,3 +60,86 @@ std::string DateConverter::to_grenadian_string(const Date& date) {
     std::string year = std::to_string(date.get_year());
     return day + "/" + month + "/" + year;
 }
+
+Date& Date::operator++() {
+    day++;
+    if ((month < 8 && month&1 && day > 31)
+        || (month >= 8 && !(month&1) && day > 31)) {
+        day = 1;
+        month++;
+    } else if ((month >= 8 && month&1 && day > 30)
+            || (month < 8 && !(month&1) && day > 30)) {
+        day = 1;
+        month++;
+    } else if (((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) && month == 2 && day > 29) {
+        day = 1;
+        month++;
+    } else if (((year % 4 != 0 || year % 100 == 0) && year % 400 != 0) && month == 2 && day > 28) {
+        day = 1;
+        month++;
+    }
+
+    if (month > 12) {
+        month = 1;
+        year++;
+    }
+    return *this;
+}
+
+Date Date::operator++(int) {
+    Date temp = *this;
+    ++(*this);
+    return temp;
+}
+
+Date& Date::operator+=(int days) {
+    for (int i = 0; i < days; i++) {
+        ++(*this);
+    }
+    return *this;
+}
+
+Date Date::operator+(int days) const {
+    Date temp = *this;
+    temp += days;
+    return temp;
+}
+
+bool Date::operator==(const Date& other) const {
+    return day == other.day
+        && month == other.month
+        && year == other.year;
+}
+
+bool Date::operator!=(const Date& other) const {
+    return !(*this == other);
+}
+
+bool Date::operator<(const Date& other) const {
+    if (year < other.year) {
+        return true;
+    } else if (year > other.year) {
+        return false;
+    }
+
+    if (month < other.month) {
+        return true;
+    } else if (month > other.month) {
+        return false;
+    }
+
+    return day < other.day;
+}
+
+bool Date::operator<=(const Date& other) const {
+    return *this < other || *this == other;
+}
+
+
+bool Date::operator>(const Date& other) const {
+    return !(*this <= other);
+}
+
+bool Date::operator>=(const Date& other) const {
+    return !(*this < other);
+}

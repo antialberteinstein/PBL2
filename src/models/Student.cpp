@@ -173,6 +173,7 @@ void Student::set_room_id(const string& room_id) {
     if (room_id == NO_ROOM_ID) {
         old_room_id = this->room_id;
         this->room_id = "";
+        modified_flag = true;
         return;
     }
     

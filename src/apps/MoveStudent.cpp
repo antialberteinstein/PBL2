@@ -1,7 +1,8 @@
 #include "apps/MoveStudent.hpp"
 #include "apps/MainMenu.hpp"
 #include "viewmodel/my_view_model.hpp"
-
+#include "viewmodel/fee_calculator.hpp"
+#include "models/RoomFeePayment.hpp"
 
 MoveStudent::MoveStudent(App* parent, string id) {
     error_message = "";
@@ -17,11 +18,32 @@ MoveStudent::MoveStudent(App* parent, string id) {
         
         if (student != nullptr && room != nullptr) {
             
+            try {
+                auto rf_cal = FeeCalculator::get_instance(FeeType::ROOM_FEE);
+                if (rf_cal) {
+                    auto payment = rf_cal->get_payment(student.get());
+                    if (payment != nullptr && payment->get_status() != PaymentStatus::PAID) {
+                        error_message = "Sinh viên chưa thanh toán tiền phòng";
+                        return;
+                    }
+                }
+            } catch (const string& msg) {
+                error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+                return;
+            } catch (...) {
+                error_message = "Lỗi không xác định!!";
+                return;
+            }
+
+
             student->set_room_id(room->get_id());
-            student->set_date_joined(Date::today().to_string());
             try {
                 if (this->student_db) {
                     this->student_db->modify(student->get_id(), student.get());
+                }
+                auto rf_cal = FeeCalculator::get_instance(FeeType::ROOM_FEE);
+                if (rf_cal) {
+                    rf_cal->get_payment(student.get());
                 }
             } catch (const string& msg) {
                 error_message = "Lỗi kết nối cơ sở dữ liệu!!";
@@ -127,7 +149,11 @@ Element MoveStudent::create_element() {
             Student::get_students_living_in(room->get_id_string());
         Student::fit_room(room->get_id_string());
         for (int i = 0; i < students.size(); i++) {
-            _students.push_back(text("   " + students[i].get_name() + " - " + students[i].get_gender()));
+            _students.push_back(text(
+                "   " + to_string(i + 1) + "/. " + students[i].get_name()
+                + " - " + students[i].get_gender()
+                + " - " + students[i].get_hometown()
+                ));
         }
 
         room_detail = vbox({

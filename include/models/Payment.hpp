@@ -57,10 +57,32 @@ public:
     void set_date_paid(string date_paid) {
         this->date_paid = date_paid;
     }
+
+    Payment() {
+        overriden_flag = true;
+    }
+
+    void flag_overriden() {
+        overriden_flag = true;
+    }
+
+    void flag_not_overriden() {
+        overriden_flag = false;
+    }
+
+protected:
+
+    // This flag is turned off for old payments that will be
+    //         override by a new one, but still kept in the database.
+    //         so, with this flag turned off, the system will not
+    //         override the old payment.
+    // This flag is turned on for a new payment, this will decide the payment
+    //          having a specific id that can be easily found in the database.
+    bool overriden_flag;
 };
 
 namespace PaymentStatus {
-    const string UNPAID = "Unpaid";
-    const string PAID = "Paid";
-    const string OVERDUE = "Overdue";
+    const string UNPAID = "Chưa thanh toán";
+    const string PAID = "Đã thanh toán";
+    const string OVERDUE = "Quá hạn";
 }
