@@ -3,6 +3,7 @@
 #include "viewmodel/my_view_model.hpp"
 #include "viewmodel/fee_calculator.hpp"
 #include "models/RoomFeePayment.hpp"
+#include "apps/StudentDetail.hpp"
 
 MoveStudent::MoveStudent(App* parent, string id) {
     error_message = "";
@@ -49,6 +50,12 @@ MoveStudent::MoveStudent(App* parent, string id) {
                 error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             }
             if (this->parent != nullptr) {
+                auto temp = dynamic_cast<StudentDetail*>(this->parent);
+                if (temp) {
+                    temp->reload_student_from_db();
+                }
+
+
                 this->parent->run();
             } else {
                 main_menu::show();
@@ -66,6 +73,7 @@ MoveStudent::MoveStudent(App* parent, string id) {
 
     return_btn = Button("Quay lại", [&] {
         if (this->parent != nullptr) {
+
             this->parent->run();
         } else {
             main_menu::show();

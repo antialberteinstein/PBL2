@@ -5,8 +5,10 @@
 #include "apps/MainMenu.hpp"
 #include "viewmodel/fee_calculator.hpp"
 #include "models/RoomFeePayment.hpp"
+#include "apps/AddStudent.hpp"
 
 unique_ptr<MoveStudent> student_detail_move_student = nullptr;
+unique_ptr<AddStudent> student_detail_update_student = nullptr;
 
 StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
         : student(move(student)) {
@@ -20,7 +22,7 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
                 if (student) {
                     student_db->remove(this->student.get());
                     
-                    // Reload databse,
+                    // Reload database,
                     auto temp = dynamic_cast<StudentList*>(this->parent);
                     if (temp) {
                         temp->init_db();
@@ -44,6 +46,14 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
             error_message = "Lỗi không xác định!!";
         }
     }, ButtonOption::Animated(Color::Red3));
+
+    update_student_btn = Button("Cập nhật thông tin", [&] {
+        student_detail_update_student = make_unique<AddStudent>(this, this->student->get_id());
+        main_menu::show();
+        if (student_detail_update_student != nullptr) {
+            student_detail_update_student->run();
+        }
+    }, ButtonOption::Animated(Color::Green3));
     
     registation_btn = Button("Đăng ký xe", [&] {
         // Do later.
@@ -66,11 +76,16 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
     }, ButtonOption::Animated(Color::Green3));
 
     return_btn = Button("Quay lại", [&] {
+        auto temp = dynamic_cast<StudentList*>(this->parent);
+        if (temp) {
+            temp->init_db();
+        }
+
         this->parent->run();
     }, ButtonOption::Animated(Color::Orange1));
 
     move_student_btn = Button("Đổi phòng", [&] {
-        student_detail_move_student = make_unique<MoveStudent>(nullptr, this->student->get_id());
+        student_detail_move_student = make_unique<MoveStudent>(this, this->student->get_id());
         main_menu::show();
         if (student_detail_move_student != nullptr) {
             debug("Running MoveStudent");
@@ -126,6 +141,7 @@ Element StudentDetail::create_element() {
             }) | border | flex,
             vbox({
                 delete_btn->Render() | flex,
+                update_student_btn->Render() | flex,
                 registation_btn->Render() | flex,
                 payment_btn->Render() | flex,
                 return_btn->Render() | flex,
@@ -142,5 +158,19 @@ bool StudentDetail::event(Event event) {
         || registation_btn->OnEvent(event)
         || payment_btn->OnEvent(event)
         || return_btn->OnEvent(event)
-        || move_student_btn->OnEvent(event);
+        || move_student_btn->OnEvent(event)
+        || update_student_btn->OnEvent(event);
+}
+
+void StudentDetail::reload_student_from_db() {
+    try {
+        auto student_db = ModelProducer::get_instance(ModelType::STUDENT);
+        if (student_db) {
+            this->student = student_db->get_student(this->student->get_id());
+        }
+    } catch (const string& msg) {
+        error_message = msg;
+    } catch (...) {
+        error_message = "Lỗi không xác định!!";
+    }
 }

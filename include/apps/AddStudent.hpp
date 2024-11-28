@@ -6,6 +6,7 @@
 #include "objects/Date.hpp"
 #include "objects/StringAdapter.hpp"
 #include "apps/components.hpp"
+#include "models/Student.hpp"
 
 class ModelProducer;
 
@@ -13,7 +14,7 @@ class ModelProducer;
 
 class AddStudent : public App {
     public:
-        AddStudent();
+        AddStudent(App* parent=nullptr, string student_id="");
         virtual ~AddStudent() = default;
         virtual Element create_element() override;
         virtual bool event(Event event) override;
@@ -28,6 +29,9 @@ class AddStudent : public App {
         string error_message;
         bool will_render;  // If false, render error message only
         ModelProducer* student_db;
+
+        App* parent;
+        unique_ptr<Student> student;
 
 };
 #endif

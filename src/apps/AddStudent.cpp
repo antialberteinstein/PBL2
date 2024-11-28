@@ -3,10 +3,11 @@
 #include "apps/MainMenu.hpp"
 #include "viewmodel/my_view_model.hpp"
 #include "apps/MoveStudent.hpp"
+#include "apps/StudentDetail.hpp"
 
 unique_ptr<MoveStudent> add_student_move_student = nullptr;
 
-AddStudent::AddStudent() {
+AddStudent::AddStudent(App* parent, string student_id) {
     will_render = true;
 
     // Lam 2 lan moi khong loi :)))))
@@ -34,6 +35,32 @@ AddStudent::AddStudent() {
     gender.selected = 1;
     gender.com = Dropdown(StringAdapter::From(&gender.values), &gender.selected);
 
+    this->parent = parent;
+    if (student_id == "") {
+        this->student = nullptr;
+    } else {
+        if (this->student_db) {
+            this->student = this->student_db->get_student(student_id);
+        }
+        if (this->student != nullptr) {
+            name.value = this->student->get_name();
+            dob.value = this->student->get_dob();
+            hometown.value = this->student->get_hometown();
+            university.value = this->student->get_university();
+            major.value = this->student->get_major();
+            phone.value = this->student->get_phone_number();
+            email.value = this->student->get_email();
+
+            if (this->student->get_gender() == "Nam") {
+                gender.selected = 0;
+            } else if (this->student->get_gender() == "Nữ") {
+                gender.selected = 1;
+            } else {
+                gender.selected = 2;
+            }
+        }
+    }
+
     confirm_btn = Button("Xác nhận", [&] {
         if (name.value.empty() || dob.value.empty() || hometown.value.empty() ||
             university.value.empty() || major.value.empty() || phone.value.empty() ||
@@ -42,11 +69,42 @@ AddStudent::AddStudent() {
             return;
         }
 
-        // Add student to database
         if (student_db == nullptr) {
             error_message = "Lỗi kết nối cơ sở dữ liệu!!";
             return;
-        } else {
+        }
+
+        if (this->student != nullptr) {
+            this->student->set_name(name.value);
+            this->student->set_dob(dob.value);
+            this->student->set_gender(gender.values[gender.selected]);
+            this->student->set_hometown(hometown.value);
+            this->student->set_university(university.value);
+            this->student->set_major(major.value);
+            this->student->set_phone_number(phone.value);
+            this->student->set_email(email.value);
+
+            student->turn_off_creating_flag();
+
+            try {
+                student_db->modify(student->get_id(), student.get());
+            } catch (const string& msg) {
+                error_message = msg;
+                return;
+            }
+            if (this->parent != nullptr) {
+                auto temp = dynamic_cast<StudentDetail*>(this->parent);
+                if (temp) {
+                    temp->reload_student_from_db();
+                }
+
+                this->parent->run();
+            } else {
+                main_menu::show();
+            }
+            return;
+        }
+        else {
             auto student = make_unique<Student>();
             student->set_name(name.value);
             student->set_dob(dob.value);
