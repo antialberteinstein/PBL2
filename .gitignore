@@ -23,3 +23,6 @@ Releases/
 # Ignore __pycache__ folder
 __pycache__/
 */__pycache__/
+
+# Ignore electricity calculation data
+res/data

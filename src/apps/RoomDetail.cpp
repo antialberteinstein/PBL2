@@ -23,8 +23,17 @@ RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
     }, ButtonOption::Animated(Color::Blue));
 
 
-    payment_btn = Button("Thanh toan", [&] {
-        // Do later.
+    payment_btn = Button("Thanh toán tiền điện", [&] {
+        try {
+            auto ef_cal = FeeCalculator::get_instance(FeeType::ELECTRICITY_FEE);
+            if (ef_cal) {
+                ef_cal->pay_by(this->room.get());
+            }
+        } catch (const string& msg) {
+            error_message = msg;
+        } catch (...) {
+            error_message = "Lỗi không xác định!!";
+        }
     }, ButtonOption::Animated(Color::Blue1));
     
     if (this->room != nullptr && this->room->get_status() == RoomStatus::MAINTENANCE) {
@@ -114,6 +123,22 @@ Element RoomDetail::create_element() {
                     + students[i].get_name()
                     + " - " + amount));
             }
+
+            string fee = "Không có";
+            try {
+                auto ef_cal = FeeCalculator::get_instance(FeeType::ELECTRICITY_FEE);
+                if (ef_cal) {
+                    auto ef = ef_cal->get_payment(room.get());
+                    if (ef != nullptr) {
+                        fee = to_string(ef->get_amount()) + " VND";
+                    }
+                }
+            } catch (...) {
+                error_message = "Lỗi không xác định khi kiểm tra tiền điện!!";
+            }
+
+            texts.push_back(text("Tiền điện còn thiếu: " + fee));
+
             texts.push_back(text("Sức chứa: " + to_string(room->get_capacity())));
             texts.push_back(text("Số sinh viên hiện tại: " + to_string(room->get_current_number())));
             texts.push_back(vbox(_students));

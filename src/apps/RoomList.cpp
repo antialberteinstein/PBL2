@@ -1,7 +1,7 @@
 #include "apps/RoomList.hpp"
 #include "apps/MainMenu.hpp"
 #include "viewmodel/my_view_model.hpp"
-
+#include "viewmodel/fee_calculator.hpp"
 
 RoomList::RoomList() {
     will_render = true;
@@ -48,6 +48,7 @@ RoomList::RoomList() {
     scroller.add_map(ScrollerMap(), "name", "Tên phòng");
     scroller.add_map(ScrollerMap(), "current_number", "Số người hiện tại");
     scroller.add_map(ScrollerMap(), "status", "Tình trạng");
+    scroller.add_map(ScrollerMap(), "fee", "Tiền điện còn thiếu");
 
     init_db();
     
@@ -71,6 +72,19 @@ void RoomList::init_db() {
                     + "/"
                     + to_string(room->get_capacity()));
             record.push_back(room->get_status());
+            string fee = "Không có";
+            try {
+                auto ef_db = FeeCalculator::get_instance(FeeType::ELECTRICITY_FEE);
+                if (ef_db != nullptr) {
+                    auto ef_payment = ef_db->get_payment(room.get());
+                    if (ef_payment != nullptr) {
+                        fee = to_string(ef_payment->get_amount()) + " VND";
+                    }
+                }
+            } catch (...) {
+                // Do nothing.
+            }
+            record.push_back(fee);
 
             scroller.add_record(record);
             scroller.update_visible_list();

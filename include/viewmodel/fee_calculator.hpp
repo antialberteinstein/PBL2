@@ -5,13 +5,7 @@
 
 #define PERIOD_DAYS 90
 #define OVERDUE_DAYS 30
-
-namespace FeeValue {
-    // Phi phong nay tuong ung voi phong chi co 1 nguoi o
-    //   nghia la neu co nhieu nguoi o thi so tien nay se duoc chia ra.
-    const int ROOM_FEE = 600000;  // VND/ 1 month / 1 student / 1 room
-    const int ELECTRICITY_FEE = 3000;  // VND/ 1 kWh
-}
+#define ENERGY_OVERDUE_DAYS 10
 
 enum class FeeType {
     ROOM_FEE,
@@ -22,8 +16,10 @@ class FeeCalculator {
     public:
         
         unique_ptr<Payment> get_payment(Student* student);
+        unique_ptr<Payment> get_payment(Room* room);
 
-        void pay_by(Student* student);        
+        void pay_by(Student* student);
+        void pay_by(Room* room);      
 
         static void init();
 
@@ -65,7 +61,15 @@ class FeeCalculator {
 
         FeeType type_;
 
+        json energy_consumption_data;
+        string energy_consumption_date;
 
         void create_payment(Student* student);
+        void create_payment(Room* room);
+
+        
+        bool energy_consumption_load_data();
+
+        bool energy_consumption_get_from_server();
 
 };

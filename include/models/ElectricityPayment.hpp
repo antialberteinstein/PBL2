@@ -41,4 +41,14 @@ public:
         this->room_id = room_id;
     }
 
+    virtual string hash_to_id() {
+        if (overriden_flag) {
+            return room_id;
+        } else {
+            return room_id + "_" + date_created;
+        }
+    }
+
+    
+
 };
