@@ -9,6 +9,8 @@
 #include "models/Room.hpp"
 #include "eins/csv_creator.h"
 #include "viewmodel/fee_calculator.hpp"
+#include <thread>
+#include "apps/SplashScreen.hpp"
 
 bool pbl();
 
@@ -17,32 +19,60 @@ void recovery_rooms_database();
 void test_csv_creator();
 
 int main(void) {
-    ModelProducer::init();
-    FeeCalculator::init();
 
     pbl();
 
-    FeeCalculator::cleanup();
-    ModelProducer::cleanup();
+
 
     return 0;
 }
 
 
-
 bool pbl() {
-     {
-    tui::init();
-    auto screen = ScreenInteractive::TerminalOutput();
+    ModelProducer::init();
 
-    main_menu::show();
+    tui::init();
+    // FeeCalculator::init();
+
+    auto splash_scr = Screen::Create(
+        Dimension::Full(),
+        Dimension::Full()
+    );
+    /* // Creating a thread.
+    thread gauge_thread(process_gauge);
+
+    thread ui_thread([&] {
+        splash_screen::show();
+        tui::start(screen);
+    });
+
+    gauge_thread.join();
+    if (ui_thread.joinable()) {
+        ui_thread.join();
+    } */
+
+    thread loading_data_thread([&] {
+        FeeCalculator::init();
+        splash_screen::flag_loaded_data();
+    });
+
+    thread splash_screen_thread([&] {
+        splash_screen::run(splash_scr);
+    });
+
+    loading_data_thread.join();
+    splash_screen_thread.join();
+
+    auto screen = ScreenInteractive::TerminalOutput();
 
     tui::start(screen);
 
+    // FeeCalculator::cleanup();
     tui::cleanup();
 
+    ModelProducer::cleanup();
+
     return true;
-}
 }
 
 void recovery_rooms_database() {

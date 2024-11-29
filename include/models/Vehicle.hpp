@@ -1,5 +1,6 @@
 #include <iostream>
 #include "models/Model.hpp"
+#include "objects/Vector.hpp"
 
 using namespace std;
 
@@ -9,10 +10,13 @@ constexpr char vehicle_id[] = "vehicle_id";
 constexpr char vehicle_type[] = "type";
 constexpr char vehicle_student_id[] = "student_id";
 
-struct Vehicle : Model {
+class Vehicle : Model {
+    private:
     string type;
     string student_id;
+    bool creating_flag;
 
+    public:
     virtual string serialize() {
         return json{
             {vehicle_id, id},
@@ -29,14 +33,35 @@ struct Vehicle : Model {
     }
 
     virtual string hash_to_id() {
-        return type + "_" + student_id;
+        if (creating_flag) {
+            return id + "@" + student_id;
+        } else {
+            return id;
+        }
     }
+
+    void flag_creating() {
+        creating_flag = true;
+    }
+
+    void flag_not_creating() {
+        creating_flag = false;
+    }
+
+    Vehicle() {
+        id = "";
+        creating_flag = false;
+    }
+
+    static Vector<Vehicle> get_vehicles(string student_id);
+
+
 };
 
 namespace VehicleType {
-    const string MOTORBIKE = "Motorbike";
-    const string CAR = "Car";
-    const string BICYCLE = "Bicycle";
+    const string MOTORBIKE = "Xe máy";
+    const string CAR = "Ô tô";
+    const string BICYCLE = "Xe đạp";
 }
 
 namespace VehicleFee {
@@ -44,3 +69,4 @@ namespace VehicleFee {
     const int CAR = 100000;  // VND/ 1 month / 1 vehicle
     const int BICYCLE = 10000;  // VND/ 1 month / 1 vehicle
 }
+
