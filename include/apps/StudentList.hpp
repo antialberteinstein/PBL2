@@ -33,7 +33,21 @@ class StudentList : public App {
         Component event_listener;
         unique_ptr<StudentDetail> detail;
 
+        // Hien thi sinh vien dang no tien phong.
+        bool filter_flag;
+        Component filter_btn;
+
         void init_db();
+
+        void flag_filter() {
+            filter_flag = true;
+            init_db();
+        }
+
+        void flag_not_filter() {
+            filter_flag = false;
+            init_db();
+        }
 };
 
 #endif // PBL_STUDENT_LIST_HPP

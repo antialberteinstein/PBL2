@@ -30,7 +30,35 @@ class RoomList : public App {
         Component info_btn, cancel_btn;
         Component event_listener;
 
+        // Hien thi phong dang bao tri.
+        bool filter_flag_maintainance;
+        Component filter_btn_maintainance;
+
+        // Hien thi phong chua thanh toan tien dien.
+        bool filter_flag_electricity;
+        Component filter_btn_electricity;
+
         unique_ptr<RoomDetail> detail;
+
+        void flag_filter_maintainance() {
+            filter_flag_maintainance = true;
+            init_db();
+        }
+
+        void flag_not_filter_maintainance() {
+            filter_flag_maintainance = false;
+            init_db();
+        }
+
+        void flag_filter_electricity() {
+            filter_flag_electricity = true;
+            init_db();
+        }
+
+        void flag_not_filter_electricity() {
+            filter_flag_electricity = false;
+            init_db();
+        }
 };
 
 #endif // PBL_ROOM_LIST_HPP

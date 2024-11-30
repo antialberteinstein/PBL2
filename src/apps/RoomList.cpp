@@ -5,6 +5,8 @@
 
 RoomList::RoomList() {
     will_render = true;
+    filter_flag_electricity = false;
+    filter_flag_maintainance = false;
 
     try {
         room_db = ModelProducer::get_instance(ModelType::ROOM);
@@ -42,6 +44,22 @@ RoomList::RoomList() {
         main_menu::show();
     }, ButtonOption::Animated(CANCEL_BTN_BG));
 
+    filter_btn_maintainance = Button("Hiển thị phòng đang bảo trì/ Hiện tất cả", [&] {
+        if (filter_flag_maintainance) {
+            flag_not_filter_maintainance();
+        } else {
+            flag_filter_maintainance();
+        }
+    }, ButtonOption::Animated(Color::DeepSkyBlue2));
+
+    filter_btn_electricity = Button("Hiển thị phòng chưa thanh toán tiền điện/ Hiện tất cả", [&] {
+        if (filter_flag_electricity) {
+            flag_not_filter_electricity();
+        } else {
+            flag_filter_electricity();
+        }
+    }, ButtonOption::Animated(Color::DeepSkyBlue1));
+
     // Lay danh sach phong tu database.
 
     scroller.add_map(ScrollerMap(), "id", "Mã số");
@@ -52,6 +70,13 @@ RoomList::RoomList() {
 
     init_db();
     
+    event_listener = Container::Vertical({
+        search_com,
+        info_btn,
+        cancel_btn,
+        filter_btn_maintainance,
+        filter_btn_electricity,
+    });
 }
 
 void RoomList::init_db() {
@@ -65,6 +90,25 @@ void RoomList::init_db() {
             if (room == nullptr) {
                 continue;
             }
+
+            if (filter_flag_maintainance && room->get_status() != RoomStatus::MAINTENANCE) {
+                continue;
+            }
+
+            if (filter_flag_electricity) {
+                try {
+                    auto ef_db = FeeCalculator::get_instance(FeeType::ELECTRICITY_FEE);
+                    if (ef_db != nullptr) {
+                        auto ef_payment = ef_db->get_payment(room.get());
+                        if (ef_payment != nullptr && ef_payment->get_status() == PaymentStatus::PAID) {
+                            continue;
+                        }
+                    }
+                } catch (...) {
+                    // Do nothing.
+                }
+            }
+
             Vector<string> record;
             record.push_back(room->get_id_string());
             record.push_back(room->get_string_name());
@@ -88,12 +132,6 @@ void RoomList::init_db() {
 
             scroller.add_record(record);
             scroller.update_visible_list();
-
-            event_listener = Container::Vertical({
-                search_com,
-                info_btn,
-                cancel_btn
-            });
         }
     }
     scroller.update_visible_list();
@@ -130,6 +168,8 @@ Element RoomList::create_element() {
         search_com->Render() | center | flex,
         hbox({
             info_btn->Render() | center | flex,
+            filter_btn_maintainance->Render() | center | flex,
+            filter_btn_electricity->Render() | center | flex,
             cancel_btn->Render() | center | flex,
         }),
         scroller.Render(),

@@ -4,6 +4,15 @@
 
 StudentList::StudentList() {
     will_render = true;
+    filter_flag = false;
+
+    filter_btn = Button("Hiển thị sinh viên nợ tiền phòng/ Hiện tất cả", [&] {
+        if (filter_flag) {
+            flag_not_filter();
+        } else {
+            flag_filter();
+        }
+    }, ButtonOption::Animated(Color::DeepSkyBlue2));
 
     try {
         student_db = ModelProducer::get_instance(ModelType::STUDENT);
@@ -56,7 +65,8 @@ StudentList::StudentList() {
     event_listener = Container::Vertical({
         search_com,
         info_btn,
-        cancel_btn
+        cancel_btn,
+        filter_btn,
     });
 }
 
@@ -72,6 +82,24 @@ void StudentList::init_db() {
                 if (student == nullptr) {
                     continue;
                 }
+                if (filter_flag) {
+                    try {
+                        auto room_fee_db = ModelProducer::get_instance(ModelType::ROOM_FEE_PAYMENT);
+                        if (room_fee_db) {
+                            auto room_fee = room_fee_db->get_room_fee_payment(student->get_id_string());
+                            if (room_fee == nullptr) {
+                                continue;
+                            }
+                            if (room_fee->get_status() == PaymentStatus::PAID) {
+                                continue;
+                            }
+                        }
+                    } catch (const string& msg) {
+                        error_message = msg;
+                        break;
+                    }
+                }
+
                 Vector<string> record;
                 record.push_back(student->get_id_string());
                 record.push_back(student->get_name());
@@ -127,8 +155,10 @@ Element StudentList::create_element() {
         separator(),
         text(error_message) | center | color(ERROR_COLOR),
         search_com->Render() | center | flex,
+        text(""),  // Empty line
         hbox({
             info_btn->Render() | center | flex,
+            filter_btn->Render() | center | flex,
             cancel_btn->Render() | center | flex,
         }),
         scroller.Render(),
