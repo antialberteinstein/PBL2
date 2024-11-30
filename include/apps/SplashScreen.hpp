@@ -4,7 +4,7 @@
 #include "apps/App.hh"
 
 #define PERIOD 300  // microseconds (ms)
-#define DEFAULT_SPEED 2.5 // per period.
+#define DEFAULT_SPEED 13 // per period.
 #define GROUP_NAME_PATH "res/ascii_art/group_name.txt"
 #define GROUP_NAME_TEXT "NHOM 12"
 
