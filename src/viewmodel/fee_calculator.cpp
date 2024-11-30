@@ -6,6 +6,7 @@
 #include "objects/Date.hpp"
 #include "objects/Vector.hpp"
 #include <filesystem>
+#include "models/Vehicle.hpp"
 
 #include <iostream>
 
@@ -69,7 +70,19 @@ void FeeCalculator::create_payment(Student* student) {
     if (room == nullptr) {
         return;
     }
-    int amount = FeeValue::ROOM_FEE / room->get_capacity() * 3;  // 3 months.  
+    int vehicle_fee = 0;
+    Vector<Vehicle> vehicles = Vehicle::get_vehicles(student->get_id());
+    for (int i = 0; i < vehicles.size(); ++i) {
+        if (vehicles[i].get_type() == VehicleType::MOTORBIKE) {
+            vehicle_fee += VehicleFee::MOTORBIKE;
+        } else if (vehicles[i].get_type() == VehicleType::BICYCLE) {
+            vehicle_fee += VehicleFee::BICYCLE;
+        } else if (vehicles[i].get_type() == VehicleType::CAR) {
+            vehicle_fee += VehicleFee::CAR;
+        }
+    }
+
+    int amount = (FeeValue::ROOM_FEE / room->get_capacity() + vehicle_fee) * 3;  // 3 months.  
     room_fee_payment->set_amount(amount);
     room_fee_payment->set_number_of_months(3);
     room_fee_payment->set_status(PaymentStatus::UNPAID);

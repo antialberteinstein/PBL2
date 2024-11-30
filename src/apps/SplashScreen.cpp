@@ -126,7 +126,7 @@ namespace splash_screen {
     }
 
     void run(Screen& screen) {
-        while (!_splash_screen.is_complete() && !loaded_data_flag) {
+        while (!_splash_screen.is_complete() || !loaded_data_flag) {
             clear_screen();
             Render(screen, _splash_screen.create_element());
             screen.Print();

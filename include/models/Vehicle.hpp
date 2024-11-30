@@ -10,13 +10,30 @@ constexpr char vehicle_id[] = "vehicle_id";
 constexpr char vehicle_type[] = "type";
 constexpr char vehicle_student_id[] = "student_id";
 
-class Vehicle : Model {
+class Vehicle : public Model {
     private:
     string type;
     string student_id;
     bool creating_flag;
 
     public:
+
+    void set_type(const string& type) {
+        this->type = type;
+    }
+
+    string get_type() {
+        return type;
+    }
+
+    void set_student_id(const string& student_id) {
+        this->student_id = student_id;
+    }
+
+    string get_student_id() {
+        return student_id;
+    }
+
     virtual string serialize() {
         return json{
             {vehicle_id, id},
@@ -32,13 +49,7 @@ class Vehicle : Model {
         student_id = j[vehicle_student_id];
     }
 
-    virtual string hash_to_id() {
-        if (creating_flag) {
-            return id + "@" + student_id;
-        } else {
-            return id;
-        }
-    }
+    virtual string hash_to_id();
 
     void flag_creating() {
         creating_flag = true;
