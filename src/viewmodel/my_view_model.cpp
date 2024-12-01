@@ -159,3 +159,129 @@ void ModelProducer::cleanup() {
     room_fee_payment_instance_ = nullptr;
     electricity_payment_instance_ = nullptr;
 }
+
+// Regexing Pattern
+
+int compare_by_dictionary(const string& a, const string& b) {
+    int a_size = a.size();
+    int b_size = b.size();
+    int _min = (a_size < b_size) ? a_size : b_size;
+    for (int i = 0; i < _min; ++i) {
+        if (a[i] > b[i]) {
+            return MORE_THAN;
+        } else if (a[i] < b[i]) {
+            return LESS_THAN;
+        }
+    }
+    return EQUAL;
+}
+
+bool operator==(const RegexingPattern& lhs, const RegexingPattern& rhs) {
+    int _check = compare_by_dictionary(lhs.first_name, rhs.first_name);
+    if (_check != EQUAL) {
+        return false;
+    }
+
+    _check = compare_by_dictionary(lhs.last_name, rhs.last_name);
+    return _check == EQUAL;
+}
+
+bool operator>(const RegexingPattern& lhs, const RegexingPattern& rhs) {
+    int _check = compare_by_dictionary(lhs.first_name, rhs.first_name);
+    if (_check == EQUAL) {
+        return (compare_by_dictionary(lhs.last_name, rhs.last_name) == MORE_THAN);
+    }
+    return _check == MORE_THAN;
+}
+
+bool operator>=(const RegexingPattern& lhs, const RegexingPattern& rhs) {
+    return lhs > rhs || lhs == rhs;
+}
+
+bool operator<(const RegexingPattern& lhs, const RegexingPattern& rhs) {
+    return !(lhs >= rhs);
+}
+
+bool operator<=(const RegexingPattern& lhs, const RegexingPattern& rhs) {
+    return lhs < rhs || lhs == rhs;
+}
+
+RegexingPattern regex_name(const string& name) {
+    string first_name = "", last_name = "";
+    istringstream iss(name);
+    Vector<string> regexes;
+    string temp;
+    while (iss >> temp) {
+        regexes.push_back(temp);
+    }
+
+    if (regexes.size() == 1) {
+        first_name = regexes[0];
+    } else {
+        first_name = regexes[regexes.size() - 1];
+        for (int i = 0; i < regexes.size() - 1; ++i) {
+            last_name += regexes[i] + " ";
+        }
+        last_name.pop_back();
+    }
+
+
+    // Convert to lower case
+
+    for (int i = 0; i < first_name.size(); ++i) {
+        first_name[i] = tolower(first_name[i]);
+    }
+
+    for (int i = 0; i < last_name.size(); ++i) {
+        last_name[i] = tolower(last_name[i]);
+    }
+
+    return {first_name, last_name};
+}
+
+
+
+Vector<RegexingPattern> regex_name(Vector<Student>& students) {
+    Vector<RegexingPattern> result;
+    Vector<string> regexes;
+    for (int i = 0; i < students.size(); ++i) {
+        result.push_back(regex_name(students[i].get_name()));
+    }
+    return result;
+}
+
+void insertion_sort(Vector<string>& keys, Vector<RegexingPattern>& regexes) {
+    for (int i = 1; i < keys.size(); ++i) {
+        string key = keys[i];
+        RegexingPattern regex = regexes[i];
+        int j = i - 1;
+        while (j >= 0 && regex < regexes[j]) {
+            keys[j + 1] = keys[j];
+            regexes[j + 1] = regexes[j];
+            j = j - 1;
+        }
+        keys[j + 1] = key;
+        regexes[j + 1] = regex;
+    }
+}
+
+int binary_search(RegexingPattern& name, Vector<RegexingPattern>& regexes) {
+    int low = 0;
+    int high = regexes.size() - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (regexes[mid] == name) {
+            debug(regexes[mid].first_name + " == " + name.first_name);
+            return mid;
+        }
+
+        if (regexes[mid] < name) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return NOT_FOUND;
+}

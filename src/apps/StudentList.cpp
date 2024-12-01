@@ -75,6 +75,7 @@ void StudentList::init_db() {
     if (student_db == nullptr) {
         error_message = "Lỗi kết nối cơ sở dữ liệu!!";
     } else {
+        student_db->unflag_students_sorted();
         Vector<string> keys = student_db->get_all_keys();
         for (int i = 0; i < keys.size(); i++) {
             try {

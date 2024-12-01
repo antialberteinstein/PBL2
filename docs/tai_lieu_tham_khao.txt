@@ -5,3 +5,5 @@ try catch C++:
 Cmake:
 functional:
 unique_str:
+Thu vien co so du lieu:
+https://viblo.asia/p/gioi-thieu-leveldb-va-so-sanh-hieu-nang-voi-mysql-3Q75wBnDlWb

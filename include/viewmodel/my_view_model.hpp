@@ -8,16 +8,67 @@
 #include "objects/Vector.hpp"
 #include "fstream"
 
+
 #define _DB_PATH "res/db/"
 #define SIZE_KEY "size"
 
 void debug(const string& s);
+
+
+
+// Regexing Pattern
+#define EQUAL 0
+#define LESS_THAN -1
+#define MORE_THAN 1
+#define NOT_FOUND -1
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+struct RegexingPattern {
+    string first_name;
+    string last_name;
+};
+
+bool operator==(const RegexingPattern& lhs, const RegexingPattern& rhs);
+bool operator>(const RegexingPattern& lhs, const RegexingPattern& rhs);
+bool operator<(const RegexingPattern& lhs, const RegexingPattern& rhs);
+bool operator>=(const RegexingPattern& lhs, const RegexingPattern& rhs);
+bool operator<=(const RegexingPattern& lhs, const RegexingPattern& rhs);
+
+
+int compare_by_dictionary(const string& a, const string& b);
+
+RegexingPattern regex_name(const string& name);
+
+Vector<RegexingPattern> regex_name(Vector<Student>& students);
+
+void insertion_sort(Vector<string>& keys, Vector<RegexingPattern>& regexes);
+
+int binary_search(RegexingPattern& name, Vector<RegexingPattern>& regexes);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class ModelProducer {
     public:
 
         ModelProducer() {
             size_ = 0;
+            students_sorted_flag_ = true;
         }
 
         static ModelProducer* get_instance(ModelType type);
@@ -30,8 +81,24 @@ class ModelProducer {
             Vector<string> keys;
             leveldb::Iterator* it = db_->NewIterator(leveldb::ReadOptions());
             for (it->SeekToFirst(); it->Valid(); it->Next()) {
-                keys.push_back(it->key().ToString());
+                string key = it->key().ToString();
+                if (key == SIZE_KEY) {
+                    continue;
+                }
+                keys.push_back(key);
             }
+            if (type_ == ModelType::STUDENT && !students_sorted_flag_) {
+                Vector<Student> students;
+                for (int i = 0; i < keys.size(); ++i) {
+                    auto student = get_student(keys[i]);
+                    if (student != nullptr) {
+                        students.push_back(*student);
+                    }
+                }
+                Vector<RegexingPattern> regexes = regex_name(students);
+                insertion_sort(keys, regexes);
+            }
+
             delete it;
             return keys;
         }
@@ -82,6 +149,8 @@ class ModelProducer {
                 remove(model);
                 throw msg;
             }
+
+            unflag_students_sorted();
         }
 
         void remove(Model* model) {
@@ -225,11 +294,25 @@ class ModelProducer {
         //           this will close all database connections.
         static void cleanup();
 
+
+        void flag_students_sorted() {
+            if (type_ == ModelType::STUDENT) {
+                students_sorted_flag_ = true;
+            }
+        }
+
+        void unflag_students_sorted() {
+            if (type_ == ModelType::STUDENT) {
+                students_sorted_flag_ = false;
+            }
+        }
+
     private:
         leveldb::DB* db_;
         static leveldb::Options options_;
         ModelType type_;
         size_t size_;
+        bool students_sorted_flag_;
 
 
         static ModelProducer* student_instance_;

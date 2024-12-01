@@ -240,10 +240,31 @@ bool FeeCalculator::energy_consumption_load_data() {
 }
 
 bool FeeCalculator::energy_consumption_get_from_server() {
+    if (filesystem::exists("res/data/date_clone.txt")) {
+        ifstream f("res/data/date_clone.txt");
+        if (f.is_open()) {
+            string date;
+            f >> date;
+            Date d = DateConverter::from_grenadian_string(date);
+            f.close();
+            if (d == Date::today()) {
+                return true;
+            }
+        }
+    }
     // Run executable file for retrieve data to res/data
     if (system(Retriever::EXECUTE)) {
         return false;
     }
+
+    ofstream f("res/data/date_clone.txt");
+    if (f.is_open()) {
+        Date d = Date::today();
+        f << d.to_string();
+        f.close();
+    }
+
+
 
     return true;
 }

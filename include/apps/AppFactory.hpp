@@ -11,6 +11,7 @@
 #include "apps/PrintDocument.hpp"
 #include "apps/MoveStudent.hpp"
 #include "apps/RoomReservation.hpp"
+#include "apps/Statistics.hpp"
 
 enum class AppType {
     ADD_STUDENT,
@@ -103,6 +104,8 @@ class AppFactory {
                     return AppAdapter::connect(new MoveStudent());
                 case AppType::ROOM_RESERVATION:
                     return AppAdapter::connect(new RoomReservation());
+                case AppType::STATISTICS:
+                    return AppAdapter::connect(new Statistics());
                 case AppType::EXIT:
                     return AppAdapter::connect(new MyExitApp());
             }
