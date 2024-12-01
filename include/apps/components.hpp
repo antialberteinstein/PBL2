@@ -16,26 +16,6 @@ struct ComboBox {
     Component com;
 };
 
-struct DonutChart {
-    Vector<string> labels;
-    Vector<int> values;
-    Vector<Color> colors;
-
-    float total;
-    Canvas canvas;
-
-    DonutChart(
-        Vector<string> labels,
-        Vector<int> values,
-        Vector<Color> colors)
-        : labels(labels), values(values), colors(colors) {
-            canvas = Canvas(100, 100);
-            for (int i = 0; i < values.size(); i++) {
-                total += values[i];
-            }
-        }
-};
-
 inline Element get_doc(EditText& field) {
     return hbox({
         text(field.label),

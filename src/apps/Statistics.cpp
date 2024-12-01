@@ -4,7 +4,91 @@
 #include "apps/StudentDetail.hpp"
 #include <sstream>
 
+Element male_female_other(int male, int female, int other) {
+    int total = male + female + other;
+    int max = male;
+    if (female > max)  max = female;
+    if (other > max)  max = other;
 
+    return vbox({
+        hbox({
+            text("Nam: "),
+            gauge((float)male/max),
+            text("  " + to_string(male) + " sinh viên"),
+        }) | color(Color::Blue3),
+        hbox({
+            text("Nữ: "),
+            gauge((float)female/max),
+            text("  " + to_string(female) + " sinh viên"),
+        }) | color(Color::Orange4),
+        hbox({
+            text("Khác: "),
+            gauge((float)other/max),
+            text("  " + to_string(other) + " sinh viên"),
+        }) | color(Color::GrayLight),
+        hbox({
+            text("Tổng số: "),
+            text("  " + to_string(total) + " sinh viên"),
+        }) | color(Color::YellowLight),
+    }) | border | flex;
+}
+
+Element room_maintenance_or_not(
+    int max_number_of_rooms,
+    Vector<string>& blocks,
+    Vector<int>& maintenances
+) {
+    Elements foo;
+    foo.push_back(text("Số lượng phòng bảo trì:"));
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto bar = hbox({
+            text("Khu " + blocks[i] + ": "),
+            gauge((float)maintenances[i]/max_number_of_rooms) | color(Color::Red3) | bgcolor(Color::Green4),
+            text(" " + to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms)),
+        });
+        foo.push_back(bar);
+    }
+
+    int total = 0;
+    for (int i = 0; i < maintenances.size(); ++i) {
+        total += maintenances[i];
+    }
+    foo.push_back(hbox({
+        text("Tổng số: "),
+        text(" " + to_string(total) + "/" + to_string(max_number_of_rooms)),
+    }));
+
+    return vbox(foo) | border | flex;
+}
+
+Element room_full_or_not(
+    int max_number_of_rooms,
+    Vector<string>& blocks,
+    Vector<int>& fulls
+) {
+    Elements foo;
+    foo.push_back(text("Số lựợng phòng có đủ sinh viên:"));
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto bar = hbox({
+            text("Khu " + blocks[i] + ": "),
+            gauge((float)fulls[i]/max_number_of_rooms) | color(Color::DeepSkyBlue1) | bgcolor(Color::GrayDark),
+            text(" " + to_string(fulls[i]) + "/" + to_string(max_number_of_rooms)),
+        });
+        foo.push_back(bar);
+    }
+
+    int total = 0;
+    for (int i = 0; i < fulls.size(); ++i) {
+        total += fulls[i];
+    }
+
+    foo.push_back(hbox({
+        text("Tổng số: "),
+        text(" " + to_string(total) + "/" + to_string(max_number_of_rooms)),
+    }));
+
+    return vbox(foo) | border | flex;
+}
 
 unique_ptr<StudentDetail> student_detail = nullptr;
 
@@ -39,6 +123,7 @@ Statistics::Statistics() {
     error_message = "";
 
     load_students();
+    load_rooms();
     init_search_dialog();
 }
 
@@ -69,6 +154,11 @@ Element Statistics::create_element() {
     return vbox({
         get_title().get_doc() | color(TITLE_COLOR),
         separator(),
+        hbox({
+            male_female_other(number_of_males, number_of_females, number_of_others),
+            room_maintenance_or_not(max_number_of_rooms, blocks, maintenances),
+            room_full_or_not(max_number_of_rooms, blocks, fulls),
+        }) | flex,
         text(error_message) | center | color(ERROR_COLOR),
         separator(),
         hbox(bottom),
@@ -106,6 +196,9 @@ void Statistics::init_search_dialog() {
 }
 
 void Statistics::load_students() {
+    number_of_females = 0;
+    number_of_males = 0;
+    number_of_others = 0;
     try {
         auto student_db = ModelProducer::get_instance(ModelType::STUDENT);
         if (student_db) {
@@ -115,6 +208,13 @@ void Statistics::load_students() {
                 auto student = student_db->get_student(keys[i]);
                 if (student) {
                     students.push_back(*student);
+                    if (student->get_gender() == "Nam") {
+                        number_of_males++;
+                    } else if (student->get_gender() == "Nữ") {
+                        number_of_females++;
+                    } else if (student->get_gender() == "Khác") {
+                        number_of_others++;
+                    }
                 }
             }
         }
@@ -142,4 +242,57 @@ void Statistics::search_students_by_name() {
 
     search_result = make_unique<Student>(students[index]);
     error_message = "Đã tìm thấy sinh viên " + search_name;
+}
+
+void Statistics::load_rooms() {
+    blocks.clear();
+    blocks.push_back("A");
+    blocks.push_back("B");
+    blocks.push_back("C");
+    blocks.push_back("D");
+    blocks.push_back("E");
+    blocks.push_back("F");
+
+    fulls.clear();
+    fulls.push_back(0);
+    fulls.push_back(0);
+    fulls.push_back(0);
+    fulls.push_back(0);
+    fulls.push_back(0);
+
+    maintenances.clear();
+    maintenances.push_back(0);
+    maintenances.push_back(0);
+    maintenances.push_back(0);
+    maintenances.push_back(0);
+    maintenances.push_back(0);
+
+    max_number_of_rooms = 24 * 5;
+    fulls.clear();
+    maintenances.clear();
+
+    try {
+        auto room_db = ModelProducer::get_instance(ModelType::ROOM);
+        if (room_db) {
+            Vector<string> keys = room_db->get_all_keys();
+
+            for (int i = 0; i < keys.size(); ++i) {
+                auto room = room_db->get_room(keys[i]);
+                if (room) {
+                    for (int i = 0; i < blocks.size(); ++i) {
+                        if (room->get_block() == blocks[i]) {
+                            if (room->get_status() == RoomStatus::FULL) {
+                                fulls[i]++;
+                            }
+                            if (room->get_status() == RoomStatus::MAINTENANCE) {
+                                maintenances[i]++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } catch (const string& msg) {
+        error_message = msg;
+    }
 }

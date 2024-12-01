@@ -4,6 +4,7 @@
 #include "objects/Vector.hpp"
 #include "models/Student.hpp"
 #include "apps/components.hpp"
+#include "models/Room.hpp"
 
 struct RegexingPattern;
 
@@ -27,6 +28,7 @@ class Statistics : public App {
         Vector<RegexingPattern> regexes;
 
         void load_students();
+        void load_rooms();
 
 
         // Tim kiem sinh vien theo ten.
@@ -37,4 +39,18 @@ class Statistics : public App {
         unique_ptr<Student> search_result;
         Component search_result_btn;
         void init_search_dialog();
+
+
+
+
+
+        // Analysis data
+        int number_of_males;
+        int number_of_females;
+        int number_of_others;
+
+        Vector<string> blocks;
+        Vector<int> fulls;
+        Vector<int> maintenances;
+        int max_number_of_rooms;
 };
