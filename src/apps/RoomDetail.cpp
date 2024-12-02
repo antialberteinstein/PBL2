@@ -32,7 +32,7 @@ RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
         } catch (const string& msg) {
             error_message = msg;
         } catch (...) {
-            error_message = "Lỗi không xác định!!";
+            error_message = "Không co hoa don tiền điện!!";
         }
     }, ButtonOption::Animated(Color::Blue1));
     

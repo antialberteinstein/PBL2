@@ -48,6 +48,11 @@ PrintDocument::PrintDocument() {
 
                 try {
                     auto student_db = ModelProducer::get_instance(ModelType::STUDENT);
+                    if (student_db == nullptr) {
+                        error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+                        return;
+                    }
+                    student_db->unflag_students_sorted();
                     auto keys = student_db->get_all_keys();
                     for (int i = 0; i < keys.size(); i++) {
                         auto student = student_db->get_student(keys[i]);
@@ -78,6 +83,10 @@ PrintDocument::PrintDocument() {
 
                 try {
                     auto room_db = ModelProducer::get_instance(ModelType::ROOM);
+                    if (room_db == nullptr) {
+                        error_message = "Lỗi kết nối cơ sở dữ liệu!!";
+                        return;
+                    }
                     auto keys = room_db->get_all_keys();
                     for (int i = 0; i < keys.size(); i++) {
                         auto room = room_db->get_room(keys[i]);
@@ -170,10 +179,10 @@ string print_student_list(Vector<Student>& students, const string& path) {
 
         for (int i = 0; i < students.size(); ++i) {
             Vector<string> arr;
-            arr.push_back(students[i].get_id());
+            arr.push_back("'" + students[i].get_id());
             arr.push_back(students[i].get_name());
             arr.push_back(students[i].get_dob());
-            arr.push_back(students[i].get_phone_number());
+            arr.push_back("'" + students[i].get_phone_number());
             arr.push_back(students[i].get_hometown());
             arr.push_back(students[i].get_email());
             arr.push_back(students[i].get_gender());

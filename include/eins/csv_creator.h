@@ -60,7 +60,7 @@ class CSVCreator {
             }
 
             for (size_t i = 0; i < maps_.size(); ++i) {
-                file << maps_[i].name;
+                file << "\"" << maps_[i].name << "\"";
                 if (i < maps_.size() - 1) {
                     file << ",";
                 }
@@ -69,7 +69,7 @@ class CSVCreator {
 
             for (size_t i = 0; i < size(); ++i) {
                 for (size_t j = 0; j < maps_.size(); ++j) {
-                    file << maps_[j].list_[i];
+                    file << "\"" << maps_[j].list_[i] << "\"";
                     if (j < maps_.size() - 1) {
                         file << ",";
                     }

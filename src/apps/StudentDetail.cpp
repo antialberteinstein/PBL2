@@ -222,6 +222,7 @@ bool StudentDetail::event(Event event) {
 }
 
 void StudentDetail::reload_student_from_db() {
+    error_message = "";
     try {
         auto student_db = ModelProducer::get_instance(ModelType::STUDENT);
         if (student_db) {
