@@ -25,4 +25,4 @@ __pycache__/
 */__pycache__/
 
 # Ignore electricity calculation data
-res/data
+/res/data/
