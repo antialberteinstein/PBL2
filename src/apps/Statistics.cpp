@@ -12,17 +12,17 @@ Element male_female_other(int male, int female, int other) {
 
     return vbox({
         hbox({
-            text("Nam: "),
+            text("Nam:   "),
             gauge((float)male/max),
             text("  " + to_string(male) + " sinh viên"),
         }) | color(Color::Blue3),
         hbox({
-            text("Nữ: "),
+            text("Nữ:    "),
             gauge((float)female/max),
             text("  " + to_string(female) + " sinh viên"),
         }) | color(Color::Orange4),
         hbox({
-            text("Khác: "),
+            text("Khác:  "),
             gauge((float)other/max),
             text("  " + to_string(other) + " sinh viên"),
         }) | color(Color::GrayLight),
@@ -41,10 +41,18 @@ Element room_maintenance_or_not(
     Elements foo;
     foo.push_back(text("Số lượng phòng bảo trì:"));
     for (int i = 0; i < blocks.size(); ++i) {
+        string baz = to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms);
+        if (maintenances[i] >= 100) {
+            baz = to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms);
+        } else if (maintenances[i] > 10) {
+            baz = " " + to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms);
+        } else {
+            baz = "  " + to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms);
+        }
         auto bar = hbox({
-            text("Khu " + blocks[i] + ": "),
+            text("Khu   " + blocks[i] + ": "),
             gauge((float)maintenances[i]/max_number_of_rooms) | color(Color::Red3) | bgcolor(Color::Green4),
-            text(" " + to_string(maintenances[i]) + "/" + to_string(max_number_of_rooms)),
+            text(baz),
         });
         foo.push_back(bar);
     }
@@ -69,10 +77,18 @@ Element room_full_or_not(
     Elements foo;
     foo.push_back(text("Số lựợng phòng có đủ sinh viên:"));
     for (int i = 0; i < blocks.size(); ++i) {
+        string baz;
+        if (fulls[i] >= 100) {
+            baz = to_string(fulls[i]) + "/" + to_string(max_number_of_rooms);
+        } else if (fulls[i] > 10) {
+            baz = " " + to_string(fulls[i]) + "/" + to_string(max_number_of_rooms);
+        } else {
+            baz = "  " + to_string(fulls[i]) + "/" + to_string(max_number_of_rooms);
+        }
         auto bar = hbox({
-            text("Khu " + blocks[i] + ": "),
+            text("Khu   " + blocks[i] + ": "),
             gauge((float)fulls[i]/max_number_of_rooms) | color(Color::DeepSkyBlue1) | bgcolor(Color::GrayDark),
-            text(" " + to_string(fulls[i]) + "/" + to_string(max_number_of_rooms)),
+            text(baz),
         });
         foo.push_back(bar);
     }

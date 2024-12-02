@@ -27,9 +27,6 @@ StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
                     
                     error_message = "Sinh viên chưa thanh toán tiền phòng";
                     return;
-                } else {
-                    error_message = "Chưa xoá được!!";
-                    return;
                 }
             }
         } catch (const string& msg) {
