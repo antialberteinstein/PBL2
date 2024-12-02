@@ -123,8 +123,8 @@ void ModelProducer::init() {
         signal(SIGABRT, signal_handler);
         signal(SIGSEGV, signal_handler);
         signal(SIGILL, signal_handler);
-        signal(SIGFPE, signal_handler);  // Linux only, floating point exception
-        signal(SIGBUS, signal_handler);  // Linux only, bus error
+        /* signal(SIGFPE, signal_handler);  // Linux only, floating point exception
+        signal(SIGBUS, signal_handler);  // Linux only, bus error */
     } catch (const std::exception& e) {
         debug(e.what());
     } catch (...) {
