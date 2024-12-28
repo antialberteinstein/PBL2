@@ -1,8 +1,0 @@
-Hiển thị danh sách sinh viên trong kí túc xá, bao gồm
-các thông tin về bản thân sinh viên, số phòng, ngày vào
-phòng, tình trạng (nợ tiền phòng, tiền gửi xe,...), một
-số thông tin khác.
-Đồng thời hỗ trợ:
-+) Tìm kiếm sinh viên (để xóa, sửa sinh viên).
-+) Thanh toán các khoản phí đến hạn (không bao gồm tiền điện).
-+) Đăng ký gửi xe cho sinh viên.

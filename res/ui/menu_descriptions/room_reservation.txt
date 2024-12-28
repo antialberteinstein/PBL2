@@ -1,2 +1,0 @@
-Cài đặt một phòng là phòng bao - có số người ít hơn 6,
-tiền phòng được chia theo số người tối đa trong phòng.

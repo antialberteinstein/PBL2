@@ -1,7 +1,0 @@
-Hiển thị danh sách các phòng trong kí túc xá, bao gồm các
-thông tin về số phòng, tình trạng phòng, số người trong phòng,
-một số thông tin khác.
-Đồng thời hỗ trợ:
-+) Tìm kiếm phòng (để thanh toán tiền điện, tiền phòng,... cho sinh
-viên hoặc thông báo tới hệ thống phòng hỏng, giột,... ).
-+) Cơ chế hiển thị các phòng hỏng hóc để sửa chữa kịp thời.
