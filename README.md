@@ -1,5 +1,7 @@
 # PBL2 - Hệ Thống Quản Lý Ký Túc Xá (Dormitory Management System)
 
+![Preview](preview_images/preview.png)
+
 Đây là đồ án **PBL2 (Project Based Learning 2)**, một ứng dụng quản lý ký túc xá được viết bằng ngôn ngữ **C++** sử dụng giao diện dòng lệnh (TUI - Terminal User Interface) với thư viện **FTXUI**.
 
 ## 🚀 Tính Năng Chính

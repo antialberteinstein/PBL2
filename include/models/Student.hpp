@@ -24,7 +24,7 @@ constexpr char student_room_id[] = "room_id";
 class Student : public Model {
     public:
 
-        virtual string serialize() {
+        virtual string serialize() override {
             return json{
                 {student_id, id},
                 {student_name, name},
@@ -40,7 +40,7 @@ class Student : public Model {
             }.dump();
         }
 
-        virtual void deserialize(string data) {
+        virtual void deserialize(string data) override {
             auto j = json::parse(data);
             id = j[student_id];
             name = j[student_name];
@@ -136,7 +136,7 @@ class Student : public Model {
         void set_room_id(const string& room_id);
 
        
-        virtual string hash_to_id();    
+        virtual string hash_to_id() override;
 
         unique_ptr<Room> get_room_ref();
 

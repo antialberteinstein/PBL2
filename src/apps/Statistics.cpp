@@ -203,7 +203,7 @@ void Statistics::init_search_dialog() {
 
     search_result_btn = Button("Xem chi tiết sinh viên này", [&] {
         if (search_result != nullptr) {
-            student_detail = make_unique<StudentDetail>(this, move(search_result));
+            student_detail = make_unique<StudentDetail>(this, std::move(search_result));
             if (student_detail) {
                 student_detail->run();
             }

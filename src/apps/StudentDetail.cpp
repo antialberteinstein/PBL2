@@ -14,7 +14,7 @@ unique_ptr<AddStudent> student_detail_update_student = nullptr;
 unique_ptr<RegisterVehicle> student_detail_register_vehicle = nullptr;
 
 StudentDetail::StudentDetail(App* parent, unique_ptr<Student> student)
-        : student(move(student)) {
+        : student(std::move(student)) {
 
     this->parent = parent;
     error_message = "";

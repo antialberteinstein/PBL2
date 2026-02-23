@@ -84,7 +84,7 @@ RegisterVehicle::RegisterVehicle(App* parent, string student_id) {
                         break;
                     }
                     vehicle_db->modify(the_id, next_vehicle.get());
-                    this_vehicle = move(next_vehicle);
+                    this_vehicle = std::move(next_vehicle);
                     the_id = next_id;
                 }
             }

@@ -185,7 +185,7 @@ class ModelProducer {
             if (type_ == ModelType::STUDENT) {
                 auto student = make_unique<Student>();
                 student->deserialize(data);
-                return move(student);
+                return std::move(student);
             } else {
                 return nullptr;
             }
@@ -203,7 +203,7 @@ class ModelProducer {
             if (type_ == ModelType::ROOM) {
                 auto room = make_unique<Room>();
                 room->deserialize(data);
-                return move(room);
+                return std::move(room);
             } else {
                 return nullptr;
             }
@@ -221,7 +221,7 @@ class ModelProducer {
             if (type_ == ModelType::VEHICLE) {
                 auto vehicle = make_unique<Vehicle>();
                 vehicle->deserialize(data);
-                return move(vehicle);
+                return std::move(vehicle);
             } else {
                 return nullptr;
             }
@@ -239,7 +239,7 @@ class ModelProducer {
             if (type_ == ModelType::ROOM_FEE_PAYMENT) {
                 auto room_fee_payment = make_unique<RoomFeePayment>();
                 room_fee_payment->deserialize(data);
-                return move(room_fee_payment);
+                return std::move(room_fee_payment);
             } else {
                 return nullptr;
             }
@@ -257,7 +257,7 @@ class ModelProducer {
             if (type_ == ModelType::ELECTRICITY_PAYMENT) {
                 auto electricity_payment = make_unique<ElectricityPayment>();
                 electricity_payment->deserialize(data);
-                return move(electricity_payment);
+                return std::move(electricity_payment);
             } else {
                 return nullptr;
             }

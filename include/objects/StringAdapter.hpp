@@ -13,7 +13,7 @@ class StringAdapter : public ftxui::ConstStringListRef::Adapter {
         explicit StringAdapter(Vector<std::string>* entries) : entries_(entries) {}
         ~StringAdapter() final = default;
         size_t size() const final { return entries_->size(); }
-        std::string operator[](size_t index) const final { return entries_->at(index); }
+        std::string_view operator[](size_t index) const final { return (*entries_)[index]; }
 
     private:
         Vector<std::string>* entries_;

@@ -32,7 +32,7 @@ shared_ptr<SpinnerTreeNode> MySpinner::spin() {
         }
     }
 
-    return move(root);
+    return std::move(root);
 }
 
 shared_ptr<SpinnerTreeNode> SpinnerTreeSifu::create_tree(const string& name) {
@@ -51,7 +51,7 @@ int SpinnerTreeSifu::add_child(shared_ptr<SpinnerTreeNode>& parent, const string
     shared_ptr<SpinnerTreeNode> child =
         make_shared<SpinnerTreeNode>();
     child->data = data;
-    parent->children.push_back(move(child));
+    parent->children.push_back(std::move(child));
     return parent->children.size() - 1;
 }
 

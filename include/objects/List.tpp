@@ -47,7 +47,7 @@ void List<T>::add(T item) {
         for (size_t i = 0; i < size_; i++) {
             new_list[i] = list_[i];
         }
-        list_ = move(new_list);
+        list_ = std::move(new_list);
     }
     list_[size_++] = item;
 }

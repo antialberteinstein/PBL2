@@ -20,6 +20,7 @@ protected:
     string date_paid;
 
 public:
+    virtual ~Payment() = default;
     virtual string serialize() = 0;
     virtual void deserialize(string data) = 0;
     virtual string hash_to_id() {

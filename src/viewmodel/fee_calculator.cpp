@@ -45,7 +45,7 @@ unique_ptr<Payment> FeeCalculator::get_payment(Student* student) {
         if (room_fee_db) {
             auto room_fee_payment = room_fee_db->get_room_fee_payment(student->get_id());
             if (room_fee_payment != nullptr) {
-                return move(room_fee_payment);
+                return std::move(room_fee_payment);
             }
 
         }
@@ -312,7 +312,7 @@ unique_ptr<Payment> FeeCalculator::get_payment(Room* room) {
         if (ef_db) {
             auto ef = ef_db->get_electricity_payment(room->get_id_string());
             if (ef != nullptr) {
-                return move(ef);
+                return std::move(ef);
             }
         }
     } catch (const string& msg) {

@@ -29,7 +29,7 @@ RoomList::RoomList() {
             return;
         }
 
-        this->detail = make_unique<RoomDetail>(this, move(room));
+        this->detail = make_unique<RoomDetail>(this, std::move(room));
         if (detail == nullptr) {
             error_message = "Không thể xem thông tin chi tiết!!";
             return;

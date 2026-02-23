@@ -9,7 +9,7 @@
 unique_ptr<RoomReservation> room_reservation = nullptr;
 
 RoomDetail::RoomDetail(App* parent, unique_ptr<Room> room)
-        : room(move(room)) {
+        : room(std::move(room)) {
     this->parent = parent;
     error_message = "";
 

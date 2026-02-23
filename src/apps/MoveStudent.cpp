@@ -200,7 +200,7 @@ bool MoveStudent::event(Event event) {
         if (student_db) {
             auto _student = student_db->get_student(masoTf.value);
             if (_student != nullptr) {
-                student = move(_student);
+                student = std::move(_student);
                 if (room_db) {
                     room = room_db->get_room(student->get_room_id());
                 }

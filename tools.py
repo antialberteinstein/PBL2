@@ -106,20 +106,19 @@ if __name__ == '__main__':
 
         option = int(input('Chọn: '))
 
-        match option:
-            case 1:
-                reset_project()
-            case 2:
+        if option == 1:
+            reset_project()
+        elif option == 2:
+            build_project()
+            if (OS == WINDOWS):
+                # In Windows, we need to do it twice
+                #   there is a bug "pwsh.exe" not found in the first time.
                 build_project()
-                if (OS == WINDOWS):
-                    # In Windows, we need to do it twice
-                    #   there is a bug "pwsh.exe" not found in the first time.
-                    build_project()
-            case 3:
-                run_project()
-            case 4:
-                exit_program()
-            case _:
-                print('Chức năng không tồn tại.')
+        elif option == 3:
+            run_project()
+        elif option == 4:
+            exit_program()
+        else:
+            print('Chức năng không tồn tại.')
 
         enter_to_continue()

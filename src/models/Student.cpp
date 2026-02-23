@@ -100,27 +100,29 @@ void Student::on_modify() {
         try {
             auto room_db = ModelProducer::get_instance(ModelType::ROOM);
             if (room_db) {
-                auto room = room_db->get_room(room_id);
-                if (room) {
-                    if (room->get_status() == RoomStatus::MAINTENANCE) {
-                        throw "Phòng đang trong quá trình bảo trì!!";
-                    } else if (room->get_status() == RoomStatus::FULL) {
-                        throw "Phòng đã đầy!!";
-                    } else {
-                        if (room->get_current_number() == room->get_capacity()) {
-                            room->set_status(RoomStatus::FULL);
+                if (room_id != NO_ROOM_ID) {
+                    auto room = room_db->get_room(room_id);
+                    if (room) {
+                        if (room->get_status() == RoomStatus::MAINTENANCE) {
+                            throw "Phòng đang trong quá trình bảo trì!!";
+                        } else if (room->get_status() == RoomStatus::FULL) {
                             throw "Phòng đã đầy!!";
                         } else {
-                            this->room_id = room_id;
-                            room->set_current_number(room->get_current_number() + 1);
                             if (room->get_current_number() == room->get_capacity()) {
                                 room->set_status(RoomStatus::FULL);
+                                throw "Phòng đã đầy!!";
+                            } else {
+    // Removed redundant self assignment
+                                room->set_current_number(room->get_current_number() + 1);
+                                if (room->get_current_number() == room->get_capacity()) {
+                                    room->set_status(RoomStatus::FULL);
+                                }
+                                room_db->modify(room->get_id(), room.get());
                             }
-                            room_db->modify(room->get_id(), room.get());
                         }
+                    } else {
+                        throw "Không tìm thấy phòng!!";
                     }
-                } else {
-                    throw "Không tìm thấy phòng!!";
                 }
 
                 auto old_room = room_db->get_room(old_room_id);

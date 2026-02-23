@@ -40,7 +40,7 @@ void Vector<T>::resize() {
     for (size_t i = 0; i < size_; i++) {
         new_data[i] = data_[i];
     }
-    data_ = move(new_data);
+    data_ = std::move(new_data);
 }
 
 template <typename T>

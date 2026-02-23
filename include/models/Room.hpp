@@ -16,7 +16,7 @@ constexpr char room_status[] = "status";
 class Room : public Model {
     public:
 
-        virtual string serialize() {
+        virtual string serialize() override {
             return json{
                 {room_id, id},
                 {room_block, block},
@@ -28,7 +28,7 @@ class Room : public Model {
             }.dump();
         }
 
-        virtual void deserialize(string data) {
+        virtual void deserialize(string data) override {
             auto j = json::parse(data);
             id = j[room_id];
             block = j[room_block];
@@ -89,7 +89,7 @@ class Room : public Model {
 
         void set_status(const string& status);
 
-        virtual string hash_to_id() {
+        virtual string hash_to_id() override {
             return block + to_string(floor * 100 + room_number);
         }
 

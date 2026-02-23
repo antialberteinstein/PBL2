@@ -35,7 +35,7 @@ StudentList::StudentList() {
             return;
         }
 
-        this->detail = make_unique<StudentDetail>(this, move(student));
+        this->detail = make_unique<StudentDetail>(this, std::move(student));
         if (detail == nullptr) {
             error_message = "Không thể xem thông tin chi tiết!!";
             return;

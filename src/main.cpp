@@ -20,9 +20,17 @@ void test_csv_creator();
 
 int main(void) {
 
-    pbl();
-
-
+    try {
+        pbl();
+    } catch (const char* e) {
+        std::cerr << "Uncaught const char*: " << e << std::endl;
+    } catch (const std::string& e) {
+        std::cerr << "Uncaught std::string: " << e << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Uncaught exception: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Uncaught unknown exception" << std::endl;
+    }
 
     return 0;
 }
@@ -52,12 +60,24 @@ bool pbl() {
     } */
 
     thread loading_data_thread([&] {
-        FeeCalculator::init();
-        splash_screen::flag_loaded_data();
+        try {
+            FeeCalculator::init();
+            splash_screen::flag_loaded_data();
+        } catch (const char* msg) {
+            std::ofstream out("error.log", std::ios_base::app); out << "Thread error: " << msg << std::endl;
+        } catch (const string& msg) {
+            std::ofstream out("error.log", std::ios_base::app); out << "Thread error: " << msg << std::endl;
+        }
     });
 
     thread splash_screen_thread([&] {
-        splash_screen::run(splash_scr);
+        try {
+            splash_screen::run(splash_scr);
+        } catch (const char* msg) {
+            std::ofstream out("error.log", std::ios_base::app); out << "Thread error: " << msg << std::endl;
+        } catch (const string& msg) {
+            std::ofstream out("error.log", std::ios_base::app); out << "Thread error: " << msg << std::endl;
+        }
     });
 
     loading_data_thread.join();
